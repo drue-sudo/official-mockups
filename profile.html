@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DiagnoseThis — Profile</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+
+/* Top nav */
+.top-nav{background:#ffffff;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #eee;}
+.top-nav .nav-links{display:flex;gap:24px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+.top-nav .nav-links a:hover{color:#00A2B0;}
+.top-nav .nav-links a.active-link{color:#00A2B0;}
+
+/* Dark header */
+.page-header{background:#111111;padding:40px 32px;color:#fff;}
+.page-header h1{font-size:28px;font-weight:800;}
+
+/* Content */
+.content{padding:32px;background:#fff;}
+.section{margin-bottom:36px;}
+.section-title{font-size:18px;font-weight:800;color:#111;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #eee;}
+.form-row{margin-bottom:18px;}
+.btn-teal{background:#00A2B0;border:none;border-radius:8px;padding:12px 28px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:8px;}
+.btn-teal:hover{background:#008a96;}
+
+/* Plan cards */
+.plan-grid{display:flex;gap:20px;}
+.plan-card{flex:1;border:2px solid #ddd;border-radius:12px;padding:24px;position:relative;}
+.plan-card.current{border-color:#00A2B0;}
+.plan-name{font-size:18px;font-weight:800;color:#111;margin-bottom:4px;}
+.plan-price{font-size:14px;color:#555;margin-bottom:12px;font-weight:600;}
+.plan-badge{display:inline-block;background:#00A2B0;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
+.plan-features{list-style:none;padding:0;margin:0;}
+.plan-features li{font-size:13px;color:#555;padding:4px 0;line-height:1.5;}
+.plan-features li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#00A2B0;margin-right:8px;vertical-align:middle;}
+.btn-upgrade{background:#F15B5C;border:none;border-radius:8px;padding:10px 24px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:16px;}
+.btn-upgrade:hover{background:#d94a4b;}
+
+/* Footer */
+.footer{padding:16px 24px;background:#f5f5f5;border-top:1px solid #eee;text-align:center;font-size:11px;color:#999;line-height:1.5;}
+
+/* Tablet tweaks */
+.tablet .top-nav{padding:10px 16px;}
+.tablet .page-header{padding:28px 20px;}
+.tablet .page-header h1{font-size:22px;}
+.tablet .content{padding:24px 20px;}
+.tablet .plan-grid{flex-wrap:wrap;}
+.tablet .plan-card{flex:1 1 calc(50% - 10px);min-width:220px;}
+
+/* Mobile tweaks */
+.mobile .top-nav{padding:10px 12px;}
+.mobile .top-nav .nav-links{gap:14px;}
+.mobile .top-nav .nav-links a{font-size:11px;}
+.mobile .page-header{padding:24px 16px;}
+.mobile .page-header h1{font-size:20px;}
+.mobile .content{padding:20px 16px;}
+.mobile .section-title{font-size:16px;}
+.mobile .plan-grid{flex-direction:column;}
+.mobile .plan-card{flex:none;width:100%;}
+.mobile .field-input{font-size:13px;padding:10px 12px;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#" class="active-link">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="page-header"><h1>Account Settings</h1></div>
+  <div class="content">
+    <div class="section">
+      <div class="section-title">Account Information</div>
+      <div class="form-row"><label class="field-label">Full Name</label><input class="field-input" type="text" value="Jane Doe"></div>
+      <div class="form-row"><label class="field-label">Email Address</label><input class="field-input" type="email" value="jane@example.com"></div>
+      <div class="form-row"><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" value="(555) 123-4567"></div>
+      <button class="btn-teal">Save Changes</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Change Password</div>
+      <div class="form-row"><label class="field-label">Current Password</label><input class="field-input" type="password" placeholder="Enter current password"></div>
+      <div class="form-row"><label class="field-label">New Password</label><input class="field-input" type="password" placeholder="Enter new password"></div>
+      <div class="form-row"><label class="field-label">Confirm New Password</label><input class="field-input" type="password" placeholder="Confirm new password"></div>
+      <button class="btn-teal">Update Password</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Your Plan</div>
+      <div class="plan-grid">
+        <div class="plan-card current">
+          <div class="plan-name">Ask WHY</div>
+          <div class="plan-price">Free</div>
+          <div class="plan-badge">Current Plan</div>
+          <ul class="plan-features">
+            <li>1 free WHY question</li>
+            <li>Basic explanations</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">See WHY</div>
+          <div class="plan-price">$15/mo</div>
+          <ul class="plan-features">
+            <li>Unlimited WHYs</li>
+            <li>Detailed explanations</li>
+            <li>Provider scripts</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">The WHY</div>
+          <div class="plan-price">$29/mo</div>
+          <ul class="plan-features">
+            <li>Everything in See WHY</li>
+            <li>Live chat support</li>
+            <li>Priority responses</li>
+            <li>Condition tracking</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- TABLET -->
+<div id="view-tablet" class="shell tablet" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#" class="active-link">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="page-header"><h1>Account Settings</h1></div>
+  <div class="content">
+    <div class="section">
+      <div class="section-title">Account Information</div>
+      <div class="form-row"><label class="field-label">Full Name</label><input class="field-input" type="text" value="Jane Doe"></div>
+      <div class="form-row"><label class="field-label">Email Address</label><input class="field-input" type="email" value="jane@example.com"></div>
+      <div class="form-row"><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" value="(555) 123-4567"></div>
+      <button class="btn-teal">Save Changes</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Change Password</div>
+      <div class="form-row"><label class="field-label">Current Password</label><input class="field-input" type="password" placeholder="Enter current password"></div>
+      <div class="form-row"><label class="field-label">New Password</label><input class="field-input" type="password" placeholder="Enter new password"></div>
+      <div class="form-row"><label class="field-label">Confirm New Password</label><input class="field-input" type="password" placeholder="Confirm new password"></div>
+      <button class="btn-teal">Update Password</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Your Plan</div>
+      <div class="plan-grid">
+        <div class="plan-card current">
+          <div class="plan-name">Ask WHY</div>
+          <div class="plan-price">Free</div>
+          <div class="plan-badge">Current Plan</div>
+          <ul class="plan-features">
+            <li>1 free WHY question</li>
+            <li>Basic explanations</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">See WHY</div>
+          <div class="plan-price">$15/mo</div>
+          <ul class="plan-features">
+            <li>Unlimited WHYs</li>
+            <li>Detailed explanations</li>
+            <li>Provider scripts</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">The WHY</div>
+          <div class="plan-price">$29/mo</div>
+          <ul class="plan-features">
+            <li>Everything in See WHY</li>
+            <li>Live chat support</li>
+            <li>Priority responses</li>
+            <li>Condition tracking</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- MOBILE -->
+<div id="view-mobile" class="shell mobile" style="max-width:375px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#" class="active-link">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="page-header"><h1>Account Settings</h1></div>
+  <div class="content">
+    <div class="section">
+      <div class="section-title">Account Information</div>
+      <div class="form-row"><label class="field-label">Full Name</label><input class="field-input" type="text" value="Jane Doe"></div>
+      <div class="form-row"><label class="field-label">Email Address</label><input class="field-input" type="email" value="jane@example.com"></div>
+      <div class="form-row"><label class="field-label">Phone (optional)</label><input class="field-input" type="tel" value="(555) 123-4567"></div>
+      <button class="btn-teal">Save Changes</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Change Password</div>
+      <div class="form-row"><label class="field-label">Current Password</label><input class="field-input" type="password" placeholder="Enter current password"></div>
+      <div class="form-row"><label class="field-label">New Password</label><input class="field-input" type="password" placeholder="Enter new password"></div>
+      <div class="form-row"><label class="field-label">Confirm New Password</label><input class="field-input" type="password" placeholder="Confirm new password"></div>
+      <button class="btn-teal">Update Password</button>
+    </div>
+    <div class="section">
+      <div class="section-title">Your Plan</div>
+      <div class="plan-grid">
+        <div class="plan-card current">
+          <div class="plan-name">Ask WHY</div>
+          <div class="plan-price">Free</div>
+          <div class="plan-badge">Current Plan</div>
+          <ul class="plan-features">
+            <li>1 free WHY question</li>
+            <li>Basic explanations</li>
+          </ul>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">See WHY</div>
+          <div class="plan-price">$15/mo</div>
+          <ul class="plan-features">
+            <li>Unlimited WHYs</li>
+            <li>Detailed explanations</li>
+            <li>Provider scripts</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+        <div class="plan-card">
+          <div class="plan-name">The WHY</div>
+          <div class="plan-price">$29/mo</div>
+          <ul class="plan-features">
+            <li>Everything in See WHY</li>
+            <li>Live chat support</li>
+            <li>Priority responses</li>
+            <li>Condition tracking</li>
+          </ul>
+          <button class="btn-upgrade">Upgrade</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

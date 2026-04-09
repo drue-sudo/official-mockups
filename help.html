@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DiagnoseThis — Help</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+
+/* Top nav */
+.top-nav{background:#ffffff;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #eee;}
+.top-nav .nav-links{display:flex;gap:24px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+.top-nav .nav-links a:hover{color:#00A2B0;}
+.top-nav .nav-links a.active-link{color:#00A2B0;}
+
+/* Dark header */
+.page-header{background:#111111;padding:40px 32px;color:#fff;}
+.page-header h1{font-size:28px;font-weight:800;margin-bottom:8px;}
+.page-header p{font-size:14px;color:rgba(255,255,255,0.6);font-weight:400;}
+
+/* Content */
+.content{padding:32px;background:#fff;}
+
+/* FAQ accordion */
+.faq-list{border-top:1px solid #eee;}
+.faq-item{border-bottom:1px solid #eee;}
+.faq-question{padding:16px;font-weight:700;font-size:15px;color:#111;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-question:hover{color:#00A2B0;}
+.faq-toggle{font-size:20px;font-weight:700;color:#999;flex-shrink:0;margin-left:16px;width:24px;text-align:center;line-height:1;}
+.faq-answer{display:none;padding:16px 16px 20px;color:#555;line-height:1.7;font-size:14px;background:#fafafa;}
+.faq-item.open .faq-answer{display:block;}
+.faq-item.open .faq-toggle{color:#00A2B0;}
+
+/* Footer */
+.footer{padding:16px 24px;background:#f5f5f5;border-top:1px solid #eee;text-align:center;font-size:11px;color:#999;line-height:1.5;}
+
+/* Tablet tweaks */
+.tablet .top-nav{padding:10px 16px;}
+.tablet .page-header{padding:28px 20px;}
+.tablet .page-header h1{font-size:22px;}
+.tablet .content{padding:24px 20px;}
+.tablet .faq-question{font-size:14px;padding:14px;}
+.tablet .faq-answer{font-size:13px;padding:14px 14px 18px;}
+
+/* Mobile tweaks */
+.mobile .top-nav{padding:10px 12px;}
+.mobile .top-nav .nav-links{gap:14px;}
+.mobile .top-nav .nav-links a{font-size:11px;}
+.mobile .page-header{padding:24px 16px;}
+.mobile .page-header h1{font-size:20px;}
+.mobile .page-header p{font-size:12px;}
+.mobile .content{padding:20px 16px;}
+.mobile .faq-question{font-size:13px;padding:12px;}
+.mobile .faq-answer{font-size:12px;padding:12px 12px 16px;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#" class="active-link">Help</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>Help &amp; FAQ</h1>
+    <p>Everything you need to know about DiagnoseThis.</p>
+  </div>
+  <div class="content">
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What is DiagnoseThis?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">DiagnoseThis is an AI-powered health exploration tool built by clinicians. It helps you understand your symptoms by providing possible explanations — not diagnoses — that you can bring to your healthcare provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How does Ask WHY work?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Simply type your symptom or health concern into the Ask WHY tool. Our AI, guided by clinical frameworks, generates 3 possible explanations along with questions you can ask your provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is this medical advice?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">No. DiagnoseThis is strictly educational. It does not diagnose, treat, or replace professional medical advice. Always consult a licensed healthcare provider for medical decisions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What's the difference between See WHY and The WHY?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">See WHY ($15/mo) gives you unlimited questions with detailed explanations and provider scripts. The WHY ($29/mo) adds live chat support, priority responses, and condition tracking over time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is my data private?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes. We take privacy seriously. Your health questions are encrypted and never shared with third parties. You can delete your data at any time from your profile settings.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I cancel my subscription?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">You can cancel anytime from your Profile page under Subscription Plans. Your access continues until the end of your billing period.</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- TABLET -->
+<div id="view-tablet" class="shell tablet" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#" class="active-link">Help</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>Help &amp; FAQ</h1>
+    <p>Everything you need to know about DiagnoseThis.</p>
+  </div>
+  <div class="content">
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What is DiagnoseThis?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">DiagnoseThis is an AI-powered health exploration tool built by clinicians. It helps you understand your symptoms by providing possible explanations — not diagnoses — that you can bring to your healthcare provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How does Ask WHY work?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Simply type your symptom or health concern into the Ask WHY tool. Our AI, guided by clinical frameworks, generates 3 possible explanations along with questions you can ask your provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is this medical advice?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">No. DiagnoseThis is strictly educational. It does not diagnose, treat, or replace professional medical advice. Always consult a licensed healthcare provider for medical decisions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What's the difference between See WHY and The WHY?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">See WHY ($15/mo) gives you unlimited questions with detailed explanations and provider scripts. The WHY ($29/mo) adds live chat support, priority responses, and condition tracking over time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is my data private?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes. We take privacy seriously. Your health questions are encrypted and never shared with third parties. You can delete your data at any time from your profile settings.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I cancel my subscription?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">You can cancel anytime from your Profile page under Subscription Plans. Your access continues until the end of your billing period.</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- MOBILE -->
+<div id="view-mobile" class="shell mobile" style="max-width:375px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#" class="active-link">Help</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>Help &amp; FAQ</h1>
+    <p>Everything you need to know about DiagnoseThis.</p>
+  </div>
+  <div class="content">
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What is DiagnoseThis?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">DiagnoseThis is an AI-powered health exploration tool built by clinicians. It helps you understand your symptoms by providing possible explanations — not diagnoses — that you can bring to your healthcare provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How does Ask WHY work?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Simply type your symptom or health concern into the Ask WHY tool. Our AI, guided by clinical frameworks, generates 3 possible explanations along with questions you can ask your provider.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is this medical advice?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">No. DiagnoseThis is strictly educational. It does not diagnose, treat, or replace professional medical advice. Always consult a licensed healthcare provider for medical decisions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>What's the difference between See WHY and The WHY?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">See WHY ($15/mo) gives you unlimited questions with detailed explanations and provider scripts. The WHY ($29/mo) adds live chat support, priority responses, and condition tracking over time.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>Is my data private?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">Yes. We take privacy seriously. Your health questions are encrypted and never shared with third parties. You can delete your data at any time from your profile settings.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)"><span>How do I cancel my subscription?</span><span class="faq-toggle">+</span></div>
+        <div class="faq-answer">You can cancel anytime from your Profile page under Subscription Plans. Your access continues until the end of your billing period.</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+
+function toggleFaq(el){
+  var item = el.parentElement;
+  var toggle = el.querySelector('.faq-toggle');
+  if(item.classList.contains('open')){
+    item.classList.remove('open');
+    toggle.textContent = '+';
+  } else {
+    item.classList.add('open');
+    toggle.textContent = '\u2212';
+  }
+}
+</script>
+</body>
+</html>

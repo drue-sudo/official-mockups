@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DiagnoseThis — Contact</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #F15B5C;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+
+/* Top nav */
+.top-nav{background:#ffffff;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #eee;}
+.top-nav .nav-links{display:flex;gap:24px;}
+.top-nav .nav-links a{text-decoration:none;color:#333333;font-size:13px;font-weight:600;}
+.top-nav .nav-links a:hover{color:#00A2B0;}
+.top-nav .nav-links a.active-link{color:#00A2B0;}
+
+/* Dark hero */
+.page-header{background:#111111;padding:48px 32px;color:#fff;text-align:center;}
+.page-header h1{font-size:32px;font-weight:800;}
+
+/* Content */
+.content{padding:32px;background:#fff;}
+
+/* Two column layout */
+.contact-grid{display:flex;gap:32px;}
+.contact-left{flex:1.2;}
+.contact-right{flex:1;display:flex;flex-direction:column;gap:16px;}
+
+/* Form */
+.form-group{margin-bottom:20px;}
+textarea.field-input{resize:vertical;min-height:120px;}
+
+/* Info cards */
+.info-card{background:#f8f8f8;border:1px solid #eee;border-radius:10px;padding:20px;}
+.info-card-icon{font-size:20px;margin-bottom:8px;}
+.info-card-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#888;margin-bottom:6px;}
+.info-card-value{font-size:14px;font-weight:700;color:#111;}
+.info-card-flag{font-size:12px;color:#F15B5C;font-style:italic;font-weight:600;}
+
+/* Community card */
+.community-card{background:#00A2B0;border-radius:10px;padding:24px;color:#fff;}
+.community-card h3{font-size:18px;font-weight:800;margin-bottom:8px;}
+.community-card p{font-size:13px;line-height:1.5;margin-bottom:16px;color:rgba(255,255,255,0.85);}
+.community-btn{background:#fff;color:#00A2B0;border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;}
+
+/* Footer */
+.footer{padding:16px 24px;background:#f5f5f5;border-top:1px solid #eee;text-align:center;font-size:11px;color:#999;line-height:1.5;}
+
+/* Stacked layout for tablet/mobile */
+.stacked .contact-grid{flex-direction:column;}
+
+/* Tablet tweaks */
+.tablet .top-nav{padding:10px 16px;}
+.tablet .page-header{padding:36px 20px;}
+.tablet .page-header h1{font-size:26px;}
+.tablet .content{padding:24px 20px;}
+
+/* Mobile tweaks */
+.mobile .top-nav{padding:10px 12px;}
+.mobile .top-nav .nav-links{gap:14px;}
+.mobile .top-nav .nav-links a{font-size:11px;}
+.mobile .page-header{padding:28px 16px;}
+.mobile .page-header h1{font-size:22px;}
+.mobile .content{padding:20px 16px;}
+.mobile .cta-btn{width:100%;text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#" class="active-link">Contact</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>We're here to help.</h1>
+  </div>
+  <div class="content">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2 style="font-size:20px;font-weight:800;color:#111;margin-bottom:24px;">Send us a message</h2>
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="field-label">Your Name</label>
+            <input type="text" class="field-input" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Email Address</label>
+            <input type="email" class="field-input" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Subject</label>
+            <input type="text" class="field-input" placeholder="How can we help?">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Message</label>
+            <textarea class="field-input" placeholder="Tell us more..."></textarea>
+          </div>
+          <button class="cta-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-right">
+        <div class="info-card">
+          <div class="info-card-icon">&#9993;</div>
+          <div class="info-card-label">Email</div>
+          <div class="info-card-value">support@diagnosethis.com</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9742;</div>
+          <div class="info-card-label">Phone</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9978;</div>
+          <div class="info-card-label">Address</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="community-card">
+          <h3>DT Community</h3>
+          <p>Connect with other health-curious people, share insights, and stay updated on new features.</p>
+          <button class="community-btn">Join the DT Community</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- TABLET -->
+<div id="view-tablet" class="shell tablet stacked" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:44px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#" class="active-link">Contact</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>We're here to help.</h1>
+  </div>
+  <div class="content">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2 style="font-size:18px;font-weight:800;color:#111;margin-bottom:20px;">Send us a message</h2>
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="field-label">Your Name</label>
+            <input type="text" class="field-input" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Email Address</label>
+            <input type="email" class="field-input" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Subject</label>
+            <input type="text" class="field-input" placeholder="How can we help?">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Message</label>
+            <textarea class="field-input" placeholder="Tell us more..."></textarea>
+          </div>
+          <button class="cta-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-right">
+        <div class="info-card">
+          <div class="info-card-icon">&#9993;</div>
+          <div class="info-card-label">Email</div>
+          <div class="info-card-value">support@diagnosethis.com</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9742;</div>
+          <div class="info-card-label">Phone</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9978;</div>
+          <div class="info-card-label">Address</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="community-card">
+          <h3>DT Community</h3>
+          <p>Connect with other health-curious people, share insights, and stay updated on new features.</p>
+          <button class="community-btn">Join the DT Community</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- MOBILE -->
+<div id="view-mobile" class="shell mobile stacked" style="max-width:375px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#" class="active-link">Contact</a>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>We're here to help.</h1>
+  </div>
+  <div class="content">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <h2 style="font-size:17px;font-weight:800;color:#111;margin-bottom:18px;">Send us a message</h2>
+        <form onsubmit="return false;">
+          <div class="form-group">
+            <label class="field-label">Your Name</label>
+            <input type="text" class="field-input" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Email Address</label>
+            <input type="email" class="field-input" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Subject</label>
+            <input type="text" class="field-input" placeholder="How can we help?">
+          </div>
+          <div class="form-group">
+            <label class="field-label">Message</label>
+            <textarea class="field-input" placeholder="Tell us more..."></textarea>
+          </div>
+          <button class="cta-btn">Send Message</button>
+        </form>
+      </div>
+      <div class="contact-right">
+        <div class="info-card">
+          <div class="info-card-icon">&#9993;</div>
+          <div class="info-card-label">Email</div>
+          <div class="info-card-value">support@diagnosethis.com</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9742;</div>
+          <div class="info-card-label">Phone</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">&#9978;</div>
+          <div class="info-card-label">Address</div>
+          <div class="info-card-flag">[Flagged for Dr. Z]</div>
+        </div>
+        <div class="community-card">
+          <h3>DT Community</h3>
+          <p>Connect with other health-curious people, share insights, and stay updated on new features.</p>
+          <button class="community-btn">Join the DT Community</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

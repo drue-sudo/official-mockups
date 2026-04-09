@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Checkout</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+
+/* Top Nav */
+.top-nav{background:#ffffff;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #eee;}
+.top-nav .nav-links{display:flex;gap:20px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+
+/* Dark Header */
+.dark-header{background:#111111;padding:40px 32px;text-align:center;}
+.dark-header h1{color:#fff;font-size:30px;font-weight:800;margin-bottom:6px;}
+.dark-header p{color:rgba(255,255,255,0.6);font-size:15px;}
+
+/* Checkout Layout */
+.checkout-body{background:#fff;padding:40px 32px;display:flex;gap:40px;}
+.checkout-left{flex:0 0 40%;}
+.checkout-right{flex:0 0 60%;}
+
+/* Order Summary */
+.section-title{font-size:18px;font-weight:800;color:#111;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #111;}
+.order-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;}
+.order-label{font-size:14px;color:#555;}
+.order-value{font-size:14px;color:#111;font-weight:700;}
+.order-divider{border:none;border-top:1px solid #e0e0e0;margin:12px 0;}
+.order-total{display:flex;justify-content:space-between;align-items:center;padding:12px 0;}
+.order-total .order-label{font-size:16px;font-weight:800;color:#111;}
+.order-total .order-value{font-size:20px;font-weight:800;color:#111;}
+.order-note{font-size:12px;color:#888;margin-top:8px;}
+.order-includes{background:#00A2B0;border-radius:10px;padding:16px 20px;margin-top:20px;color:#fff;}
+.order-includes strong{font-size:13px;display:block;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px;}
+.order-includes ul{list-style:none;margin:0;padding:0;}
+.order-includes li{font-size:13px;padding:3px 0;opacity:0.9;}
+.order-includes li::before{content:"\2713 ";font-weight:700;margin-right:4px;}
+
+/* Payment Form */
+.form-group{margin-bottom:20px;}
+.form-row{display:flex;gap:16px;}
+.form-row .form-group{flex:1;}
+.pay-btn{width:100%;background:#F15B5C;border:none;border-radius:8px;padding:16px;color:#fff;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit;margin-top:8px;}
+.pay-secure{text-align:center;font-size:12px;color:#888;margin-top:12px;}
+.pay-terms{text-align:center;font-size:11px;color:#aaa;margin-top:8px;}
+
+/* Footer */
+.page-footer{background:#111;padding:16px 24px;text-align:center;}
+.page-footer p{color:rgba(255,255,255,0.5);font-size:12px;}
+
+/* Stacked layout */
+.checkout-body.stacked{flex-direction:column;gap:32px;}
+.checkout-body.stacked .checkout-left,
+.checkout-body.stacked .checkout-right{flex:none;width:100%;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>PREVIEW:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="dark-header">
+    <h1>&#128274; Secure Checkout</h1>
+    <p>Your payment information is safe with us.</p>
+  </div>
+  <div class="checkout-body">
+    <div class="checkout-left">
+      <div class="section-title">Order Summary</div>
+      <div class="order-row">
+        <span class="order-label">Plan</span>
+        <span class="order-value">See WHY</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Billing</span>
+        <span class="order-value">Monthly</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Price</span>
+        <span class="order-value">$15.00/mo</span>
+      </div>
+      <hr class="order-divider">
+      <div class="order-total">
+        <span class="order-label">Due today:</span>
+        <span class="order-value">$15.00</span>
+      </div>
+      <div class="order-note">Cancel anytime. No long-term commitment.</div>
+      <div class="order-includes">
+        <strong>Includes:</strong>
+        <ul>
+          <li>Unlimited WHYs</li>
+          <li>Detailed explanations</li>
+          <li>Provider scripts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="checkout-right">
+      <div class="section-title">Payment Details</div>
+      <div class="form-group">
+        <label class="field-label">Name on Card</label>
+        <input type="text" class="field-input" placeholder="Jane Doe">
+      </div>
+      <div class="form-group">
+        <label class="field-label">Card Number</label>
+        <input type="text" class="field-input" placeholder="4242 4242 4242 4242">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="field-label">Expiry Date</label>
+          <input type="text" class="field-input" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+          <label class="field-label">CVC</label>
+          <input type="text" class="field-input" placeholder="123">
+        </div>
+      </div>
+      <button class="pay-btn">Pay $15.00</button>
+      <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
+      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+  <div class="label-bar">Desktop &mdash; 1280px</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" class="shell" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="dark-header">
+    <h1 style="font-size:26px;">&#128274; Secure Checkout</h1>
+    <p>Your payment information is safe with us.</p>
+  </div>
+  <div class="checkout-body" style="padding:32px 24px;">
+    <div class="checkout-left" style="flex:0 0 38%;">
+      <div class="section-title">Order Summary</div>
+      <div class="order-row">
+        <span class="order-label">Plan</span>
+        <span class="order-value">See WHY</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Billing</span>
+        <span class="order-value">Monthly</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Price</span>
+        <span class="order-value">$15.00/mo</span>
+      </div>
+      <hr class="order-divider">
+      <div class="order-total">
+        <span class="order-label">Due today:</span>
+        <span class="order-value">$15.00</span>
+      </div>
+      <div class="order-note">Cancel anytime. No long-term commitment.</div>
+      <div class="order-includes">
+        <strong>Includes:</strong>
+        <ul>
+          <li>Unlimited WHYs</li>
+          <li>Detailed explanations</li>
+          <li>Provider scripts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="checkout-right" style="flex:0 0 58%;">
+      <div class="section-title">Payment Details</div>
+      <div class="form-group">
+        <label class="field-label">Name on Card</label>
+        <input type="text" class="field-input" placeholder="Jane Doe">
+      </div>
+      <div class="form-group">
+        <label class="field-label">Card Number</label>
+        <input type="text" class="field-input" placeholder="4242 4242 4242 4242">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="field-label">Expiry Date</label>
+          <input type="text" class="field-input" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+          <label class="field-label">CVC</label>
+          <input type="text" class="field-input" placeholder="123">
+        </div>
+      </div>
+      <button class="pay-btn">Pay $15.00</button>
+      <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
+      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+  <div class="label-bar">Tablet &mdash; 768px</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" class="shell" style="max-width:375px;display:none;">
+  <div class="top-nav" style="padding:10px 16px;">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:40px;width:auto;">
+    <div class="nav-links" style="gap:12px;">
+      <a href="#" style="font-size:11px;">Dashboard</a>
+      <a href="#" style="font-size:11px;">Ask WHY</a>
+      <a href="#" style="font-size:11px;">Profile</a>
+      <a href="#" style="font-size:11px;">Help</a>
+    </div>
+  </div>
+  <div class="dark-header" style="padding:28px 20px;">
+    <h1 style="font-size:22px;">&#128274; Secure Checkout</h1>
+    <p style="font-size:13px;">Your payment information is safe with us.</p>
+  </div>
+  <div class="checkout-body stacked" style="padding:24px 16px;">
+    <div class="checkout-left">
+      <div class="section-title">Order Summary</div>
+      <div class="order-row">
+        <span class="order-label">Plan</span>
+        <span class="order-value">See WHY</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Billing</span>
+        <span class="order-value">Monthly</span>
+      </div>
+      <div class="order-row">
+        <span class="order-label">Price</span>
+        <span class="order-value">$15.00/mo</span>
+      </div>
+      <hr class="order-divider">
+      <div class="order-total">
+        <span class="order-label">Due today:</span>
+        <span class="order-value">$15.00</span>
+      </div>
+      <div class="order-note">Cancel anytime. No long-term commitment.</div>
+      <div class="order-includes">
+        <strong>Includes:</strong>
+        <ul>
+          <li>Unlimited WHYs</li>
+          <li>Detailed explanations</li>
+          <li>Provider scripts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="checkout-right">
+      <div class="section-title">Payment Details</div>
+      <div class="form-group">
+        <label class="field-label">Name on Card</label>
+        <input type="text" class="field-input" placeholder="Jane Doe">
+      </div>
+      <div class="form-group">
+        <label class="field-label">Card Number</label>
+        <input type="text" class="field-input" placeholder="4242 4242 4242 4242">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="field-label">Expiry Date</label>
+          <input type="text" class="field-input" placeholder="MM/YY">
+        </div>
+        <div class="form-group">
+          <label class="field-label">CVC</label>
+          <input type="text" class="field-input" placeholder="123">
+        </div>
+      </div>
+      <button class="pay-btn">Pay $15.00</button>
+      <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
+      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+  <div class="label-bar">Mobile &mdash; 375px</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DiagnoseThis — Payment Success</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+
+/* Top nav */
+.top-nav{background:#ffffff;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid #eee;}
+.top-nav .nav-links{display:flex;gap:20px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+.top-nav .nav-links a:hover{color:#F15B5C;}
+
+/* Success content */
+.success-content{text-align:center;padding:60px 40px 40px;}
+.check-circle{width:80px;height:80px;border-radius:50%;background:#00A2B0;display:inline-flex;align-items:center;justify-content:center;margin-bottom:24px;}
+.check-circle span{color:#fff;font-size:40px;line-height:1;}
+.success-content h1{font-size:36px;font-weight:900;color:#111;margin-bottom:8px;}
+.success-content .subtitle{color:#F15B5C;font-size:18px;font-weight:700;margin-bottom:16px;}
+.success-content .desc{color:#555;font-size:15px;line-height:1.6;max-width:480px;margin:0 auto 36px;}
+
+/* Steps */
+.steps{max-width:520px;margin:0 auto 36px;text-align:left;}
+.step{display:flex;gap:16px;margin-bottom:24px;align-items:flex-start;}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#F15B5C;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;}
+.step-text h3{font-size:15px;font-weight:800;color:#111;margin-bottom:4px;}
+.step-text p{font-size:14px;color:#555;line-height:1.5;}
+
+/* Help text */
+.help-text{font-size:12px;color:#999;margin-top:24px;line-height:1.6;}
+.help-text a{color:#F15B5C;text-decoration:none;font-weight:600;}
+.help-text a:hover{text-decoration:underline;}
+
+/* Footer */
+.footer{padding:16px 24px;text-align:center;font-size:11px;color:#999;background:#f9f9f9;border-top:1px solid #eee;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a><a href="#">Ask WHY</a><a href="#">Profile</a><a href="#">Help</a>
+    </div>
+  </div>
+  <div class="success-content">
+    <div class="check-circle"><span>&#10003;</span></div>
+    <h1>You're in.</h1>
+    <div class="subtitle">Welcome to the rebellion.</div>
+    <p class="desc">Your See WHY plan is now active. Here's how to get started:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>Ask your first unlimited WHY</h3>
+          <p>Head to Ask WHY and explore any symptom or concern.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>Review your results</h3>
+          <p>Get 3 detailed explanations with provider conversation scripts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h3>Share with your provider</h3>
+          <p>Bring your results to your next appointment. You deserve answers.</p>
+        </div>
+      </div>
+    </div>
+    <button class="cta-btn" style="padding:16px 48px;font-size:17px;">Ask Your First WHY</button>
+    <div class="help-text">Questions? Visit our <a href="#">Help page</a> or contact <a href="mailto:support@diagnosethis.com">support@diagnosethis.com</a></div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="label-bar">Desktop &mdash; 1280px</div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" class="shell" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:42px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a><a href="#">Ask WHY</a><a href="#">Profile</a><a href="#">Help</a>
+    </div>
+  </div>
+  <div class="success-content" style="padding:48px 32px 32px;">
+    <div class="check-circle"><span>&#10003;</span></div>
+    <h1 style="font-size:32px;">You're in.</h1>
+    <div class="subtitle" style="font-size:16px;">Welcome to the rebellion.</div>
+    <p class="desc" style="font-size:14px;">Your See WHY plan is now active. Here's how to get started:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h3>Ask your first unlimited WHY</h3>
+          <p>Head to Ask WHY and explore any symptom or concern.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h3>Review your results</h3>
+          <p>Get 3 detailed explanations with provider conversation scripts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h3>Share with your provider</h3>
+          <p>Bring your results to your next appointment. You deserve answers.</p>
+        </div>
+      </div>
+    </div>
+    <button class="cta-btn" style="padding:14px 40px;font-size:16px;">Ask Your First WHY</button>
+    <div class="help-text">Questions? Visit our <a href="#">Help page</a> or contact <a href="mailto:support@diagnosethis.com">support@diagnosethis.com</a></div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="label-bar">Tablet &mdash; 768px</div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" class="shell" style="max-width:375px;display:none;">
+  <div class="top-nav" style="padding:10px 14px;">
+    <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+    <div class="nav-links" style="gap:10px;">
+      <a href="#" style="font-size:11px;">Dashboard</a><a href="#" style="font-size:11px;">Ask WHY</a><a href="#" style="font-size:11px;">Profile</a><a href="#" style="font-size:11px;">Help</a>
+    </div>
+  </div>
+  <div class="success-content" style="padding:36px 20px 28px;">
+    <div class="check-circle" style="width:64px;height:64px;"><span style="font-size:32px;">&#10003;</span></div>
+    <h1 style="font-size:28px;">You're in.</h1>
+    <div class="subtitle" style="font-size:15px;">Welcome to the rebellion.</div>
+    <p class="desc" style="font-size:13px;">Your See WHY plan is now active. Here's how to get started:</p>
+    <div class="steps">
+      <div class="step" style="gap:12px;">
+        <div class="step-num" style="width:30px;height:30px;font-size:14px;">1</div>
+        <div class="step-text">
+          <h3 style="font-size:14px;">Ask your first unlimited WHY</h3>
+          <p style="font-size:13px;">Head to Ask WHY and explore any symptom or concern.</p>
+        </div>
+      </div>
+      <div class="step" style="gap:12px;">
+        <div class="step-num" style="width:30px;height:30px;font-size:14px;">2</div>
+        <div class="step-text">
+          <h3 style="font-size:14px;">Review your results</h3>
+          <p style="font-size:13px;">Get 3 detailed explanations with provider conversation scripts.</p>
+        </div>
+      </div>
+      <div class="step" style="gap:12px;">
+        <div class="step-num" style="width:30px;height:30px;font-size:14px;">3</div>
+        <div class="step-text">
+          <h3 style="font-size:14px;">Share with your provider</h3>
+          <p style="font-size:13px;">Bring your results to your next appointment. You deserve answers.</p>
+        </div>
+      </div>
+    </div>
+    <button class="cta-btn" style="width:100%;padding:14px;font-size:15px;">Ask Your First WHY</button>
+    <div class="help-text" style="font-size:11px;">Questions? Visit our <a href="#">Help page</a> or contact <a href="mailto:support@diagnosethis.com">support@diagnosethis.com</a></div>
+  </div>
+  <div class="bottom-nav">
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Ask</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Chat</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Find</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Live</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Shop</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+  </div>
+  <div class="label-bar">Mobile &mdash; 375px</div>
+  <div class="footer" style="font-size:10px;padding:12px 14px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

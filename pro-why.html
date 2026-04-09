@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Pro WHY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #F15B5C;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-label-dark{display:block;color:#fff;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input-dark{width:100%;background:transparent;border:2px solid #fff;border-radius:8px;padding:12px 14px;color:#fff;font-size:14px;outline:none;font-family:inherit;}
+.check-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.check-icon{color:#00A2B0;font-size:20px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.check-text{color:#333;font-size:15px;line-height:1.5;}
+.who-card{background:#fafafa;border-radius:10px;padding:24px;text-align:center;}
+.who-card h4{font-size:16px;font-weight:700;color:#222;margin-bottom:6px;}
+.who-card p{font-size:13px;color:#666;line-height:1.4;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <!-- Strategic Decision Banner -->
+    <div style="background:#FFF8E6;border-left:4px solid #FFB533;padding:16px 32px;">
+      <p style="font-size:14px;color:#333;line-height:1.5;"><strong>Strategic decision needed for Dr. Z:</strong> Pro WHY is a practitioner product. Recommend moving to dedicated practitioner portal pro.diagnosethis.com or Functional Medicine Academy site.</p>
+    </div>
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+      <div style="display:flex;gap:28px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:56px 48px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:38px;font-weight:800;margin-bottom:14px;">Pro WHY — For practitioners.</h1>
+    </div>
+    <!-- Pricing Section -->
+    <div style="background:#f5f5f5;padding:56px 48px;text-align:center;">
+      <div style="max-width:480px;margin:0 auto;background:#fff;border-radius:14px;padding:48px 40px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <div style="font-size:48px;font-weight:800;color:#111;margin-bottom:8px;">$197/month</div>
+        <div style="font-size:16px;color:#666;margin-bottom:32px;">or $1,997/year (save $367)</div>
+        <button class="cta-btn" style="padding:16px 48px;font-size:17px;">Join the waitlist</button>
+      </div>
+    </div>
+    <!-- Inclusions -->
+    <div style="background:#fff;padding:56px 80px;">
+      <h2 style="font-size:26px;font-weight:800;color:#111;margin-bottom:32px;text-align:center;">What's included</h2>
+      <div style="max-width:600px;margin:0 auto;">
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Premium listing in Find WHY directory</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Full practice profile with photos and credentials</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Direct patient inquiry form</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Booking calendar integration</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Monthly analytics and insights</div>
+        </div>
+      </div>
+    </div>
+    <!-- Who Should Join -->
+    <div style="background:#f5f5f5;padding:56px 48px;">
+      <h2 style="font-size:26px;font-weight:800;color:#111;margin-bottom:32px;text-align:center;">Who should join</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;max-width:960px;margin:0 auto;">
+        <div class="who-card">
+          <h4>Functional Medicine Practitioners</h4>
+        </div>
+        <div class="who-card">
+          <h4>Naturopathic Doctors</h4>
+        </div>
+        <div class="who-card">
+          <h4>Integrative Medicine MDs</h4>
+        </div>
+        <div class="who-card">
+          <h4>Health Coaches and Nutritionists</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Waitlist Form -->
+    <div style="background:#111;padding:56px 48px;">
+      <h2 style="color:#fff;font-size:26px;font-weight:800;text-align:center;margin-bottom:32px;">Join the Pro WHY waitlist</h2>
+      <div style="max-width:480px;margin:0 auto;">
+        <div style="margin-bottom:20px;">
+          <label class="field-label-dark">Name</label>
+          <input type="text" class="field-input-dark" placeholder="Your full name">
+        </div>
+        <div style="margin-bottom:20px;">
+          <label class="field-label-dark">Email</label>
+          <input type="email" class="field-input-dark" placeholder="you@example.com">
+        </div>
+        <div style="margin-bottom:28px;">
+          <label class="field-label-dark">Specialty</label>
+          <select class="field-input-dark" style="appearance:auto;">
+            <option value="" style="color:#333;">Select your specialty</option>
+            <option value="functional-medicine" style="color:#333;">Functional Medicine Practitioner</option>
+            <option value="naturopathic" style="color:#333;">Naturopathic Doctor</option>
+            <option value="integrative" style="color:#333;">Integrative Medicine MD</option>
+            <option value="health-coach" style="color:#333;">Health Coach / Nutritionist</option>
+            <option value="other" style="color:#333;">Other</option>
+          </select>
+        </div>
+        <button class="cta-btn" style="width:100%;padding:16px;font-size:17px;">Submit</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:1280px;margin:0 auto;">Desktop — 1280px</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <!-- Strategic Decision Banner -->
+    <div style="background:#FFF8E6;border-left:4px solid #FFB533;padding:16px 24px;">
+      <p style="font-size:13px;color:#333;line-height:1.5;"><strong>Strategic decision needed for Dr. Z:</strong> Pro WHY is a practitioner product. Recommend moving to dedicated practitioner portal pro.diagnosethis.com or Functional Medicine Academy site.</p>
+    </div>
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:44px;width:auto;">
+      <div style="display:flex;gap:20px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:40px 32px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:30px;font-weight:800;margin-bottom:12px;">Pro WHY — For practitioners.</h1>
+    </div>
+    <!-- Pricing Section -->
+    <div style="background:#f5f5f5;padding:40px 32px;text-align:center;">
+      <div style="max-width:420px;margin:0 auto;background:#fff;border-radius:14px;padding:40px 32px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <div style="font-size:40px;font-weight:800;color:#111;margin-bottom:8px;">$197/month</div>
+        <div style="font-size:15px;color:#666;margin-bottom:28px;">or $1,997/year (save $367)</div>
+        <button class="cta-btn" style="padding:14px 40px;font-size:16px;">Join the waitlist</button>
+      </div>
+    </div>
+    <!-- Inclusions -->
+    <div style="background:#fff;padding:40px 40px;">
+      <h2 style="font-size:22px;font-weight:800;color:#111;margin-bottom:28px;text-align:center;">What's included</h2>
+      <div style="max-width:520px;margin:0 auto;">
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Premium listing in Find WHY directory</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Full practice profile with photos and credentials</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Direct patient inquiry form</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Booking calendar integration</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text">Monthly analytics and insights</div>
+        </div>
+      </div>
+    </div>
+    <!-- Who Should Join -->
+    <div style="background:#f5f5f5;padding:40px 32px;">
+      <h2 style="font-size:22px;font-weight:800;color:#111;margin-bottom:28px;text-align:center;">Who should join</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px;margin:0 auto;">
+        <div class="who-card">
+          <h4>Functional Medicine Practitioners</h4>
+        </div>
+        <div class="who-card">
+          <h4>Naturopathic Doctors</h4>
+        </div>
+        <div class="who-card">
+          <h4>Integrative Medicine MDs</h4>
+        </div>
+        <div class="who-card">
+          <h4>Health Coaches and Nutritionists</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Waitlist Form -->
+    <div style="background:#111;padding:40px 32px;">
+      <h2 style="color:#fff;font-size:22px;font-weight:800;text-align:center;margin-bottom:28px;">Join the Pro WHY waitlist</h2>
+      <div style="max-width:420px;margin:0 auto;">
+        <div style="margin-bottom:18px;">
+          <label class="field-label-dark">Name</label>
+          <input type="text" class="field-input-dark" placeholder="Your full name">
+        </div>
+        <div style="margin-bottom:18px;">
+          <label class="field-label-dark">Email</label>
+          <input type="email" class="field-input-dark" placeholder="you@example.com">
+        </div>
+        <div style="margin-bottom:24px;">
+          <label class="field-label-dark">Specialty</label>
+          <select class="field-input-dark" style="appearance:auto;">
+            <option value="" style="color:#333;">Select your specialty</option>
+            <option value="functional-medicine" style="color:#333;">Functional Medicine Practitioner</option>
+            <option value="naturopathic" style="color:#333;">Naturopathic Doctor</option>
+            <option value="integrative" style="color:#333;">Integrative Medicine MD</option>
+            <option value="health-coach" style="color:#333;">Health Coach / Nutritionist</option>
+            <option value="other" style="color:#333;">Other</option>
+          </select>
+        </div>
+        <button class="cta-btn" style="width:100%;padding:14px;font-size:16px;">Submit</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:768px;margin:0 auto;">Tablet — 768px</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+    <!-- Strategic Decision Banner -->
+    <div style="background:#FFF8E6;border-left:4px solid #FFB533;padding:14px 16px;">
+      <p style="font-size:12px;color:#333;line-height:1.5;"><strong>Strategic decision needed for Dr. Z:</strong> Pro WHY is a practitioner product. Recommend moving to dedicated practitioner portal pro.diagnosethis.com or Functional Medicine Academy site.</p>
+    </div>
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+      <div style="display:flex;gap:14px;">
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:32px 20px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:24px;font-weight:800;margin-bottom:10px;">Pro WHY — For practitioners.</h1>
+    </div>
+    <!-- Pricing Section -->
+    <div style="background:#f5f5f5;padding:32px 16px;text-align:center;">
+      <div style="background:#fff;border-radius:14px;padding:32px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <div style="font-size:34px;font-weight:800;color:#111;margin-bottom:6px;">$197/month</div>
+        <div style="font-size:14px;color:#666;margin-bottom:24px;">or $1,997/year (save $367)</div>
+        <button class="cta-btn" style="padding:14px 36px;font-size:15px;">Join the waitlist</button>
+      </div>
+    </div>
+    <!-- Inclusions -->
+    <div style="background:#fff;padding:32px 20px;">
+      <h2 style="font-size:20px;font-weight:800;color:#111;margin-bottom:24px;text-align:center;">What's included</h2>
+      <div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text" style="font-size:14px;">Premium listing in Find WHY directory</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text" style="font-size:14px;">Full practice profile with photos and credentials</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text" style="font-size:14px;">Direct patient inquiry form</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text" style="font-size:14px;">Booking calendar integration</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon">&#10003;</div>
+          <div class="check-text" style="font-size:14px;">Monthly analytics and insights</div>
+        </div>
+      </div>
+    </div>
+    <!-- Who Should Join -->
+    <div style="background:#f5f5f5;padding:32px 16px;">
+      <h2 style="font-size:20px;font-weight:800;color:#111;margin-bottom:20px;text-align:center;">Who should join</h2>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="who-card">
+          <h4>Functional Medicine Practitioners</h4>
+        </div>
+        <div class="who-card">
+          <h4>Naturopathic Doctors</h4>
+        </div>
+        <div class="who-card">
+          <h4>Integrative Medicine MDs</h4>
+        </div>
+        <div class="who-card">
+          <h4>Health Coaches and Nutritionists</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Waitlist Form -->
+    <div style="background:#111;padding:32px 16px;">
+      <h2 style="color:#fff;font-size:20px;font-weight:800;text-align:center;margin-bottom:24px;">Join the Pro WHY waitlist</h2>
+      <div>
+        <div style="margin-bottom:16px;">
+          <label class="field-label-dark">Name</label>
+          <input type="text" class="field-input-dark" placeholder="Your full name">
+        </div>
+        <div style="margin-bottom:16px;">
+          <label class="field-label-dark">Email</label>
+          <input type="email" class="field-input-dark" placeholder="you@example.com">
+        </div>
+        <div style="margin-bottom:22px;">
+          <label class="field-label-dark">Specialty</label>
+          <select class="field-input-dark" style="appearance:auto;">
+            <option value="" style="color:#333;">Select your specialty</option>
+            <option value="functional-medicine" style="color:#333;">Functional Medicine Practitioner</option>
+            <option value="naturopathic" style="color:#333;">Naturopathic Doctor</option>
+            <option value="integrative" style="color:#333;">Integrative Medicine MD</option>
+            <option value="health-coach" style="color:#333;">Health Coach / Nutritionist</option>
+            <option value="other" style="color:#333;">Other</option>
+          </select>
+        </div>
+        <button class="cta-btn" style="width:100%;padding:14px;font-size:15px;">Submit</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:375px;margin:0 auto;">Mobile — 375px</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

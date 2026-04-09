@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.55);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+</style>
+</head>
+<body>
+
+<!-- Preview Bar -->
+<div class="preview-bar">
+  <span>PREVIEW:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- ========== DESKTOP VIEW ========== -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+      <div style="display:flex;gap:28px;align-items:center;">
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Dashboard</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Ask WHY</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Profile</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Help</a>
+      </div>
+    </div>
+
+    <!-- Dark Header Section -->
+    <div style="background:#111111;padding:40px 48px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
+        <h1 style="color:#ffffff;font-size:30px;font-weight:800;">My WHY History</h1>
+        <button class="cta-btn">Ask New WHY</button>
+      </div>
+
+      <!-- Stats Row -->
+      <div style="display:flex;gap:20px;">
+        <div style="flex:1;background:#1a1a1a;border-radius:10px;padding:24px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:8px;">Total WHYs Asked</div>
+          <div style="font-size:32px;font-weight:800;color:#F15B5C;">12</div>
+        </div>
+        <div style="flex:1;background:#1a1a1a;border-radius:10px;padding:24px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:8px;">Answered</div>
+          <div style="font-size:32px;font-weight:800;color:#00A2B0;">10</div>
+        </div>
+        <div style="flex:1;background:#1a1a1a;border-radius:10px;padding:24px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:8px;">Member Since</div>
+          <div style="font-size:32px;font-weight:800;color:#ffffff;">Jan 2025</div>
+        </div>
+        <div style="flex:1;background:#1a1a1a;border-radius:10px;padding:24px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:8px;">WHYs Remaining</div>
+          <div style="font-size:32px;font-weight:800;color:#FFB533;">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY History Cards -->
+    <div style="background:#ffffff;padding:40px 48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:20px;">Recent Questions</div>
+
+      <!-- Card 1 -->
+      <div style="border:2px solid #eee;border-radius:10px;padding:24px 28px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="flex:1;">
+          <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:6px;">Why do I get dizzy every time I stand up?</div>
+          <div style="font-size:12px;color:#999;">Mar 15, 2025</div>
+        </div>
+        <div style="background:#00A2B0;color:#fff;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:0.5px;">Answered</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div style="border:2px solid #eee;border-radius:10px;padding:24px 28px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="flex:1;">
+          <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:6px;">Why does my left arm tingle at night?</div>
+          <div style="font-size:12px;color:#999;">Mar 10, 2025</div>
+        </div>
+        <div style="background:#00A2B0;color:#fff;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:0.5px;">Answered</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div style="border:2px solid #eee;border-radius:10px;padding:24px 28px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;">
+        <div style="flex:1;">
+          <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:6px;">Why am I always exhausted despite sleeping 8 hours?</div>
+          <div style="font-size:12px;color:#999;">Mar 8, 2025</div>
+        </div>
+        <div style="background:#FFB533;color:#fff;font-size:11px;font-weight:700;padding:6px 16px;border-radius:20px;letter-spacing:0.5px;">Pending</div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="label-bar">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ========== TABLET VIEW ========== -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:44px;width:auto;">
+      <div style="display:flex;gap:20px;align-items:center;">
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Dashboard</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Ask WHY</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Profile</a>
+        <a style="color:#222;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Help</a>
+      </div>
+    </div>
+
+    <!-- Dark Header Section -->
+    <div style="background:#111111;padding:32px 28px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+        <h1 style="color:#ffffff;font-size:24px;font-weight:800;">My WHY History</h1>
+        <button class="cta-btn" style="padding:12px 22px;font-size:14px;">Ask New WHY</button>
+      </div>
+
+      <!-- Stats Row: 2x2 grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="background:#1a1a1a;border-radius:10px;padding:20px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px;">Total WHYs Asked</div>
+          <div style="font-size:28px;font-weight:800;color:#F15B5C;">12</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:20px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px;">Answered</div>
+          <div style="font-size:28px;font-weight:800;color:#00A2B0;">10</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:20px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px;">Member Since</div>
+          <div style="font-size:28px;font-weight:800;color:#ffffff;">Jan 2025</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:10px;padding:20px;border:1px solid #2a2a2a;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px;">WHYs Remaining</div>
+          <div style="font-size:28px;font-weight:800;color:#FFB533;">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY History Cards -->
+    <div style="background:#ffffff;padding:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:16px;">Recent Questions</div>
+
+      <div style="border:2px solid #eee;border-radius:10px;padding:20px;margin-bottom:12px;">
+        <div style="font-size:15px;font-weight:700;color:#111;margin-bottom:8px;">Why do I get dizzy every time I stand up?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:12px;color:#999;">Mar 15, 2025</div>
+          <div style="background:#00A2B0;color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;">Answered</div>
+        </div>
+      </div>
+
+      <div style="border:2px solid #eee;border-radius:10px;padding:20px;margin-bottom:12px;">
+        <div style="font-size:15px;font-weight:700;color:#111;margin-bottom:8px;">Why does my left arm tingle at night?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:12px;color:#999;">Mar 10, 2025</div>
+          <div style="background:#00A2B0;color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;">Answered</div>
+        </div>
+      </div>
+
+      <div style="border:2px solid #eee;border-radius:10px;padding:20px;margin-bottom:12px;">
+        <div style="font-size:15px;font-weight:700;color:#111;margin-bottom:8px;">Why am I always exhausted despite sleeping 8 hours?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:12px;color:#999;">Mar 8, 2025</div>
+          <div style="background:#FFB533;color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:20px;">Pending</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item" style="padding:14px 6px;"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item" style="padding:14px 6px;"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item" style="padding:14px 6px;"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item" style="padding:14px 6px;"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item" style="padding:14px 6px;"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+
+    <div class="label-bar">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ========== MOBILE VIEW ========== -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+      <div style="display:flex;gap:14px;align-items:center;">
+        <a style="color:#222;font-size:11px;font-weight:600;text-decoration:none;cursor:pointer;">Dashboard</a>
+        <a style="color:#222;font-size:11px;font-weight:600;text-decoration:none;cursor:pointer;">Ask WHY</a>
+        <a style="color:#222;font-size:11px;font-weight:600;text-decoration:none;cursor:pointer;">Profile</a>
+        <a style="color:#222;font-size:11px;font-weight:600;text-decoration:none;cursor:pointer;">Help</a>
+      </div>
+    </div>
+
+    <!-- Dark Header Section -->
+    <div style="background:#111111;padding:24px 20px;">
+      <h1 style="color:#ffffff;font-size:20px;font-weight:800;margin-bottom:16px;">My WHY History</h1>
+      <button class="cta-btn" style="width:100%;padding:12px 20px;font-size:14px;margin-bottom:20px;">Ask New WHY</button>
+
+      <!-- Stats: 2x2 grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:#1a1a1a;border-radius:8px;padding:16px;border:1px solid #2a2a2a;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:4px;">Total WHYs</div>
+          <div style="font-size:24px;font-weight:800;color:#F15B5C;">12</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:16px;border:1px solid #2a2a2a;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:4px;">Answered</div>
+          <div style="font-size:24px;font-weight:800;color:#00A2B0;">10</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:16px;border:1px solid #2a2a2a;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:4px;">Member Since</div>
+          <div style="font-size:24px;font-weight:800;color:#ffffff;">Jan 2025</div>
+        </div>
+        <div style="background:#1a1a1a;border-radius:8px;padding:16px;border:1px solid #2a2a2a;">
+          <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:4px;">WHYs Left</div>
+          <div style="font-size:24px;font-weight:800;color:#FFB533;">3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHY History Cards -->
+    <div style="background:#ffffff;padding:20px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:14px;">Recent Questions</div>
+
+      <div style="border:2px solid #eee;border-radius:8px;padding:16px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:8px;">Why do I get dizzy every time I stand up?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:11px;color:#999;">Mar 15, 2025</div>
+          <div style="background:#00A2B0;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">Answered</div>
+        </div>
+      </div>
+
+      <div style="border:2px solid #eee;border-radius:8px;padding:16px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:8px;">Why does my left arm tingle at night?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:11px;color:#999;">Mar 10, 2025</div>
+          <div style="background:#00A2B0;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">Answered</div>
+        </div>
+      </div>
+
+      <div style="border:2px solid #eee;border-radius:8px;padding:16px;margin-bottom:10px;">
+        <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:8px;">Why am I always exhausted despite sleeping 8 hours?</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:11px;color:#999;">Mar 8, 2025</div>
+          <div style="background:#FFB533;color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;">Pending</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:9px;">Ask</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+      <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:9px;">Chat</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+      <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:9px;">Find</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+      <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:9px;">Live</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+      <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:9px;">Shop</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    </div>
+
+    <div class="label-bar">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

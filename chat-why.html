@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Chat WHY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #F15B5C;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.feature-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.feature-dot{width:10px;height:10px;border-radius:50%;background:#00A2B0;flex-shrink:0;margin-top:5px;}
+.feature-text{font-size:15px;color:#333;font-weight:600;}
+.tier-card{border:2px solid #eee;border-radius:12px;padding:28px;flex:1;}
+.tier-card.highlighted{border-color:#F15B5C;box-shadow:0 2px 12px rgba(241,91,92,0.12);}
+.tier-title{font-size:20px;font-weight:800;color:#111;margin-bottom:8px;}
+.tier-label{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.tier-list{list-style:none;padding:0;}
+.tier-list li{font-size:14px;color:#444;padding:6px 0;padding-left:18px;position:relative;}
+.tier-list li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:#00A2B0;}
+.tier-card.highlighted .tier-list li::before{background:#F15B5C;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+      <div style="display:flex;gap:28px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:56px 48px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:38px;font-weight:800;margin-bottom:14px;">Your WHY Community.</h1>
+      <p style="color:rgba(255,255,255,0.6);font-size:17px;max-width:600px;margin:0 auto 24px;line-height:1.5;">Connect with others who understand. Share your health journey, compare patterns, and discover you are not alone.</p>
+      <span style="display:inline-block;background:#F15B5C;color:#fff;font-size:13px;font-weight:700;padding:8px 22px;border-radius:50px;">Coming Soon</span>
+    </div>
+    <!-- Features Section -->
+    <div style="background:#ffffff;padding:48px 80px;">
+      <h2 style="font-size:24px;font-weight:800;color:#111;margin-bottom:28px;text-align:center;">Community Features</h2>
+      <div style="max-width:560px;margin:0 auto;">
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text">Daily health discussion prompts</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text">Expert Q&amp;A sessions with practitioners</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text">Compare symptom patterns with others</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text">Success stories and community wins</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text">Health challenges and accountability</div></div>
+      </div>
+    </div>
+    <!-- Tier Cards -->
+    <div style="background:#f9f9f9;padding:48px 80px;">
+      <div style="display:flex;gap:28px;max-width:860px;margin:0 auto;">
+        <div class="tier-card">
+          <div class="tier-label">General Access</div>
+          <div class="tier-title">Ask WHY &amp; See WHY</div>
+          <ul class="tier-list">
+            <li>Community forums</li>
+            <li>Daily prompts</li>
+            <li>Success stories</li>
+          </ul>
+        </div>
+        <div class="tier-card highlighted">
+          <div class="tier-label">VIP Access</div>
+          <div class="tier-title">The WHY Members</div>
+          <ul class="tier-list">
+            <li>Exclusive threads</li>
+            <li>Practitioner workshops</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Upgrade CTA -->
+    <div style="background:#ffffff;padding:40px 80px;text-align:center;">
+      <p style="font-size:17px;font-weight:700;color:#222;margin-bottom:18px;">Upgrade to The WHY for full community access</p>
+      <button class="cta-btn" style="padding:16px 40px;font-size:16px;">Upgrade Now</button>
+    </div>
+    <!-- DT Community Link -->
+    <div style="padding:32px 80px 48px;">
+      <div style="background:#00A2B0;border-radius:12px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <p style="color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;">Already a DT Community member?</p>
+          <p style="color:rgba(255,255,255,0.8);font-size:14px;">Access Go High Level</p>
+        </div>
+        <button style="background:#fff;color:#00A2B0;border:none;border-radius:8px;padding:12px 28px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">Go to Community</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:1280px;margin:0 auto;">Desktop — 1280px</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:44px;width:auto;">
+      <div style="display:flex;gap:20px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:40px 32px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:30px;font-weight:800;margin-bottom:12px;">Your WHY Community.</h1>
+      <p style="color:rgba(255,255,255,0.6);font-size:15px;max-width:480px;margin:0 auto 20px;line-height:1.5;">Connect with others who understand. Share your health journey, compare patterns, and discover you are not alone.</p>
+      <span style="display:inline-block;background:#F15B5C;color:#fff;font-size:12px;font-weight:700;padding:7px 20px;border-radius:50px;">Coming Soon</span>
+    </div>
+    <!-- Features Section -->
+    <div style="background:#ffffff;padding:36px 40px;">
+      <h2 style="font-size:21px;font-weight:800;color:#111;margin-bottom:24px;text-align:center;">Community Features</h2>
+      <div style="max-width:480px;margin:0 auto;">
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Daily health discussion prompts</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Expert Q&amp;A sessions with practitioners</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Compare symptom patterns with others</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Success stories and community wins</div></div>
+        <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Health challenges and accountability</div></div>
+      </div>
+    </div>
+    <!-- Tier Cards -->
+    <div style="background:#f9f9f9;padding:36px 40px;">
+      <div style="display:flex;gap:20px;max-width:680px;margin:0 auto;">
+        <div class="tier-card" style="padding:24px;">
+          <div class="tier-label">General Access</div>
+          <div class="tier-title" style="font-size:18px;">Ask WHY &amp; See WHY</div>
+          <ul class="tier-list">
+            <li>Community forums</li>
+            <li>Daily prompts</li>
+            <li>Success stories</li>
+          </ul>
+        </div>
+        <div class="tier-card highlighted" style="padding:24px;">
+          <div class="tier-label">VIP Access</div>
+          <div class="tier-title" style="font-size:18px;">The WHY Members</div>
+          <ul class="tier-list">
+            <li>Exclusive threads</li>
+            <li>Practitioner workshops</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Upgrade CTA -->
+    <div style="background:#ffffff;padding:32px 40px;text-align:center;">
+      <p style="font-size:16px;font-weight:700;color:#222;margin-bottom:16px;">Upgrade to The WHY for full community access</p>
+      <button class="cta-btn" style="padding:14px 36px;font-size:15px;">Upgrade Now</button>
+    </div>
+    <!-- DT Community Link -->
+    <div style="padding:24px 40px 36px;">
+      <div style="background:#00A2B0;border-radius:12px;padding:28px 32px;display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <p style="color:#fff;font-size:16px;font-weight:800;margin-bottom:4px;">Already a DT Community member?</p>
+          <p style="color:rgba(255,255,255,0.8);font-size:13px;">Access Go High Level</p>
+        </div>
+        <button style="background:#fff;color:#00A2B0;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">Go to Community</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:768px;margin:0 auto;">Tablet — 768px</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+      <div style="display:flex;gap:14px;">
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:32px 20px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:24px;font-weight:800;margin-bottom:10px;">Your WHY Community.</h1>
+      <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.5;margin-bottom:18px;">Connect with others who understand. Share your health journey, compare patterns, and discover you are not alone.</p>
+      <span style="display:inline-block;background:#F15B5C;color:#fff;font-size:12px;font-weight:700;padding:6px 18px;border-radius:50px;">Coming Soon</span>
+    </div>
+    <!-- Features Section -->
+    <div style="background:#ffffff;padding:28px 20px;">
+      <h2 style="font-size:19px;font-weight:800;color:#111;margin-bottom:20px;text-align:center;">Community Features</h2>
+      <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Daily health discussion prompts</div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Expert Q&amp;A sessions with practitioners</div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Compare symptom patterns with others</div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Success stories and community wins</div></div>
+      <div class="feature-item"><div class="feature-dot"></div><div class="feature-text" style="font-size:14px;">Health challenges and accountability</div></div>
+    </div>
+    <!-- Tier Cards - stacked on mobile -->
+    <div style="background:#f9f9f9;padding:28px 20px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="tier-card" style="padding:22px;">
+          <div class="tier-label">General Access</div>
+          <div class="tier-title" style="font-size:17px;">Ask WHY &amp; See WHY</div>
+          <ul class="tier-list">
+            <li>Community forums</li>
+            <li>Daily prompts</li>
+            <li>Success stories</li>
+          </ul>
+        </div>
+        <div class="tier-card highlighted" style="padding:22px;">
+          <div class="tier-label">VIP Access</div>
+          <div class="tier-title" style="font-size:17px;">The WHY Members</div>
+          <ul class="tier-list">
+            <li>Exclusive threads</li>
+            <li>Practitioner workshops</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Upgrade CTA -->
+    <div style="background:#ffffff;padding:28px 20px;text-align:center;">
+      <p style="font-size:15px;font-weight:700;color:#222;margin-bottom:14px;">Upgrade to The WHY for full community access</p>
+      <button class="cta-btn" style="width:100%;padding:14px;font-size:15px;">Upgrade Now</button>
+    </div>
+    <!-- DT Community Link -->
+    <div style="padding:20px 20px 28px;">
+      <div style="background:#00A2B0;border-radius:12px;padding:24px 20px;text-align:center;">
+        <p style="color:#fff;font-size:16px;font-weight:800;margin-bottom:4px;">Already a DT Community member?</p>
+        <p style="color:rgba(255,255,255,0.8);font-size:13px;margin-bottom:16px;">Access Go High Level</p>
+        <button style="background:#fff;color:#00A2B0;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;width:100%;">Go to Community</button>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word" style="color:#fff;">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:375px;margin:0 auto;">Mobile — 375px</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

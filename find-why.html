@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Find WHY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #F15B5C;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item.active{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:#fff;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item.active .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.feature-item{background:#fafafa;border-radius:10px;padding:28px 24px;border-left:4px solid #00A2B0;}
+.feature-item h3{font-size:16px;font-weight:700;color:#222;margin-bottom:6px;}
+.feature-item p{font-size:13px;color:#666;line-height:1.5;}
+.card-placeholder{background:#f5f5f5;border-radius:12px;padding:28px 24px;opacity:0.4;border:1px solid #ddd;}
+.card-placeholder .card-avatar{width:56px;height:56px;background:#ccc;border-radius:50%;margin-bottom:14px;}
+.card-placeholder .card-line{height:12px;background:#bbb;border-radius:6px;margin-bottom:10px;}
+.card-placeholder .card-line.short{width:60%;}
+.card-placeholder .card-line.med{width:80%;}
+.card-placeholder .card-btn{margin-top:14px;padding:10px 20px;background:#bbb;border-radius:8px;color:#fff;font-size:13px;font-weight:700;border:none;display:inline-block;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+      <div style="display:flex;gap:28px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:56px 48px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:38px;font-weight:800;margin-bottom:18px;">Find your practitioner.</h1>
+      <!-- Coming Soon Search Bar -->
+      <div style="max-width:600px;margin:0 auto;position:relative;">
+        <input type="text" placeholder="Search by name, specialty, or location..." disabled style="width:100%;padding:16px 52px 16px 20px;border:2px solid #444;border-radius:10px;background:#2a2a2a;color:#666;font-size:15px;font-family:inherit;cursor:not-allowed;">
+        <div style="position:absolute;right:18px;top:50%;transform:translateY(-50%);color:#666;font-size:18px;">&#128269;</div>
+        <div style="margin-top:10px;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Coming Soon</div>
+      </div>
+    </div>
+    <!-- Directory Features Section -->
+    <div style="background:#ffffff;padding:48px 80px;">
+      <h2 style="text-align:center;font-size:26px;font-weight:800;color:#222;margin-bottom:8px;">Directory Features</h2>
+      <p style="text-align:center;font-size:14px;color:#888;margin-bottom:36px;">Everything you need to find the right practitioner</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="feature-item">
+          <h3>500+ verified practitioners</h3>
+          <p>Browse a growing network of vetted healthcare professionals across specialties.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Filter by specialty, condition, location, and language</h3>
+          <p>Narrow your search to find the exact match for your needs.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Full credentials and patient reviews</h3>
+          <p>See board certifications, education, and real patient feedback before you book.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Direct contact and scheduling</h3>
+          <p>Reach out or schedule an appointment directly from the directory.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sample Practitioner Cards -->
+    <div style="background:#f5f5f5;padding:48px 80px;">
+      <h2 style="text-align:center;font-size:22px;font-weight:800;color:#222;margin-bottom:8px;">Sample Practitioners</h2>
+      <p style="text-align:center;font-size:13px;color:#888;margin-bottom:32px;">Preview of what the directory will look like</p>
+      <div style="display:flex;gap:24px;">
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:10px 0;">
+            <span style="color:#ccc;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:10px 0;">
+            <span style="color:#ccc;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:10px 0;">
+            <span style="color:#ccc;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+      </div>
+    </div>
+    <!-- Practitioner CTA -->
+    <div style="background:#111111;padding:56px 48px;text-align:center;">
+      <h2 style="color:#ffffff;font-size:30px;font-weight:800;margin-bottom:12px;">Are you a practitioner?</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:16px;margin-bottom:28px;">Learn about Pro WHY</p>
+      <button class="cta-btn" style="padding:16px 40px;font-size:16px;">Get Started with Pro WHY</button>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item active"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:1280px;margin:0 auto;">Desktop — 1280px</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:44px;width:auto;">
+      <div style="display:flex;gap:20px;">
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:40px 32px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:30px;font-weight:800;margin-bottom:16px;">Find your practitioner.</h1>
+      <div style="max-width:500px;margin:0 auto;position:relative;">
+        <input type="text" placeholder="Search by name, specialty, or location..." disabled style="width:100%;padding:14px 48px 14px 18px;border:2px solid #444;border-radius:10px;background:#2a2a2a;color:#666;font-size:14px;font-family:inherit;cursor:not-allowed;">
+        <div style="position:absolute;right:16px;top:50%;transform:translateY(-50%);color:#666;font-size:16px;">&#128269;</div>
+        <div style="margin-top:10px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Coming Soon</div>
+      </div>
+    </div>
+    <!-- Directory Features Section -->
+    <div style="background:#ffffff;padding:36px 40px;">
+      <h2 style="text-align:center;font-size:22px;font-weight:800;color:#222;margin-bottom:6px;">Directory Features</h2>
+      <p style="text-align:center;font-size:13px;color:#888;margin-bottom:28px;">Everything you need to find the right practitioner</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="feature-item">
+          <h3>500+ verified practitioners</h3>
+          <p>Browse a growing network of vetted healthcare professionals across specialties.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Filter by specialty, condition, location, and language</h3>
+          <p>Narrow your search to find the exact match for your needs.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Full credentials and patient reviews</h3>
+          <p>See board certifications, education, and real patient feedback before you book.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Direct contact and scheduling</h3>
+          <p>Reach out or schedule an appointment directly from the directory.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sample Practitioner Cards -->
+    <div style="background:#f5f5f5;padding:36px 40px;">
+      <h2 style="text-align:center;font-size:20px;font-weight:800;color:#222;margin-bottom:6px;">Sample Practitioners</h2>
+      <p style="text-align:center;font-size:12px;color:#888;margin-bottom:24px;">Preview of what the directory will look like</p>
+      <div style="display:flex;gap:20px;">
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder" style="flex:1;">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+      </div>
+    </div>
+    <!-- Practitioner CTA -->
+    <div style="background:#111111;padding:44px 32px;text-align:center;">
+      <h2 style="color:#ffffff;font-size:26px;font-weight:800;margin-bottom:10px;">Are you a practitioner?</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:24px;">Learn about Pro WHY</p>
+      <button class="cta-btn" style="padding:14px 36px;font-size:15px;">Get Started with Pro WHY</button>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item active"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:768px;margin:0 auto;">Tablet — 768px</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+    <!-- Top Nav -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#ffffff;border-bottom:1px solid #eee;">
+      <img src="assets/dt-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+      <div style="display:flex;gap:14px;">
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Home</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">About</a>
+        <a style="color:#333;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;">Contact</a>
+      </div>
+    </div>
+    <!-- Dark Hero -->
+    <div style="background:#111111;padding:32px 20px;text-align:center;">
+      <h1 style="color:#ffffff;font-size:24px;font-weight:800;margin-bottom:14px;">Find your practitioner.</h1>
+      <div style="position:relative;">
+        <input type="text" placeholder="Search practitioners..." disabled style="width:100%;padding:12px 44px 12px 16px;border:2px solid #444;border-radius:10px;background:#2a2a2a;color:#666;font-size:13px;font-family:inherit;cursor:not-allowed;">
+        <div style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#666;font-size:15px;">&#128269;</div>
+        <div style="margin-top:8px;color:rgba(255,255,255,0.5);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;">Coming Soon</div>
+      </div>
+    </div>
+    <!-- Directory Features Section -->
+    <div style="background:#ffffff;padding:28px 16px;">
+      <h2 style="text-align:center;font-size:20px;font-weight:800;color:#222;margin-bottom:6px;">Directory Features</h2>
+      <p style="text-align:center;font-size:12px;color:#888;margin-bottom:24px;">Everything you need to find the right practitioner</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="feature-item">
+          <h3 style="font-size:15px;">500+ verified practitioners</h3>
+          <p>Browse a growing network of vetted healthcare professionals across specialties.</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="font-size:15px;">Filter by specialty, condition, location, and language</h3>
+          <p>Narrow your search to find the exact match for your needs.</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="font-size:15px;">Full credentials and patient reviews</h3>
+          <p>See board certifications, education, and real patient feedback before you book.</p>
+        </div>
+        <div class="feature-item">
+          <h3 style="font-size:15px;">Direct contact and scheduling</h3>
+          <p>Reach out or schedule an appointment directly from the directory.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Sample Practitioner Cards -->
+    <div style="background:#f5f5f5;padding:28px 16px;">
+      <h2 style="text-align:center;font-size:18px;font-weight:800;color:#222;margin-bottom:6px;">Sample Practitioners</h2>
+      <p style="text-align:center;font-size:12px;color:#888;margin-bottom:20px;">Preview of what the directory will look like</p>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card-placeholder">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+        <div class="card-placeholder">
+          <div class="card-avatar" style="width:48px;height:48px;"></div>
+          <div class="card-line med"></div>
+          <div class="card-line short"></div>
+          <div class="card-line" style="width:50%;"></div>
+          <div style="display:flex;gap:4px;margin:8px 0;">
+            <span style="color:#ccc;font-size:13px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <div class="card-btn">View Profile</div>
+        </div>
+      </div>
+    </div>
+    <!-- Practitioner CTA -->
+    <div style="background:#111111;padding:36px 20px;text-align:center;">
+      <h2 style="color:#ffffff;font-size:22px;font-weight:800;margin-bottom:10px;">Are you a practitioner?</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:14px;margin-bottom:20px;">Learn about Pro WHY</p>
+      <button class="cta-btn" style="padding:14px 32px;font-size:15px;width:100%;">Get Started with Pro WHY</button>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item active"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+    <!-- Footer -->
+    <div style="background:#111;padding:16px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.45);font-size:12px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  </div>
+  <div class="label-bar" style="max-width:375px;margin:0 auto;">Mobile — 375px</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
