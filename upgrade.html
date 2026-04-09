@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Upgrade</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+.field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
+.field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
+.field-input:focus{border-color:#00A2B0;}
+
+/* Top Nav */
+.top-nav{background:#000000;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.top-nav .nav-links{display:flex;gap:20px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+
+/* Dark Header */
+.dark-header{background:#111111;padding:48px 32px;text-align:center;}
+.dark-header h1{color:#fff;font-size:32px;font-weight:800;margin-bottom:8px;}
+.dark-header p{color:rgba(255,255,255,0.6);font-size:16px;}
+
+/* Plan Cards */
+.plans-section{background:#fff;padding:40px 32px;}
+.plans-grid{display:flex;gap:24px;justify-content:center;max-width:960px;margin:0 auto;}
+.plan-card{flex:1;border-radius:12px;padding:28px 24px;position:relative;display:flex;flex-direction:column;}
+.plan-card.free{border:2px solid #ddd;background:#fff;}
+.plan-card.popular{border:3px solid #F15B5C;background:#fff;box-shadow:0 4px 20px rgba(241,91,92,0.15);}
+.plan-card.premium{border:2px solid #00A2B0;background:#fff;}
+.plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#F15B5C;color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:20px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px;}
+.plan-name{font-size:20px;font-weight:800;margin-bottom:4px;color:#111;}
+.plan-price{font-size:36px;font-weight:800;color:#111;margin:12px 0 4px;}
+.plan-price-sub{font-size:13px;color:#888;margin-bottom:20px;}
+.plan-features{list-style:none;margin-bottom:24px;flex:1;}
+.plan-features li{padding:8px 0;font-size:14px;color:#444;border-bottom:1px solid #f0f0f0;padding-left:20px;position:relative;}
+.plan-features li::before{content:"\2713";position:absolute;left:0;color:#00A2B0;font-weight:700;}
+.plan-btn{width:100%;padding:14px;border-radius:8px;font-size:15px;font-weight:800;cursor:pointer;border:none;font-family:inherit;}
+.plan-btn.disabled{background:#e0e0e0;color:#999;cursor:default;}
+.plan-btn.coral{background:#F15B5C;color:#fff;}
+.plan-btn.teal{background:#00A2B0;color:#fff;}
+
+/* Comparison Table */
+.compare-section{padding:40px 32px;background:#fff;border-top:1px solid #eee;}
+.compare-section h2{text-align:center;font-size:22px;font-weight:800;color:#111;margin-bottom:24px;}
+.compare-wrap{max-width:760px;margin:0 auto;overflow-x:auto;}
+.compare-table{width:100%;border-collapse:collapse;min-width:500px;}
+.compare-table th{background:#111;color:#fff;padding:12px 16px;font-size:13px;font-weight:700;text-align:center;}
+.compare-table th:first-child{text-align:left;}
+.compare-table td{padding:12px 16px;font-size:14px;color:#333;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center;}
+.compare-table td:first-child{text-align:left;font-weight:600;}
+.compare-table tr:nth-child(even){background:#fafafa;}
+.check{color:#00A2B0;font-weight:700;font-size:16px;}
+.dash{color:#ccc;font-size:16px;}
+
+/* Testimonials */
+.testimonials-section{padding:40px 32px;background:#fff;border-top:1px solid #eee;}
+.testimonials-section h2{text-align:center;font-size:22px;font-weight:800;color:#111;margin-bottom:24px;}
+.testimonials-grid{display:flex;gap:20px;max-width:960px;margin:0 auto;}
+.testimonial-card{flex:1;background:#f5f5f5;border-radius:10px;padding:24px;border:1px dashed #ccc;}
+.testimonial-card p{font-style:italic;color:#666;font-size:14px;margin-bottom:12px;}
+.testimonial-card .name{font-size:13px;font-weight:700;color:#999;}
+
+/* Footer */
+.page-footer{background:#111;padding:16px 24px;text-align:center;}
+.page-footer p{color:rgba(255,255,255,0.5);font-size:12px;}
+
+/* Mobile nav links */
+.top-nav-mobile .nav-links{gap:12px;}
+.top-nav-mobile .nav-links a{font-size:11px;}
+
+/* Stacked cards for tablet/mobile */
+.plans-grid.stacked{flex-wrap:wrap;}
+.plans-grid.stacked .plan-card{min-width:260px;}
+.plans-grid.all-stacked{flex-direction:column;max-width:380px;margin:0 auto;}
+.plans-grid.all-stacked .plan-card{width:100%;}
+
+/* Mobile table */
+.compare-table-mobile{width:100%;border-collapse:collapse;}
+.compare-table-mobile th{background:#111;color:#fff;padding:10px 12px;font-size:12px;font-weight:700;text-align:center;}
+.compare-table-mobile th:first-child{text-align:left;}
+.compare-table-mobile td{padding:10px 12px;font-size:12px;color:#333;border-bottom:1px solid rgba(255,255,255,0.1);text-align:center;}
+.compare-table-mobile td:first-child{text-align:left;font-weight:600;}
+.compare-table-mobile tr:nth-child(even){background:#fafafa;}
+
+.testimonials-grid.stacked{flex-direction:column;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>PREVIEW:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="dark-header">
+    <h1>Choose Your Plan</h1>
+    <p>Stop guessing. Start understanding.</p>
+  </div>
+  <div class="plans-section">
+    <div class="plans-grid">
+      <div class="plan-card free">
+        <div class="plan-name">Ask WHY</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-price-sub">&nbsp;</div>
+        <ul class="plan-features">
+          <li>1 free WHY question</li>
+          <li>3 basic explanations</li>
+          <li>Educational content</li>
+        </ul>
+        <button class="plan-btn disabled">Current Plan</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">See WHY</div>
+        <div class="plan-price">$15<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Unlimited WHY questions</li>
+          <li>Detailed explanations</li>
+          <li>Provider conversation scripts</li>
+          <li>Save &amp; revisit history</li>
+          <li>Email support</li>
+        </ul>
+        <button class="plan-btn coral">Upgrade to See WHY</button>
+      </div>
+      <div class="plan-card premium">
+        <div class="plan-name">The WHY</div>
+        <div class="plan-price">$29<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Everything in See WHY</li>
+          <li>Live chat with health guides</li>
+          <li>Priority response times</li>
+          <li>Condition tracking over time</li>
+          <li>Phone support</li>
+        </ul>
+        <button class="plan-btn teal">Upgrade to The WHY</button>
+      </div>
+    </div>
+  </div>
+  <div class="compare-section">
+    <h2>Feature Comparison</h2>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Feature</th><th>Ask WHY</th><th>See WHY</th><th>The WHY</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WHY Questions</td><td>1</td><td class="check">Unlimited</td><td class="check">Unlimited</td></tr>
+          <tr><td>Explanations</td><td>3 Basic</td><td class="check">Detailed</td><td class="check">Detailed</td></tr>
+          <tr><td>Provider Scripts</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>History</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Chat Support</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Priority Response</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Condition Tracking</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="testimonials-section">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 1</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 2</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 3</div>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:48px 48px 0;">
+      <div style="display:flex;gap:40px;">
+        <div style="flex:1;">
+          <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+          <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+          <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+          <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" class="shell" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Ask WHY</a>
+      <a href="#">Profile</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+  <div class="dark-header">
+    <h1 style="font-size:26px;">Choose Your Plan</h1>
+    <p>Stop guessing. Start understanding.</p>
+  </div>
+  <div class="plans-section">
+    <div class="plans-grid stacked">
+      <div class="plan-card popular" style="flex:1 1 45%;min-width:280px;">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">See WHY</div>
+        <div class="plan-price">$15<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Unlimited WHY questions</li>
+          <li>Detailed explanations</li>
+          <li>Provider conversation scripts</li>
+          <li>Save &amp; revisit history</li>
+          <li>Email support</li>
+        </ul>
+        <button class="plan-btn coral">Upgrade to See WHY</button>
+      </div>
+      <div class="plan-card premium" style="flex:1 1 45%;min-width:280px;">
+        <div class="plan-name">The WHY</div>
+        <div class="plan-price">$29<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Everything in See WHY</li>
+          <li>Live chat with health guides</li>
+          <li>Priority response times</li>
+          <li>Condition tracking over time</li>
+          <li>Phone support</li>
+        </ul>
+        <button class="plan-btn teal">Upgrade to The WHY</button>
+      </div>
+      <div class="plan-card free" style="flex:1 1 100%;max-width:340px;margin:0 auto;">
+        <div class="plan-name">Ask WHY</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-price-sub">&nbsp;</div>
+        <ul class="plan-features">
+          <li>1 free WHY question</li>
+          <li>3 basic explanations</li>
+          <li>Educational content</li>
+        </ul>
+        <button class="plan-btn disabled">Current Plan</button>
+      </div>
+    </div>
+  </div>
+  <div class="compare-section">
+    <h2>Feature Comparison</h2>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Feature</th><th>Ask WHY</th><th>See WHY</th><th>The WHY</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WHY Questions</td><td>1</td><td class="check">Unlimited</td><td class="check">Unlimited</td></tr>
+          <tr><td>Explanations</td><td>3 Basic</td><td class="check">Detailed</td><td class="check">Detailed</td></tr>
+          <tr><td>Provider Scripts</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>History</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Chat Support</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Priority Response</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Condition Tracking</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="testimonials-section">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials-grid stacked">
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 1</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 2</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 3</div>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:24px;">
+      <div style="margin-bottom:24px;">
+        <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+        <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+      </div>
+      <div style="margin-bottom:0;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" class="shell" style="max-width:375px;display:none;">
+  <div class="top-nav top-nav-mobile" style="padding:10px 16px;">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:40px;width:auto;">
+    <div class="nav-links">
+      <a href="#" style="font-size:11px;">Dashboard</a>
+      <a href="#" style="font-size:11px;">Ask WHY</a>
+      <a href="#" style="font-size:11px;">Profile</a>
+      <a href="#" style="font-size:11px;">Help</a>
+    </div>
+  </div>
+  <div class="dark-header" style="padding:32px 20px;">
+    <h1 style="font-size:22px;">Choose Your Plan</h1>
+    <p style="font-size:14px;">Stop guessing. Start understanding.</p>
+  </div>
+  <div class="plans-section" style="padding:24px 16px;">
+    <div class="plans-grid all-stacked" style="gap:20px;">
+      <div class="plan-card popular" style="margin-top:16px;">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">See WHY</div>
+        <div class="plan-price">$15<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Unlimited WHY questions</li>
+          <li>Detailed explanations</li>
+          <li>Provider conversation scripts</li>
+          <li>Save &amp; revisit history</li>
+          <li>Email support</li>
+        </ul>
+        <button class="plan-btn coral">Upgrade to See WHY</button>
+      </div>
+      <div class="plan-card premium">
+        <div class="plan-name">The WHY</div>
+        <div class="plan-price">$29<span style="font-size:16px;font-weight:600;color:#888;">/mo</span></div>
+        <div class="plan-price-sub">Billed monthly</div>
+        <ul class="plan-features">
+          <li>Everything in See WHY</li>
+          <li>Live chat with health guides</li>
+          <li>Priority response times</li>
+          <li>Condition tracking over time</li>
+          <li>Phone support</li>
+        </ul>
+        <button class="plan-btn teal">Upgrade to The WHY</button>
+      </div>
+      <div class="plan-card free">
+        <div class="plan-name">Ask WHY</div>
+        <div class="plan-price">Free</div>
+        <div class="plan-price-sub">&nbsp;</div>
+        <ul class="plan-features">
+          <li>1 free WHY question</li>
+          <li>3 basic explanations</li>
+          <li>Educational content</li>
+        </ul>
+        <button class="plan-btn disabled">Current Plan</button>
+      </div>
+    </div>
+  </div>
+  <div class="compare-section" style="padding:24px 16px;">
+    <h2 style="font-size:18px;">Feature Comparison</h2>
+    <div class="compare-wrap">
+      <table class="compare-table-mobile">
+        <thead>
+          <tr><th>Feature</th><th>Ask</th><th>See</th><th>The</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>WHY Questions</td><td>1</td><td class="check">&#8734;</td><td class="check">&#8734;</td></tr>
+          <tr><td>Explanations</td><td>Basic</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Provider Scripts</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>History</td><td class="dash">&mdash;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Chat Support</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Priority</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+          <tr><td>Tracking</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="check">&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="testimonials-section" style="padding:24px 16px;">
+    <h2 style="font-size:18px;">What Our Users Say</h2>
+    <div class="testimonials-grid stacked" style="gap:12px;">
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 1</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 2</div>
+      </div>
+      <div class="testimonial-card">
+        <p>[Placeholder &mdash; Testimonial from beta user]</p>
+        <div class="name">&mdash; Beta User 3</div>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:24px;">
+      <div style="margin-bottom:24px;">
+        <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+        <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+      </div>
+      <div style="margin-bottom:0;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="page-footer">
+    <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+  </div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

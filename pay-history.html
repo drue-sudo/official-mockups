@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DiagnoseThis — Payment History</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.bottom-nav{background:#000;display:flex;border-top:3px solid #00A2B0;}
+.bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+.bnav-item:first-child{background:rgba(241,91,92,0.18);}
+.bnav-verb{color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
+.bnav-word{color:#fff;font-size:14px;font-weight:800;}
+.bnav-item:first-child .bnav-word{color:#F15B5C;}
+.label-bar{padding:8px;background:#f5f5f5;font-size:11px;color:#888;text-align:center;border-top:1px solid #eee;}
+.cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
+
+/* Top nav */
+.top-nav{background:#000000;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.top-nav .nav-links{display:flex;gap:20px;}
+.top-nav .nav-links a{text-decoration:none;color:#222;font-size:13px;font-weight:600;}
+.top-nav .nav-links a:hover{color:#F15B5C;}
+
+/* Dark header */
+.page-header{background:#111111;padding:32px 24px;}
+.page-header h1{color:#fff;font-size:26px;font-weight:800;}
+
+/* State toggle */
+.state-toggle{display:flex;gap:8px;padding:20px 24px;background:#f9f9f9;border-bottom:1px solid rgba(255,255,255,0.1);}
+.st-btn{padding:8px 18px;border-radius:20px;border:2px solid #ccc;background:#fff;font-size:12px;font-weight:700;cursor:pointer;color:#555;font-family:inherit;}
+.st-btn.active{background:#111;color:#fff;border-color:#111;}
+
+/* Empty state */
+.empty-state{padding:60px 24px;text-align:center;}
+.empty-icon{font-size:48px;color:#00A2B0;margin-bottom:16px;}
+.empty-state h2{font-size:22px;font-weight:800;color:#111;margin-bottom:12px;}
+.empty-state p{font-size:15px;color:#555;max-width:420px;margin:0 auto 24px;line-height:1.6;}
+
+/* Populated state — table */
+.populated-state{padding:24px;}
+.pay-table{width:100%;border-collapse:collapse;margin-bottom:24px;}
+.pay-table th{text-align:left;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;padding:10px 12px;border-bottom:2px solid #eee;}
+.pay-table td{padding:14px 12px;font-size:14px;color:#222;border-bottom:1px solid #f0f0f0;}
+.badge-paid{display:inline-block;background:#00A2B0;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;}
+.badge-free{color:#aaa;font-size:13px;}
+.dl-link{color:#F15B5C;font-size:13px;font-weight:600;text-decoration:none;}
+.dl-link:hover{text-decoration:underline;}
+.plan-summary{background:#f9f9f9;border-radius:8px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.plan-summary .plan-info{font-size:15px;color:#222;font-weight:600;}
+.plan-summary .plan-info strong{color:#111;font-weight:800;}
+.manage-link{color:#F15B5C;font-size:14px;font-weight:700;text-decoration:none;}
+.manage-link:hover{text-decoration:underline;}
+
+/* Card layout for tablet/mobile */
+.pay-cards{display:none;}
+.pay-card{background:#fff;border:1px solid #eee;border-radius:10px;padding:16px;margin-bottom:12px;}
+.pay-card .card-row{display:flex;justify-content:space-between;margin-bottom:6px;font-size:14px;}
+.pay-card .card-row .card-label{color:#888;font-size:12px;font-weight:600;text-transform:uppercase;}
+.pay-card .card-row .card-value{color:#222;font-weight:600;}
+
+/* Footer */
+.footer{padding:16px 24px;text-align:center;font-size:11px;color:#999;background:#f9f9f9;border-top:1px solid #eee;}
+
+/* Mobile nav adjustments */
+.top-nav-mobile .nav-links{gap:12px;}
+.top-nav-mobile .nav-links a{font-size:11px;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>Preview:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" class="shell" style="max-width:1280px;">
+  <div class="top-nav">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:52px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a><a href="#">Ask WHY</a><a href="#">Profile</a><a href="#">Help</a>
+    </div>
+  </div>
+  <div class="page-header"><h1>Payment History</h1></div>
+  <div class="state-toggle">
+    <button class="st-btn active" onclick="showState('empty','desktop',this)">Show Empty State</button>
+    <button class="st-btn" onclick="showState('populated','desktop',this)">Show Populated State</button>
+  </div>
+  <!-- Empty -->
+  <div id="empty-desktop" class="empty-state">
+    <div class="empty-icon">&#9678;</div>
+    <h2>No payments yet</h2>
+    <p>You're on the free Ask WHY plan. Upgrade to unlock unlimited WHYs and detailed explanations.</p>
+    <button class="cta-btn" onclick="location.href='upgrade.html'">Upgrade Now</button>
+  </div>
+  <!-- Populated -->
+  <div id="populated-desktop" style="display:none;">
+    <div class="populated-state">
+      <table class="pay-table">
+        <thead><tr><th>Date</th><th>Plan</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Mar 1, 2025</td><td>See WHY</td><td>$15.00</td><td><span class="badge-paid">Paid</span></td><td><a href="#" class="dl-link">Download</a></td></tr>
+          <tr><td>Feb 1, 2025</td><td>See WHY</td><td>$15.00</td><td><span class="badge-paid">Paid</span></td><td><a href="#" class="dl-link">Download</a></td></tr>
+          <tr><td>Jan 1, 2025</td><td>See WHY</td><td>$15.00</td><td><span class="badge-paid">Paid</span></td><td><a href="#" class="dl-link">Download</a></td></tr>
+          <tr><td>Dec 15, 2024</td><td>Ask WHY</td><td>Free</td><td><span class="badge-free">&mdash;</span></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="plan-summary">
+        <div class="plan-info">Current Plan: <strong>See WHY</strong> &mdash; $15.00/mo</div>
+        <a href="#" class="manage-link">Manage Plan</a>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:48px 48px 0;">
+      <div style="display:flex;gap:40px;">
+        <div style="flex:1;">
+          <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+          <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+          <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+        </div>
+        <div style="flex:1;">
+          <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+          <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+          <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" class="shell" style="max-width:768px;display:none;">
+  <div class="top-nav">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:42px;width:auto;">
+    <div class="nav-links">
+      <a href="#">Dashboard</a><a href="#">Ask WHY</a><a href="#">Profile</a><a href="#">Help</a>
+    </div>
+  </div>
+  <div class="page-header"><h1>Payment History</h1></div>
+  <div class="state-toggle">
+    <button class="st-btn active" onclick="showState('empty','tablet',this)">Show Empty State</button>
+    <button class="st-btn" onclick="showState('populated','tablet',this)">Show Populated State</button>
+  </div>
+  <!-- Empty -->
+  <div id="empty-tablet" class="empty-state">
+    <div class="empty-icon">&#9678;</div>
+    <h2>No payments yet</h2>
+    <p>You're on the free Ask WHY plan. Upgrade to unlock unlimited WHYs and detailed explanations.</p>
+    <button class="cta-btn" onclick="location.href='upgrade.html'">Upgrade Now</button>
+  </div>
+  <!-- Populated -->
+  <div id="populated-tablet" style="display:none;">
+    <div class="populated-state">
+      <div class="pay-cards">
+        <!-- Will be shown via CSS override below -->
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Mar 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Feb 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Jan 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Dec 15, 2024</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">Ask WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">Free</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-free">&mdash;</span></span></div>
+      </div>
+      <div class="plan-summary">
+        <div class="plan-info">Current Plan: <strong>See WHY</strong> &mdash; $15.00/mo</div>
+        <a href="#" class="manage-link">Manage Plan</a>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:24px;">
+      <div style="margin-bottom:24px;">
+        <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+        <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+      </div>
+      <div style="margin-bottom:0;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+    <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+  </div>
+  <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" class="shell" style="max-width:375px;display:none;">
+  <div class="top-nav top-nav-mobile" style="padding:10px 14px;">
+    <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;">
+    <div class="nav-links" style="gap:10px;">
+      <a href="#" style="font-size:11px;">Dashboard</a><a href="#" style="font-size:11px;">Ask WHY</a><a href="#" style="font-size:11px;">Profile</a><a href="#" style="font-size:11px;">Help</a>
+    </div>
+  </div>
+  <div class="page-header" style="padding:24px 16px;"><h1 style="font-size:22px;">Payment History</h1></div>
+  <div class="state-toggle" style="padding:14px 16px;">
+    <button class="st-btn active" onclick="showState('empty','mobile',this)">Show Empty State</button>
+    <button class="st-btn" onclick="showState('populated','mobile',this)">Show Populated State</button>
+  </div>
+  <!-- Empty -->
+  <div id="empty-mobile" class="empty-state" style="padding:40px 16px;">
+    <div class="empty-icon">&#9678;</div>
+    <h2 style="font-size:19px;">No payments yet</h2>
+    <p style="font-size:14px;">You're on the free Ask WHY plan. Upgrade to unlock unlimited WHYs and detailed explanations.</p>
+    <button class="cta-btn" style="width:100%;padding:14px;" onclick="location.href='upgrade.html'">Upgrade Now</button>
+  </div>
+  <!-- Populated -->
+  <div id="populated-mobile" style="display:none;">
+    <div class="populated-state" style="padding:16px;">
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Mar 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Feb 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Jan 1, 2025</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">See WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">$15.00</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-paid">Paid</span></span></div>
+        <div class="card-row"><span class="card-label"></span><span class="card-value"><a href="#" class="dl-link">Download</a></span></div>
+      </div>
+      <div class="pay-card">
+        <div class="card-row"><span class="card-label">Date</span><span class="card-value">Dec 15, 2024</span></div>
+        <div class="card-row"><span class="card-label">Plan</span><span class="card-value">Ask WHY</span></div>
+        <div class="card-row"><span class="card-label">Amount</span><span class="card-value">Free</span></div>
+        <div class="card-row"><span class="card-label">Status</span><span class="card-value"><span class="badge-free">&mdash;</span></span></div>
+      </div>
+      <div class="plan-summary" style="flex-direction:column;align-items:flex-start;gap:8px;">
+        <div class="plan-info" style="font-size:14px;">Current Plan: <strong>See WHY</strong> &mdash; $15.00/mo</div>
+        <a href="#" class="manage-link">Manage Plan</a>
+      </div>
+    </div>
+  </div>
+    <!-- Site Footer -->
+    <div style="background:#111111;padding:24px;">
+      <div style="margin-bottom:24px;">
+        <img src="assets/dt-transparent-logo.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;">
+        <p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a>
+      </div>
+      <div style="margin-bottom:24px;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a>
+        <a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a>
+      </div>
+      <div style="margin-bottom:0;">
+        <h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:13px;">[Address &mdash; flag for Dr. Z]</p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px;text-align:center;">
+      <p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+  <div class="bottom-nav">
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Ask</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Chat</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Find</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Live</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+    <div class="bnav-item" style="padding:12px 4px;"><div class="bnav-verb" style="font-size:8px;">Shop</div><div class="bnav-word" style="font-size:12px;">WHY</div></div>
+  </div>
+  <div class="footer" style="font-size:10px;padding:12px 14px;">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+
+function showState(state, view, btn){
+  document.getElementById('empty-'+view).style.display = state==='empty' ? 'block' : 'none';
+  document.getElementById('populated-'+view).style.display = state==='populated' ? 'block' : 'none';
+  var toggleBar = btn.parentElement;
+  toggleBar.querySelectorAll('.st-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
