@@ -11,7 +11,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
 .pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
 .pv-btn.active{background:#111;color:#fff;border-color:#111;}
-.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:visible;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
 .bottom-nav{background:#00A2B0;display:flex;border-top:3px solid #FFB533;}
 .bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
 .bnav-item:first-child{background:rgba(255,255,255,0.12);}
@@ -22,7 +22,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;}
 .field-label{display:block;color:#000;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:7px;}
 .field-input{width:100%;background:#fff;border:2px solid #000;border-radius:8px;padding:12px 14px;color:#333;font-size:14px;outline:none;font-family:inherit;}
-.field-input:focus{border-color:#00A2B0;}
+.field-input{max-width:100%;}.field-input:focus{border-color:#00A2B0;}
 
 /* Top Nav */
 .top-nav{background:#000000;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid rgba(255,255,255,0.1);}
@@ -35,9 +35,9 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .dark-header p{color:rgba(255,255,255,0.6);font-size:15px;}
 
 /* Checkout Layout */
-.checkout-body{background:#fff;padding:40px 32px;display:flex;gap:40px;}
-.checkout-left{flex:0 0 40%;}
-.checkout-right{flex:0 0 60%;}
+.checkout-body{background:#fff;padding:40px 32px;display:flex;gap:40px;overflow:hidden;}
+.checkout-left{flex:1;min-width:0;}
+.checkout-right{flex:1.5;min-width:0;}
 
 /* Order Summary */
 .section-title{font-size:18px;font-weight:800;color:#111;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #111;}
@@ -149,7 +149,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       </div>
       <button class="pay-btn">Pay $15.00</button>
       <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
-      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+      <div class="pay-terms">By subscribing you agree to our <a href="terms.html" style="color:#00A2B0;text-decoration:none;">Terms of Service</a> and <a href="privacy.html" style="color:#00A2B0;text-decoration:none;">Privacy Policy</a>.</div>
     </div>
   </div>
     <!-- Site Footer -->
@@ -259,7 +259,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       </div>
       <button class="pay-btn">Pay $15.00</button>
       <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
-      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+      <div class="pay-terms">By subscribing you agree to our <a href="terms.html" style="color:#00A2B0;text-decoration:none;">Terms of Service</a> and <a href="privacy.html" style="color:#00A2B0;text-decoration:none;">Privacy Policy</a>.</div>
     </div>
   </div>
     <!-- Site Footer -->
@@ -367,7 +367,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       </div>
       <button class="pay-btn">Pay $15.00</button>
       <div class="pay-secure">Your payment is secure and encrypted. &#128274;</div>
-      <div class="pay-terms">By subscribing you agree to our Terms of Service.</div>
+      <div class="pay-terms">By subscribing you agree to our <a href="terms.html" style="color:#00A2B0;text-decoration:none;">Terms of Service</a> and <a href="privacy.html" style="color:#00A2B0;text-decoration:none;">Privacy Policy</a>.</div>
     </div>
   </div>
     <!-- Site Footer -->
