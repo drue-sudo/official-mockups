@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiagnoseThis — TRACK WHY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Open Sans',sans-serif;background:#e0e0e0;padding:20px;}
+
+    /* Preview Bar */
+    .preview-bar{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
+    .pv-btn{padding:8px 20px;border-radius:999px;border:1px solid #333;background:transparent;color:#333;font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all 0.2s;}
+    .pv-btn.active{background:#111;color:#fff;border-color:#111;}
+
+    /* Shell */
+    .shell{margin:0 auto;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,0.10);overflow:hidden;}
+
+    /* Views */
+    .view{display:none;}
+    .view.active{display:block;}
+
+    /* Header */
+    .header{background:#000000;padding:48px 40px;text-align:center;}
+    .header img{height:64px;width:auto;margin-bottom:20px;}
+    .header h1{font-family:'Poppins',sans-serif;font-size:28px;font-weight:700;color:#ffffff;margin-bottom:10px;}
+    .header .sub{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.6;}
+
+    /* Section */
+    .section{padding:40px;max-width:900px;margin:0 auto;}
+
+    /* Intro */
+    .intro-text{font-size:15px;color:#444;line-height:1.7;margin-bottom:16px;}
+    .intro-italic{font-size:15px;color:#00A2B0;font-style:italic;}
+
+    /* Form Card */
+    .form-card{border:1px solid #eee;border-radius:10px;padding:32px;}
+    .form-card label{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;}
+    .form-card .micro{font-size:13px;color:#888;margin-bottom:20px;line-height:1.5;}
+    .field-group{margin-bottom:24px;}
+    .field-group label{margin-bottom:8px;}
+
+    /* Range Slider */
+    .range-wrap{display:flex;align-items:center;gap:12px;}
+    .range-wrap span{font-size:13px;color:#888;font-weight:600;}
+    .range-wrap input[type="range"]{flex:1;-webkit-appearance:none;appearance:none;height:8px;background:#eee;border-radius:4px;outline:none;}
+    .range-wrap input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:#00A2B0;cursor:pointer;}
+
+    /* Pill Radio */
+    .pill-group{display:flex;gap:8px;flex-wrap:wrap;}
+    .pill-group input[type="radio"]{display:none;}
+    .pill-group label.pill{padding:10px 18px;border:2px solid #eee;border-radius:999px;font-size:13px;color:#444;cursor:pointer;transition:all 0.2s;font-weight:600;}
+    .pill-group input[type="radio"]:checked + label.pill{background:#00A2B0;color:#fff;border-color:#00A2B0;}
+
+    /* Textarea */
+    .notes-textarea{width:100%;border:2px solid #eee;border-radius:8px;padding:12px;font-family:'Open Sans',sans-serif;font-size:14px;color:#444;resize:vertical;outline:none;}
+    .notes-textarea:focus{border-color:#00A2B0;}
+
+    /* CTA */
+    .cta-btn{display:inline-block;padding:14px 32px;background:#F15B5C;color:#fff;border:none;border-radius:8px;font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;cursor:pointer;}
+    .cta-btn:hover{opacity:0.9;}
+
+    /* Entries */
+    .entries-title{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;margin-bottom:16px;color:#111;}
+    .entry-card{border:1px solid #eee;border-radius:8px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;}
+    .entry-card .entry-text{font-size:14px;color:#444;}
+    .entry-card .entry-view{font-size:13px;color:#00A2B0;font-weight:600;text-decoration:none;}
+    .entry-card .entry-view:hover{text-decoration:underline;}
+    .dev-note{font-size:12px;color:#888;font-style:italic;margin-top:8px;}
+
+    /* Pattern Insight */
+    .pattern-card{border:2px solid #F15B5C;border-radius:10px;padding:24px;}
+    .pattern-card h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;color:#111;}
+    .pattern-card .pattern-placeholder{font-size:14px;color:#888;font-style:italic;}
+
+    /* Two Column Layout */
+    .two-col{display:flex;gap:32px;}
+    .two-col .col-left{flex:0 0 60%;}
+    .two-col .col-right{flex:0 0 calc(40% - 32px);}
+
+    /* Bottom Nav */
+    .bottom-nav{background:#00A2B0;border-top:3px solid #FFB533;padding:12px 0;display:flex;justify-content:space-around;align-items:center;}
+    .bnav-item{text-align:center;color:#fff;text-decoration:none;}
+    .bnav-verb{font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;display:block;opacity:0.8;}
+    .bnav-word{font-family:'Poppins',sans-serif;font-size:13px;font-weight:800;display:block;}
+
+    /* Footer */
+    .footer{background:#000;padding:20px;text-align:center;}
+    .footer p{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6;}
+
+    /* Mobile Card */
+    .mobile-card{width:343px;box-sizing:border-box;margin:0 auto;background:#fff;border-radius:10px;padding:24px;}
+
+    /* Date input */
+    .date-input{padding:10px 14px;border:2px solid #eee;border-radius:8px;font-family:'Open Sans',sans-serif;font-size:14px;color:#444;outline:none;margin-bottom:16px;}
+    .date-input:focus{border-color:#00A2B0;}
+  </style>
+</head>
+<body>
+
+<!-- Preview Bar -->
+<div class="preview-bar">
+  <button class="pv-btn active" onclick="setView('desktop', this)">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet', this)">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile', this)">Mobile 375px</button>
+</div>
+
+<!-- DESKTOP VIEW -->
+<div id="view-desktop" class="view active">
+  <div class="shell" style="max-width:1280px;">
+
+    <div class="header">
+      <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:64px;width:auto;">
+      <h1>TRACK WHY: Know Your Patterns. Own Your Progress.</h1>
+      <p class="sub">Track what's changing in your body, your habits, and your day-to-day — and start connecting it back to your WHY.</p>
+    </div>
+
+    <!-- Intro -->
+    <div class="section">
+      <p class="intro-text">Your WHY gives you clarity. Tracking helps you see what's actually working. Use this space to log simple health markers, daily notes, and patterns you're noticing. Over time, this helps you make more informed decisions — and ask better WHY questions.</p>
+      <p class="intro-italic">This is your space. No judgment. Just awareness.</p>
+    </div>
+
+    <!-- Two Column: Form + Entries -->
+    <div class="section" style="padding-top:0;">
+      <div class="two-col">
+        <div class="col-left">
+          <div class="form-card">
+            <input type="date" class="date-input" value="2026-04-15">
+            <p class="micro">Keep it simple — consistency beats perfection.</p>
+            <p class="micro">Track what matters to you: energy, sleep, mood, digestion, stress, or anything else.</p>
+
+            <div class="field-group">
+              <label>Energy Level</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Sleep Quality</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Mood</label>
+              <div class="pill-group">
+                <input type="radio" name="mood-d" id="mood-d-1"><label class="pill" for="mood-d-1">Great</label>
+                <input type="radio" name="mood-d" id="mood-d-2"><label class="pill" for="mood-d-2">Good</label>
+                <input type="radio" name="mood-d" id="mood-d-3" checked><label class="pill" for="mood-d-3">Neutral</label>
+                <input type="radio" name="mood-d" id="mood-d-4"><label class="pill" for="mood-d-4">Low</label>
+                <input type="radio" name="mood-d" id="mood-d-5"><label class="pill" for="mood-d-5">Difficult</label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Digestion</label>
+              <div class="pill-group">
+                <input type="radio" name="dig-d" id="dig-d-1" checked><label class="pill" for="dig-d-1">Normal</label>
+                <input type="radio" name="dig-d" id="dig-d-2"><label class="pill" for="dig-d-2">Uncomfortable</label>
+                <input type="radio" name="dig-d" id="dig-d-3"><label class="pill" for="dig-d-3">Painful</label>
+                <input type="radio" name="dig-d" id="dig-d-4"><label class="pill" for="dig-d-4">Skipped meals</label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Stress Level</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Notes</label>
+              <textarea class="notes-textarea" rows="4" placeholder="What else is your body telling you today?"></textarea>
+            </div>
+
+            <button class="cta-btn">Save Today's Entry</button>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="entries-title">Your Recent Entries</div>
+          <div class="entry-card">
+            <span class="entry-text">April 16, 2026 — Energy: 7, Mood: Good, Sleep: 8</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <div class="entry-card">
+            <span class="entry-text">April 15, 2026 — Energy: 5, Mood: Neutral, Sleep: 6</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <div class="entry-card">
+            <span class="entry-text">April 14, 2026 — Energy: 8, Mood: Great, Sleep: 9</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <p class="dev-note">[Dev: entries populate from user's saved logs]</p>
+
+          <div style="margin-top:32px;">
+            <div class="pattern-card">
+              <h3>Your Patterns</h3>
+              <p class="pattern-placeholder">[Dev: AI pattern summary appears here after 7+ entries logged]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <a class="bnav-item" href="#"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- TABLET VIEW -->
+<div id="view-tablet" class="view">
+  <div class="shell" style="max-width:768px;">
+
+    <div class="header">
+      <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:64px;width:auto;">
+      <h1 style="font-size:24px;">TRACK WHY: Know Your Patterns. Own Your Progress.</h1>
+      <p class="sub">Track what's changing in your body, your habits, and your day-to-day — and start connecting it back to your WHY.</p>
+    </div>
+
+    <div class="section" style="padding:24px;">
+      <p class="intro-text">Your WHY gives you clarity. Tracking helps you see what's actually working. Use this space to log simple health markers, daily notes, and patterns you're noticing. Over time, this helps you make more informed decisions — and ask better WHY questions.</p>
+      <p class="intro-italic">This is your space. No judgment. Just awareness.</p>
+    </div>
+
+    <div class="section" style="padding:0 24px 24px;">
+      <div class="two-col" style="gap:20px;">
+        <div class="col-left" style="flex:0 0 58%;">
+          <div class="form-card" style="padding:24px;">
+            <input type="date" class="date-input" value="2026-04-15">
+            <p class="micro">Keep it simple — consistency beats perfection.</p>
+            <p class="micro">Track what matters to you: energy, sleep, mood, digestion, stress, or anything else.</p>
+
+            <div class="field-group">
+              <label>Energy Level</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Sleep Quality</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Mood</label>
+              <div class="pill-group">
+                <input type="radio" name="mood-t" id="mood-t-1"><label class="pill" for="mood-t-1">Great</label>
+                <input type="radio" name="mood-t" id="mood-t-2"><label class="pill" for="mood-t-2">Good</label>
+                <input type="radio" name="mood-t" id="mood-t-3" checked><label class="pill" for="mood-t-3">Neutral</label>
+                <input type="radio" name="mood-t" id="mood-t-4"><label class="pill" for="mood-t-4">Low</label>
+                <input type="radio" name="mood-t" id="mood-t-5"><label class="pill" for="mood-t-5">Difficult</label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Digestion</label>
+              <div class="pill-group">
+                <input type="radio" name="dig-t" id="dig-t-1" checked><label class="pill" for="dig-t-1">Normal</label>
+                <input type="radio" name="dig-t" id="dig-t-2"><label class="pill" for="dig-t-2">Uncomfortable</label>
+                <input type="radio" name="dig-t" id="dig-t-3"><label class="pill" for="dig-t-3">Painful</label>
+                <input type="radio" name="dig-t" id="dig-t-4"><label class="pill" for="dig-t-4">Skipped meals</label>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Stress Level</label>
+              <div class="range-wrap">
+                <span>1</span>
+                <input type="range" min="1" max="10" value="5">
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Notes</label>
+              <textarea class="notes-textarea" rows="4" placeholder="What else is your body telling you today?"></textarea>
+            </div>
+
+            <button class="cta-btn">Save Today's Entry</button>
+          </div>
+        </div>
+
+        <div class="col-right" style="flex:0 0 calc(42% - 20px);">
+          <div class="entries-title">Your Recent Entries</div>
+          <div class="entry-card">
+            <span class="entry-text" style="font-size:13px;">April 16, 2026 — Energy: 7, Mood: Good, Sleep: 8</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <div class="entry-card">
+            <span class="entry-text" style="font-size:13px;">April 15, 2026 — Energy: 5, Mood: Neutral, Sleep: 6</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <div class="entry-card">
+            <span class="entry-text" style="font-size:13px;">April 14, 2026 — Energy: 8, Mood: Great, Sleep: 9</span>
+            <a href="#" class="entry-view">View</a>
+          </div>
+          <p class="dev-note">[Dev: entries populate from user's saved logs]</p>
+
+          <div style="margin-top:24px;">
+            <div class="pattern-card">
+              <h3>Your Patterns</h3>
+              <p class="pattern-placeholder">[Dev: AI pattern summary appears here after 7+ entries logged]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a class="bnav-item" href="#"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></a>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- MOBILE VIEW -->
+<div id="view-mobile" class="view">
+  <div class="shell" style="width:375px;background:#000;">
+
+    <div class="header" style="padding:32px 16px;">
+      <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:48px;width:auto;">
+      <h1 style="font-size:20px;">TRACK WHY: Know Your Patterns. Own Your Progress.</h1>
+      <p class="sub" style="font-size:13px;">Track what's changing in your body, your habits, and your day-to-day — and start connecting it back to your WHY.</p>
+    </div>
+
+    <div style="padding:16px;">
+      <div class="mobile-card" style="margin-bottom:16px;">
+        <p style="font-size:14px;color:#444;line-height:1.7;margin-bottom:12px;">Your WHY gives you clarity. Tracking helps you see what's actually working. Use this space to log simple health markers, daily notes, and patterns you're noticing. Over time, this helps you make more informed decisions — and ask better WHY questions.</p>
+        <p style="font-size:14px;color:#00A2B0;font-style:italic;">This is your space. No judgment. Just awareness.</p>
+      </div>
+
+      <!-- Tracking Form -->
+      <div class="mobile-card" style="margin-bottom:16px;">
+        <input type="date" class="date-input" style="width:100%;box-sizing:border-box;" value="2026-04-15">
+        <p style="font-size:12px;color:#888;margin-bottom:8px;">Keep it simple — consistency beats perfection.</p>
+        <p style="font-size:12px;color:#888;margin-bottom:20px;">Track what matters to you: energy, sleep, mood, digestion, stress, or anything else.</p>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Energy Level</label>
+          <div class="range-wrap">
+            <span>1</span>
+            <input type="range" min="1" max="10" value="5">
+            <span>10</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Sleep Quality</label>
+          <div class="range-wrap">
+            <span>1</span>
+            <input type="range" min="1" max="10" value="5">
+            <span>10</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Mood</label>
+          <div class="pill-group">
+            <input type="radio" name="mood-m" id="mood-m-1"><label class="pill" for="mood-m-1">Great</label>
+            <input type="radio" name="mood-m" id="mood-m-2"><label class="pill" for="mood-m-2">Good</label>
+            <input type="radio" name="mood-m" id="mood-m-3" checked><label class="pill" for="mood-m-3">Neutral</label>
+            <input type="radio" name="mood-m" id="mood-m-4"><label class="pill" for="mood-m-4">Low</label>
+            <input type="radio" name="mood-m" id="mood-m-5"><label class="pill" for="mood-m-5">Difficult</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Digestion</label>
+          <div class="pill-group">
+            <input type="radio" name="dig-m" id="dig-m-1" checked><label class="pill" for="dig-m-1">Normal</label>
+            <input type="radio" name="dig-m" id="dig-m-2"><label class="pill" for="dig-m-2">Uncomfortable</label>
+            <input type="radio" name="dig-m" id="dig-m-3"><label class="pill" for="dig-m-3">Painful</label>
+            <input type="radio" name="dig-m" id="dig-m-4"><label class="pill" for="dig-m-4">Skipped meals</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Stress Level</label>
+          <div class="range-wrap">
+            <span>1</span>
+            <input type="range" min="1" max="10" value="5">
+            <span>10</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;display:block;margin-bottom:8px;color:#111;">Notes</label>
+          <textarea class="notes-textarea" rows="4" placeholder="What else is your body telling you today?" style="width:100%;box-sizing:border-box;"></textarea>
+        </div>
+
+        <button class="cta-btn" style="width:100%;">Save Today's Entry</button>
+      </div>
+
+      <!-- Previous Entries -->
+      <div class="mobile-card" style="margin-bottom:16px;">
+        <div class="entries-title">Your Recent Entries</div>
+        <div class="entry-card" style="flex-direction:column;align-items:flex-start;gap:8px;">
+          <span class="entry-text" style="font-size:13px;">April 16, 2026 — Energy: 7, Mood: Good, Sleep: 8</span>
+          <a href="#" class="entry-view">View</a>
+        </div>
+        <div class="entry-card" style="flex-direction:column;align-items:flex-start;gap:8px;">
+          <span class="entry-text" style="font-size:13px;">April 15, 2026 — Energy: 5, Mood: Neutral, Sleep: 6</span>
+          <a href="#" class="entry-view">View</a>
+        </div>
+        <div class="entry-card" style="flex-direction:column;align-items:flex-start;gap:8px;">
+          <span class="entry-text" style="font-size:13px;">April 14, 2026 — Energy: 8, Mood: Great, Sleep: 9</span>
+          <a href="#" class="entry-view">View</a>
+        </div>
+        <p class="dev-note">[Dev: entries populate from user's saved logs]</p>
+      </div>
+
+      <!-- Pattern Insight -->
+      <div style="border:2px solid #F15B5C;border-radius:10px;padding:20px;width:343px;box-sizing:border-box;margin:0 auto 16px auto;background:#fff;">
+        <h3 style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;color:#111;">Your Patterns</h3>
+        <p style="font-size:14px;color:#888;font-style:italic;">[Dev: AI pattern summary appears here after 7+ entries logged]</p>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <a class="bnav-item" href="#"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></a>
+      <a class="bnav-item" href="#"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></a>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setView(v, btn) {
+  document.querySelectorAll('.view').forEach(function(el) { el.classList.remove('active'); });
+  document.querySelectorAll('.pv-btn').forEach(function(el) { el.classList.remove('active'); });
+  document.getElementById('view-' + v).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

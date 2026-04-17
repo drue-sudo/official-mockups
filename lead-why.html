@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiagnoseThis — LEAD WHY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Open Sans',sans-serif;background:#e0e0e0;padding:20px;}
+
+    /* Preview Bar */
+    .preview-bar{display:flex;gap:8px;justify-content:center;margin-bottom:20px;}
+    .pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;color:#444;cursor:pointer;font-family:'Open Sans',sans-serif;}
+    .pv-btn.active{background:#111;color:#fff;border-color:#111;}
+
+    /* Shell */
+    .shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+
+    /* Bottom Nav */
+    .bottom-nav{background:#00A2B0;display:flex;border-top:3px solid #FFB533;}
+    .bnav-item{flex:1;text-align:center;cursor:pointer;padding:16px 8px;}
+    .bnav-verb{color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;}
+    .bnav-word{color:#fff;font-size:13px;font-weight:800;}
+
+    /* CTA Button */
+    .cta-btn{background:#F15B5C;border:none;border-radius:8px;padding:14px 28px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:'Poppins',sans-serif;}
+
+    /* Footer */
+    .footer{text-align:center;padding:20px;font-size:12px;color:#888;background:#f9f9f9;border-top:1px solid #eee;}
+
+    /* Content wrapper */
+    .content-wrap{max-width:1080px;margin:0 auto;}
+
+    /* Hero */
+    .hero{background:#000;padding:60px 40px;}
+    .hero .logo{margin-bottom:32px;}
+    .hero h1{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#fff;margin-bottom:16px;line-height:1.2;}
+    .hero .sub{font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:12px;line-height:1.5;}
+    .hero .micro{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:28px;line-height:1.5;}
+
+    /* How It Works */
+    .how-section{padding:48px 40px;background:#fff;}
+    .how-section h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;margin-bottom:32px;text-align:center;}
+    .steps-row{display:flex;gap:32px;justify-content:center;}
+    .step{flex:1;text-align:center;}
+    .step-num{width:48px;height:48px;border-radius:50%;background:#F15B5C;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:20px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;}
+    .step-title{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;margin-bottom:8px;}
+    .step-desc{font-size:14px;color:#555;line-height:1.5;}
+
+    /* Reward Tiers */
+    .tiers-section{padding:48px 40px;background:#f9f9f9;}
+    .tiers-section h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:800;margin-bottom:32px;text-align:center;}
+    .tiers-grid{display:flex;gap:20px;}
+    .tier-card{flex:1;border-radius:10px;overflow:hidden;}
+    .tier-header{background:#F15B5C;padding:14px 20px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:#fff;}
+    .tier-body{background:#000;padding:20px;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6;min-height:100px;}
+    .tier-body .teal-cta{display:inline-block;margin-top:12px;background:#00A2B0;border:none;border-radius:8px;padding:10px 20px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+
+    /* Referral Dashboard */
+    .ref-dashboard{padding:48px 40px;background:#fff;}
+    .ref-card{border:1px solid #eee;border-radius:10px;padding:32px;max-width:1080px;margin:0 auto;}
+    .ref-card h2{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;margin-bottom:24px;}
+    .ref-link-row{display:flex;gap:12px;margin-bottom:24px;align-items:center;flex-wrap:wrap;}
+    .ref-link-row input{flex:1;min-width:280px;padding:12px 16px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:'Open Sans',sans-serif;color:#333;background:#f9f9f9;}
+    .ref-link-row .cta-btn{padding:12px 20px;font-size:13px;}
+    .progress-tracker{display:flex;align-items:center;gap:0;margin-bottom:24px;justify-content:center;}
+    .prog-circle{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;}
+    .prog-circle.done{background:#F15B5C;color:#fff;}
+    .prog-circle.pending{background:#fff;border:2px solid #ccc;color:#ccc;}
+    .prog-line{width:60px;height:3px;background:#ccc;}
+    .prog-line.done{background:#F15B5C;}
+    .prog-label{text-align:center;font-size:14px;font-weight:600;margin-bottom:12px;}
+    .rewards-status{margin-bottom:12px;font-size:14px;line-height:1.8;}
+    .rewards-status strong{font-weight:700;}
+    .activity-line{font-size:14px;color:#555;margin-bottom:8px;}
+    .hipaa-note{font-size:13px;color:#00A2B0;margin-top:8px;}
+
+    /* Share Options */
+    .share-section{padding:48px 40px;background:#f9f9f9;}
+    .share-section h2{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;margin-bottom:24px;text-align:center;}
+    .share-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+    .share-btn{padding:12px 24px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+    .share-btn.coral{background:#F15B5C;color:#fff;border:none;}
+    .share-btn.outlined{background:#fff;color:#000;border:2px solid #000;}
+    .templates-row{display:flex;gap:20px;flex-wrap:wrap;}
+    .template-box{flex:1;min-width:260px;border:1px solid #eee;border-radius:10px;padding:20px;background:#fff;}
+    .template-box .label{font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;margin-bottom:8px;color:#333;}
+    .template-box .text{font-size:14px;color:#555;line-height:1.5;margin-bottom:12px;}
+    .template-box .copy-btn{background:none;border:2px solid #F15B5C;color:#F15B5C;padding:8px 16px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;}
+
+    /* Identity Section */
+    .identity-section{background:#000;padding:60px 40px;text-align:center;}
+    .identity-section h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:16px;}
+    .identity-section p{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.6;}
+
+    /* Gamification */
+    .gamification-section{padding:48px 40px;background:#fff;}
+    .gamification-section h2{font-family:'Poppins',sans-serif;font-size:22px;font-weight:800;margin-bottom:32px;text-align:center;}
+    .badges-row{display:flex;gap:24px;justify-content:center;}
+    .badge-card{flex:1;text-align:center;border:2px solid #F15B5C;border-radius:10px;padding:24px;max-width:280px;}
+    .badge-card.grey{border-color:#ccc;}
+    .badge-icon{width:64px;height:64px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;margin-bottom:12px;}
+    .badge-icon.coral{background:#F15B5C;color:#fff;}
+    .badge-icon.grey{background:#ccc;color:#fff;}
+    .badge-card .badge-title{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;}
+    .badge-card .badge-sub{font-size:13px;color:#888;margin-top:4px;}
+    .badge-card.grey .badge-title{color:#aaa;}
+
+    /* Compliance */
+    .compliance-section{padding:48px 40px;background:#fff;}
+    .compliance-box{border:2px solid #00A2B0;border-radius:10px;padding:20px;max-width:1080px;margin:0 auto;}
+    .compliance-box p{font-size:13px;color:#555;line-height:1.7;}
+
+    /* Mobile-specific */
+    .mobile-card{width:343px;box-sizing:border-box;}
+
+    /* Stacked steps for mobile/tablet */
+    .steps-col{display:flex;flex-direction:column;gap:24px;align-items:center;}
+    .tiers-2x2{display:flex;flex-wrap:wrap;gap:20px;}
+    .tiers-2x2 .tier-card{flex:1 1 calc(50% - 10px);min-width:280px;}
+    .tiers-stacked{display:flex;flex-direction:column;gap:16px;}
+    .badges-col{display:flex;flex-direction:column;gap:16px;align-items:center;}
+  </style>
+</head>
+<body>
+
+<!-- Preview Bar -->
+<div class="preview-bar">
+  <button class="pv-btn active" onclick="setView('desktop', this)">Desktop</button>
+  <button class="pv-btn" onclick="setView('tablet', this)">Tablet</button>
+  <button class="pv-btn" onclick="setView('mobile', this)">Mobile</button>
+</div>
+
+<!-- ======================== DESKTOP VIEW ======================== -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+
+    <!-- 1. HERO -->
+    <div class="hero">
+      <div class="content-wrap">
+        <div class="logo">
+          <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:64px;width:auto;">
+        </div>
+        <h1>LEAD WHY: Share It. Live It. Lead Others to It.</h1>
+        <p class="sub">When you help others discover their WHY, you don't just share a tool — you change the trajectory of their life.</p>
+        <p class="micro">Invite others into clarity — and receive meaningful rewards as a thank you.</p>
+        <button class="cta-btn">Get My WHY Link</button>
+      </div>
+    </div>
+
+    <!-- 2. HOW IT WORKS -->
+    <div class="how-section">
+      <div class="content-wrap">
+        <h2>How It Works</h2>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-title">Share your link</div>
+            <div class="step-desc">Invite friends, patients, or your audience to discover their WHY.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-title">They complete their WHY</div>
+            <div class="step-desc">They experience the FREE WHY or beyond.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-title">You get rewarded</div>
+            <div class="step-desc">As a thank you, you unlock deeper WHY insights, tools, and perks.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. REWARD TIERS -->
+    <div class="tiers-section">
+      <div class="content-wrap">
+        <h2>Reward Tiers</h2>
+        <div class="tiers-grid">
+          <div class="tier-card">
+            <div class="tier-header">Tier 1 — 3 Referrals</div>
+            <div class="tier-body">Unlock SEE WHY (Free)<br><br>Help 3 people find clarity — and we'll help you go deeper.</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 2 — 10 Referrals</div>
+            <div class="tier-body">Free THE WHY OR exclusive merch item OR discount on future tools</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 3 — 25+ Referrals</div>
+            <div class="tier-body">Premium merch bundle + Access to advanced content + WHY Leader badge</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 4 — Affiliate Level</div>
+            <div class="tier-body">Revenue share + Custom links + Dashboard tracking<br><br><button class="teal-cta">Apply for Affiliate Access</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. REFERRAL DASHBOARD -->
+    <div class="ref-dashboard">
+      <div class="content-wrap">
+        <div class="ref-card">
+          <h2>Referral Dashboard</h2>
+          <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Your Link:</div>
+          <div class="ref-link-row">
+            <input type="text" readonly value="https://diagnosethis.com/ref/YOUR-CODE">
+            <button class="cta-btn" style="padding:12px 20px;font-size:13px;">Copy Link</button>
+          </div>
+          <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Progress:</div>
+          <div class="progress-tracker">
+            <div class="prog-circle done">&#10003;</div>
+            <div class="prog-line done"></div>
+            <div class="prog-circle done">&#10003;</div>
+            <div class="prog-line"></div>
+            <div class="prog-circle pending">3</div>
+          </div>
+          <div class="prog-label">2 of 3 completed</div>
+          <div class="rewards-status">
+            <strong>Unlocked:</strong> FREE WHY<br>
+            <strong>Next:</strong> SEE WHY
+          </div>
+          <div class="activity-line">Clicks: 42 &middot; Completed WHYs: 18 &middot; Referrals Counted: 2 / 3</div>
+          <div class="hipaa-note">We only show counts — no names or personal data. HIPAA-safe.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SHARE OPTIONS -->
+    <div class="share-section">
+      <div class="content-wrap">
+        <h2>Share Options</h2>
+        <div class="share-btns">
+          <button class="share-btn coral">Copy Link</button>
+          <button class="share-btn outlined">Text Message</button>
+          <button class="share-btn outlined">Email</button>
+          <button class="share-btn outlined">Instagram Caption</button>
+          <button class="share-btn outlined">LinkedIn</button>
+        </div>
+        <div class="templates-row">
+          <div class="template-box">
+            <div class="label">Casual</div>
+            <div class="text">I tried something that helped me understand myself better — thought you might like it too.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="template-box">
+            <div class="label">Supportive</div>
+            <div class="text">If you've ever felt stuck or unclear, this helped me a lot. It's free to try.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="template-box">
+            <div class="label">Practitioner</div>
+            <div class="text">I recommend this tool to help you better understand your WHY and decision patterns.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. IDENTITY SECTION -->
+    <div class="identity-section">
+      <div class="content-wrap">
+        <h2>You're Not Just Sharing a Link</h2>
+        <p>You're helping people feel seen, understood, and clear. That matters.</p>
+      </div>
+    </div>
+
+    <!-- 7. GAMIFICATION -->
+    <div class="gamification-section">
+      <div class="content-wrap">
+        <h2>Your Badges</h2>
+        <div class="badges-row">
+          <div class="badge-card">
+            <div class="badge-icon coral">3</div>
+            <div class="badge-title">WHY Starter</div>
+            <div class="badge-sub">3 referrals</div>
+          </div>
+          <div class="badge-card grey">
+            <div class="badge-icon grey">10</div>
+            <div class="badge-title">WHY Connector</div>
+            <div class="badge-sub">10 referrals</div>
+          </div>
+          <div class="badge-card grey">
+            <div class="badge-icon grey">25</div>
+            <div class="badge-title">WHY Leader</div>
+            <div class="badge-sub">25 referrals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. COMPLIANCE -->
+    <div class="compliance-section">
+      <div class="content-wrap">
+        <div class="compliance-box">
+          <p>You'll receive credit when someone signs up and completes their WHY through your link. No fake accounts. No spam. No misleading promotion. Do not request or share personal health details when inviting others.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ======================== TABLET VIEW ======================== -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+
+    <!-- 1. HERO -->
+    <div class="hero" style="padding:48px 28px;">
+      <div class="content-wrap">
+        <div class="logo">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWgAAABWCAYAAADi4gy8AAAAtGVYSWZJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEFAAEAAABeAAAAKAEDAAEAAAACAAAAEwIDAAEAAAABAAAAaYcEAAEAAABmAAAAAAAAAGAAAAABAAAAYAAAAAEAAAAGAACQBwAEAAAAMDIxMAGRBwAEAAAAAQIDAACgBwAEAAAAMDEwMAGgAwABAAAA//8AAAKgBAABAAAAaAEAAAOgBAABAAAAVgAAAAAAAAAW//7jAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFXmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLyc+CjxyZGY6UkRGIHhtbG5zOnJkZj0naHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyc+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpBdHRyaWI9J2h0dHA6Ly9ucy5hdHRyaWJ1dGlvbi5jb20vYWRzLzEuMC8nPgogIDxBdHRyaWI6QWRzPgogICA8cmRmOlNlcT4KICAgIDxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPgogICAgIDxBdHRyaWI6Q3JlYXRlZD4yMDI2LTA0LTA5PC9BdHRyaWI6Q3JlYXRlZD4KICAgICA8QXR0cmliOkRhdGE+eyZxdW90O2RvYyZxdW90OzomcXVvdDtEQUhHWjhfdlpUayZxdW90OywmcXVvdDt1c2VyJnF1b3Q7OiZxdW90O1VBQ3pQVlBsMW5JJnF1b3Q7LCZxdW90O2JyYW5kJnF1b3Q7OiZxdW90O0FsaWduIEZ1bmN0aW9uYWwgTWVkaWNpbmUmcXVvdDt9PC9BdHRyaWI6RGF0YT4KICAgICA8QXR0cmliOkV4dElkPjEyODVmY2EzLTgwODQtNDI2OS05NDQ4LWM4ZWFjYmU5MWZjNDwvQXR0cmliOkV4dElkPgogICAgIDxBdHRyaWI6RmJJZD41MjUyNjU5MTQxNzk1ODA8L0F0dHJpYjpGYklkPgogICAgIDxBdHRyaWI6VG91Y2hUeXBlPjI8L0F0dHJpYjpUb3VjaFR5cGU+CiAgICA8L3JkZjpsaT4KICAgPC9yZGY6U2VxPgogIDwvQXR0cmliOkFkcz4KIDwvcmRmOkRlc2NyaXB0aW9uPgoKIDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PScnCiAgeG1sbnM6ZGM9J2h0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvJz4KICA8ZGM6dGl0bGU+CiAgIDxyZGY6QWx0PgogICAgPHJkZjpsaSB4bWw6bGFuZz0neC1kZWZhdWx0Jz5VbnRpdGxlZCBkZXNpZ24gLSAyPC9yZGY6bGk+CiAgIDwvcmRmOkFsdD4KICA8L2RjOnRpdGxlPgogPC9yZGY6RGVzY3JpcHRpb24+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczpwZGY9J2h0dHA6Ly9ucy5hZG9iZS5jb20vcGRmLzEuMy8nPgogIDxwZGY6QXV0aG9yPkRydWUgQmFpbGV5PC9wZGY6QXV0aG9yPgogPC9yZGY6RGVzY3JpcHRpb24+CgogPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9JycKICB4bWxuczp4bXA9J2h0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8nPgogIDx4bXA6Q3JlYXRvclRvb2w+Q2FudmEgZG9jPURBSEdaOF92WlRrIHVzZXI9VUFDelBWUGwxbkkgYnJhbmQ9QWxpZ24gRnVuY3Rpb25hbCBNZWRpY2luZTwveG1wOkNyZWF0b3JUb29sPgogPC9yZGY6RGVzY3JpcHRpb24+CjwvcmRmOlJERj4KPC94OnhtcG1ldGE+Cjw/eHBhY2tldCBlbmQ9J3InPz7sO5f7AAAgAElEQVR4nO19C5hdRZVud14AAYFAAEECSJAZVEQQZJRLLuADeSbpnHP243R3QvgiMAIij2F42OjlojNG4CofHyBcdXQuGHwAERjH0YwML5kgrwYkPJI0hNBJJ326+zz2o/apu1btWvvU2X26+3R3AmrW/33Ve/fZ9Vy1au1Vq1bVbmlhMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAY2wCypaV1vGFb5/lutJPBYDAYDAaDwdg2kJnMjA22vfdAe/teb+kgly6dZQZ8JiEM2mfsLS+Yt+uYeV6anyl1PpiWQgH+x5CUo+JkZsmuedPejbYyGAzGXwRkV9cUdbXtE/xs/p3Advt92+oLbbsvctzN0slvityOTcJt3xw6Tp9wnF5h254XzfxApWtgmqDforx9R+Q4nsznN0auu7kW8puk075J2G5foPLMFwLLfmUwd9rfmnViMBiMHRpSSiVMy87Cg4Tl9sh8h4wcuyodV4JwltJuhysEF4Mrq64jZEenFJnsz1X6BgK6qyUWsJGTWyE7OmTVhjSOA/nYkB8GvHfjYDsRaNAyyma7B+afstdIeTIYDMYOBxKGsrNzJ2HnnpT5dhTQIrJBSKNQzi8BwXwOXBdL2Q7Ctr1DyMXnyqAt80CcXjbQoOPfpGv/XC5ZKqt5SAOCPxbycaiCcI5spxqh8O7IS9Ck7zbrw2AwGIyWmkkhtO27lAZtOSFqzV7W6i21WU9XMs5qkXMej2zrUdCCH5GW/ay/cNG3VNpRTBylzIIbvFzmBd/KPepns49BeDzMLHoizLQ9EVq5XtTQI9sVsr1Tyo7Fl6m0mczUd7PtDAaD8WcNEorScZZKtxMEtOvLjiWymMv9BH+//ZhjprcYglh2tUzBMGa+Nfe5VvM3vILG/Es0lUgQ0FUrL8OMe7pZFwaDwWC0GAuFjvOx0HKCyOoAwdkpg2zu1dczmd3Vs21gejDKOSh02rcqu7Sbl8Ky1w5mTp29rcphMBiMvxqYQjG0rN9LdzEIzbyILFsW3bbPqzjz5k2b9EaVebEbncyDpo4Lg1YuwEVEYVk/U7/L4fZsBoPB2OFBpgVhu1+V7YtlaDuBEqK2/X/U88m7viXCN8rZv8LFSGnbUAZ6cizqMOvAYDAYDAOJ+cF1j6g6+a3ScmPzg22/Id0FH1DPJmF+SPJvs46s2u4WZd5ot6V0Mm/KzGn7TTZ/BoPB+KuFrNNwrV9KBxfwnBA13SCXW4a/r5iEhksCOsq510kXXe5Qe85LaWVvNZ8zGAwGowFISIpFWRc3qFTRBa6jQ/o5+8meTGZnFWcCWq7ha71f5LivKPMGaNCR7fhhNnuSWTaDwWAwGiARpO3z9xKW+7zMo4nDEtLukCi01bMJaNGUpprv+IfYtQ4083a1Y/FhOn+DzRsMBoMxBkiTDXK5i3FrNwjoEHf+hbbdjQccqTjjEKaUn7dw4WHSzr8dLw46kbQsKTKZrBmHwWAwGKPAMEfsISzrJdztFzp2iJpvaOeXq2dNatHKtU67zsls/qeyfQkK5yDWnq1VMt4Aw9ozg8FgNAsSwKGbWSQtB7RoJ6o6NghoK/Cc9oUqTlfXtNEEKz5bpf2eRcY6D7RndNmLpO3KyHXLssM5EZ9NZuGRwWAwdkiQ8A0d54eo8Uo8n8PqkCJj9wZu7n+oOCBc0TwhU1u51W+0fdztWBBZ1oD0LPR7Vl4h0sp/Uz1j0waDwWCMH4nfci53oHCsV9RpdFk3RBc54Th9XtZuU8/JJGLsLqSrsO0loDkP4LGiypbd3i6rVvYxefbZe5jxdmRIKadgaDHMQfr3Vt5ZyWAwRkRi6shnTgZhC4IWz+hw40VDJx962exdgWV9qjeTSb6uIs/u3AMP/49s+x4QzFXQvKsg5EFzdmVkZdfL/IKPqnisPTMYDMbkQIJ0KDM/G9luQWnSjhNErhOhuSLMWb6fs54CoX135OTvDXPuC0K50bWD1pyPhBW71FUdu0famRPMPHdUkGb89uDg7EKpdGypVPok/DYbwh5am24pFAp7runre/97W1MGg/FnD9kSHy2KtufQsV+RnZ0opCOZcwIIVfSXVnZq9HFGAa4O4nfDyF1clR3nSJGz/1suWXKEyosXBROslWt32loaPLu/v//karX6/sHi4JWVSv/B+Kx/YODygVLpeLwnoc1gMBgNkSz6dWQOCHPZH0eWVUFhXFWLfnaEn7WKP23lVlF7Vhq04wyBVn2zPN3ZU6XdwTVnE12aFr29vR/fsGHDHLzf0NezdMOWDV8A7fnQwUrpvEFvMP5GI9uiGQzGWDAFbGBnjvMt69uRYz0SWXaI7nO4fTuEe8+yHvHtzP/yyd7c5PGkOxJIQL/e03PcmvXrD5WrV09/ee2rJ7256e0v9vX3LdpcKBy7ubD5GDMu4z2CXrGdogMzMmNCeDf4SLnQGQIDz+ioZHJPq4/LgpD2srnBjW1nfsSMyzw9HESTlzev3/+Z/rXK9tz96qtzu3u7d928efNuvcXifuuKxQ+YcRnvARq503CH7Dig/jfDZPJJ/7ZtatmgvExm6mq9E9DPWt/Dj8pGlBvgMaV+zsmpOJ2dOylfaQraZxpt2ur/lrE/m8VgNI1Gg2lbDDBIMwPCURBOLMKbc3vUnbHt0CwfbEseabJeO0M4BsKnC4XCLKrr9ihL5U126VxuMdqjhRW74AVW9tcyM0+53o1l2mDzRw26r1pT/zO2NfQgnKpDQyInZxRIuROE26IoqsA1DMLgtXIQnKifsYbxVwzNJ/tAOECW5P5bylsO3Lhx48zx5oHXgizsKYT4GfzvAy8FYRg+7/v+x3Wc7cJHUuqvd7sLPihsex0e8B8vFPoycnIPyKw9P5ifmReelf2stJZkpW1fVWrL/Itv28uF23Gu33bmkdQGFtKMSQGZaPXq1dNXSTlNYlglp61atUrfr1L3+tnwz9A3sAnSoIHraVKjWq0KvIYifMwsd/u3jjEeSNk1ZZWM+1sF6v+xgo6PfBTnI2eAUP0vEKabIKwPgmDA9yvn6mfNHUik40E+5xAbIQvhDQbon+s420+LpjOknfwVyqvDtkVoWxGehCdzLu4+9EUWhDZo1uqg/nwnXNur0lULigNRPn+TXHbGLiovFtKM8cIQpId7vv9UKEQ3DIbnIhE9p65RBPeC7p+F61NwvR/C/4ZRchY6n+v06a2cU/V1kSGcfbzHPGjllgX0nw9QyOLVF/5ieImuBV74Y6j7XodnRwjxc+SPKOoGYfwo9Ov+K1asmAr5rNOCVQlVENJfxTLGK6Dh+mUjn5iPougB/Wz7CWja3t3VuZNnZ3+q/KFdN0LPjgg3qeScqGo5+AHasGrZQloOPoMrHmOaj+SSJXiU6U83sJBmTASGgD4aBpZvaClNAaeaMDi/BLc763xaU9e94fl/GkkqkGaRWTbjzwM4W8KrF3hXmUJ1HCC+KUA4BLJqhb5+A39AswReQUBfootqVkArHqlUKh9CXqOCQDgPQOVOGk9eEwUJ1a2ZzO4i39ElbKcXzR0grKtq80p7J2nO+I1DWXXy8aYW3OyCQhw0b8/OXa3yYpcyxnhAAwCmi0fBABhSoyzWdqOxZLMZJ5LRyiE5tI/OMy2k9wKtrCOQ4nIYpZ8aoR6mC9VIoSntY6z0Dcoa5h1gPm8hLWry9Rq1jS1jLThNkkZNpFemiXK5/DWjjxMAX6CgNZF+kav/RSSGQKAeinkFYbBW8UcUqbw8r3yprsv0Zutv9Nv+qAx4nndZUduftzWNRqSdcdhPIZOZG2QyF0U5+5bAse4Ocs6P/DZ7eSmTOb8/u/Ckwba2heVs5tdKiNt5gWdO+1b2xXfOPHNfymuCdZ8sfzTNG8bvY+Y1Rrk8Y5gMqDO0gC7VxmJVwuB6OQzFo/D7kzBVfdwP/T/AAHkBnm80BmVItmUYhL+Dy2463+a/StFkRxIjTPT5eOs1nnSTrddY8SbL7E0OcKVBFwoFy/O9R/zAfwA03l9BeBD6/RfQvy+aghgXfuH33wYieEAE4ldwvxLiPlzxvJ++847QvsrEUdOglYAulctX6LIaar1ycq5421UgNFM3Er7d8+bt6lv2I9LtxG8TVkPXqshz2v9OxWmgRY9HAI/wbFLpR4g7lkBvHavcyfQno2WYgC6aA9ALvdPwWbfsnrFCrlBeGz09PTuDQP4gDMQLYUC+puNHNAAhj1t1vonWCXmfA3G7IFxVCSvXbRka+qhZtr6fCvE+iotBkNf1fhjeFobBXXC9Eabclw0MDPwdxW/U4SYjwPXDkM8FYRTdCPW5C8LNXhBchNNkfO6F4Rnw/NpAiMtBYFy7devWj1Ed9PXz8PxrEC6HOFdvLRaVtgZtPhaE0RVQp1tBi7sL6vtPEDK9vb3K5arRjihzUMB1Z6jD5yGfqyHdrUEY3gl1XI51G/L9I02apfPQt6148AzEvwTS31Que3fB/fchj29DPb8C7TyFXpCN+ljGXjefgvIvg/Rfg+udkGY5XP8eyv9Imo5G+vhgeiHIDqzMFfD/m1CfD6b7hO7Xrl27E+T/umYQlQbafz4+C2V4Ovz2dSj7Dgi3Q7yvI226u7tnpPgn1loLhVkQ7yL4/1oo9+pyEFzTX6kc0qDvW6FtR0Ocr0A/3QRpsP+/D8rFcui7r0AZn4P+3j1No/GgS58HnWxUof/pt2XL1EykksleHx9j6kSR7VbDTvcU/D19iD/1D64BAD2Ph5fdJX4U3az547vQx1dCO06gfmjAH9S/MyDeidD2KyDd92BIIm8ADcQl8PsxRrxhfAo0y0K6a5DnobyrPSkPU22oVE4BOn4D6nI79hM8uwY68th0uUDjk3GMQ7w74P52mFF/vRKGn5N6VsZCeoIwBPTH0wK6WCyequOkGUoRG4TUh2GQdasENS26CB15vBEXp7LP6nxJi+rQz2KGC8MzhYhWQto+ORxVLfgx37tlbNtMC3canLMgfAfyecdMS1dgng3QpqXw/B5T0BQrlSU6PQmHO83nYVi5AdLcCAxYTOWLQqoKdftvuD3BrEu6biCQFkDcJyAfsvOn27c1CMJ/SbeP0ldk5RBI+xPIYyBdBwJqtKEQL6KgozyM/j0K6PcLESZtSJe/pex5t8Htvg3oq/oJX8omXYQI3yyXywem2y0bC2ihy7kVwv8TkWhUfx/a9wDcHpSuP/Da4ZCuT0eM6yzl5+r4CGgHcf4V8imMRCPIPwAh0z00NPTZdDu3FZJjTHO5m9SiYs6JhJ0P5GI3/hCA8SInWgFt4cXpP2iMwTRtSkgbw7Ww7mUO1DgF8vgtpK80Sg8z4EFIvwLSf8xIl/QZpP2dIpgex7hWAH17J6QhM1dV1mZORQjfgdupKANwlgX3XsP+DMR9cHvw9qL1Xz3kaAK6kgho5V4n66c19Gb8DHWiIaRv0M8w7nT4/2mdrxJOvvBtfK61cszrCerTRsyF44qehaF4rldvdpH1mtNsqMfvKB+sSwMbqRqgEPql4a5V9v28zoME9G06eoD5ACoNlk2FNOzwUNaGtF8uXcte+Uo0GRltrM+tWmsflPUWask6vRro8FL5AMwmnhuDRpSnT3Z+qQUX9OtJcL9plPRVo/w/wOWAVDsaatAgc3twNkV9YfBUIwEdGTRIIzTXPSDqU3DZ26QBqN5zofwNqrIQF/MC4p9MZQ7JoX3Ry2hEGhs0whct0PhTZhu3FWj34Nqz5+0R5rLPqDOmHUf6bnbToJuJT7yreTDFY69czkDdh4y6p/sI/6cX3Kai73/C7Bd4IS+DvvDHSE/924+abbrtMCgepr7Al+kIgh6fJXmDYP5XyO8lk7ZG/5j9ieN71zSfMJqAbE5Aj2QvVGmhA+6lPtPXhykNTlmhE5+hDsY/JKBlTSA6mouqoAGuh/i/h+noQ37g/zvc9xh10hpteCPVS9YE9F1GGcQYJYj7LExvH4F8XiEzTEpYynJNo1f1gTR3GnnVuLwKjCvCt4AxewxNOKlXEIU/1vm0ov0V76FcS/N08kKA3zysF4RHgO49mrUTMxE87wYBcgDRGaeOOkJcThgWYEDdV/H9b0H6f/aD4D6oEwnwO80+g7YdBOnWmv0D6d9E8wZMfb8G6e9F7Vk/93U5Kw264ktwFAE9uokDyiEbNA1sWkhEGqyD5xtxFiJrL4l4MTHwunRepB3PhfgbzTyGwspnDRrRwia54CGN7ofp+fVoAgIa3Q9lvaDb/6N0nccYI61y3rxpSRjhSFG1kKifVTKZ6/AQf2nl1WewPCfza/zOYRJPjx14+R4NpCH6hwkjhOGfYAysQl7Qqf+cpqeR1z6Gn7F+CYUqL1/6R6EGYrY/DXhehsGCPuvzKU8v8C4269Yk6AXwOrnQoZulzu8iHYfWAt4aU0D7/htmmmKx+A8mDSgumo6CMEi0fRDQ/WSKUGU3ENDo2mU8PzyqVteOSSMhnoC4bek6J3VPtna3TCnb9h2yc7H6xBUI3QCCB8GXDgjgJR0ydNue9xctcsNs54+F1V5Rn8Zy8HB//MJ3Hr/0/UYpb8WLkfWeG2TTr7ebCzHi1nWpFQNpzApwkc5MDy/rX47UFzI29T1G5NXlXURxDAFNpsL0GsBUzQNfNfsTaPmEUYY5ezsMvT2I9sAHvelZLaMJELEamThGWyQ0BhhqvevNjochfhvFQyE8koDWDDdVBOIh/ZyEAw6+QbhugrSbIWxNLzKh2xqVAUzyI5NRw9oiUMLQVF99KtorZn3SAhqKqhfQUfhdk1YGQ87UHgeJEPRMAS3Eirp6RdEtZj6pvPaFQPZqEtCnGvGOAAGGPsNAj3pDoEkXnOZCUDZ1iPtls2649hQJgTTdgguDFOD/vlD9Jgq+H/QDL5SBpn8s1g5UVy/SyQjo2kaV4mUp/lG0wMEL+U1IQMuaEDkcaHwXtLvPND01oFEI9XLM8pO6a9NF2bWyuANQZHNRlMspzTkOeBZHvipwGzcKZNeW6ovethvJXDaENFXZeQ5+RHaVl5sfrwek/ONlzaZfJ6CBRg+laUn/G2Eq1TkIlVtmkt6Y6TUU0KCY/IHIG9NBXkBxgCb/pp+RgL4yRVsyRV1ollkqlx9KlUNj5MNQHgvoyUKOJqA973QdZ4asHS+aLHLgdAqY6seauWilGZFoKDJe5EqZFOLBoctdrJ/RtPlttMOh3+8WGPx9MDWDwfm3kMdbOl6sqdYL6MvM/CHuVmCkT5vtoyvEvULHNRdD6gV0SoMORxHQtEhDQrDklRYZbftuXT4i/COaWHTa9NTxM2jWIIZW0/3aSntN4y7K/XCzBWqi0JYfQrzfGF4ANNCf0+lO1v/TlH8rRHlyaEjuUyhUPlQuyzkgYOfgdevW8pzBQTm7r690AEyz58DI2k/WhCid0TFuAe35/lozDdS7TkCTjRWnv0AfMmMhrUBAF5sV0Ik5AP/fBC+WIaRRuXgFpPsBvCj/wzAfaRqJJ2VN+NTqrjVoYbkPSAcEcs4K8Esqxaz9241nnLWkf/6iWwLLqahnKJQtG7XrUH2r0G2XoeUWfLf9ho35fGxuarB5icw6pUrlPJNvU/ScJmtac6v+n1xb0+YG4q/X1hfW75lKH79cpXeEqJmwqtq9grxgGgnofzT7Xo4goMuVykgCmjXobQEiViMbdLG24WHYRpUBmFJ6QXCPEZ+E4yMkhCgthNUmI/qGgIb4tJhQ0Uz6HSNdMv2Xte3lpF2aNuijUPuLOS/xAlgHzA4qjjwYPUNgoP4N7lZLvYQaLhLKJgU07iAExq4T0KYGjd4aZp1RUMI0dCnllbSvW86ANpA5hITfasMeOXVww+DecrhmlbxcjQ0siB7tDTMTtJg3zPpB3G+abTCBi3JSH3qVKqehFwe6HL6bAhrKJ0+GRgJ66uDg4OyRaIQ78YD+Sf4wG3kTZlN1h/4n5o1LLtk5zLf/SdoOmjdkkLHe3Jppn5PUJWv9AA9HqjrqQ7KoUcvIcTaFVvbOYpsV+yinPp3VqE56o5fp/4w2evLeqfv4QSCCK6Hv7iuUSp9MaAZtgn6v42XI8+o0f+n203oILUK/an48o1kBDfnTS9rX9R1ZQBsaNJT/DgvoCUCOokEPFYduGywOnjs0NHTxwNDQRXC9CITyFeh3CwJR+UXqDQi08tsXyOAYnS9pX8MEdLmxgNY+nuJnOl3CoBDnnwwmpsFJq9XxZ4lC/1uq4jUneXLtQj/btYaWaWI7COhS4p4Gf1pBQP0X8ahu35AfhtcBvT+BTAwM/tlIRL806kNeDBcbffQx+P9ZEO7LKxW1nXtfNB1RPYAWZ6N9lRqF9upSKXZzxIVAg/borxqBJvwT1Nhl/OKbjX0f4fGxYThU8RMBMeZOwm0voMVYGnS9gDY2quAOOaDlS7ggWIm3vKPJaAbVBfoYvXcSgRGbuXrrFgwTAX3ppTOjfOfroBXj0aIyyLb96eWzzkq20Id2Zrn6sjfam/OO9Fzrzv58/hBZ89SYMuaXViR5ZyRukCQ40Yn5+7p/PgTj6ZPAf7eQiQieAanKt/fqNZ70i13tJsXt+1Ieq9IHwYlkq9YzqVhbj6LrzH6eqIAeRYPGl0+y6MsCeoKQ9QKaGHiknVhpJH7CaCcuVormFmPqMBTQ5KupmKgsyomAhkF1jvGMVnxXwovgUtQGcAqvn5OWEGsK2ovDYCD0zvihETfRKkyg4z1uFDHaOZqbnYo3momDbNCSNliEXrJ4iddSEHwSaZOml4x3ZVVoQ4AW8LR48yC6jhGN9LZaVV+1gy4MN0N4HOj0bxC6tX2+tmEmCO6iesr4fIbfpMtXGwtE1A9hKw1+egZT7+tS7SUBTRtVyNY/nkVClWY0AW3QSXlxjGKDjmdRMky8OODFspzoiIII7dBQ9uMQHkIaYWNNGsELnc6Mqb2IaqcWtgo7/yjaoCPbBi3ZlaVF1jeqp576/krW/oKwrLfRtxm1a2Hb5ZKdOQ7TrcJNLE0eJ0o0Qi0W2tXdoH/Q571srL1ExI/QwAeJv2DaOVfUvDOS9JoOFTJv6f+Jvx6XxjnueDX8sfWml2ShvU5AV4IKvaRVXUYS0OeuE50AAAawSURBVDg7ML1ytIlj2DENjDFAxAJG+QQwSuJrLJuEiLHSr20/TQuxYTbocm2RUNnI4DkxR/rFoG2nYhPEWW/ESUwJst4UMgME/gUwIJ8Reu6XZBQLtqdBs8QzMeq8PuCFUbezEeL9X+IrFQk0mEZt0xr002ZeqXpN0fl9EYK5I5JeNFVDuJKd+H647EP9A9P2vY1FzdGOgKWZxe+LMlnci2cxJbk/CLAHjXhJecNpHVWhL7+R7kO8okuejktmmLfRho3PuhqcL6E3qqw10xTLxcvr6mYuEsa+tzExRTjQX+w/mvLEAY/bnM26kgkOP6Xlp8wfo9EI2vh72qkp0yYRvUgo2u2v4jkaUWxfVifSRbncRrgvKVc7G93o8EOy+VWyKzNjIt8epLYP+UNHQtueMuqIgY4qSPMHbloif2KyCx9vbrk20xkbhGL+EOI/yb9cGoIyEAFthqKZ7DVm31NZJa9Em9K062jwcKM26bNTkjUVXNx+p1AYVi5jDMiaBn0kmig04Usg0MrpgL9DwENX3kHBBB3/3aJXRDvrTmZe+l4xq56K01kbgygofSGyOo7qfNQioPxb0gMQ3/io/cDzMyIZ0VZuLF/AAJuv8xi22QX9d3GnX8X3z8WT2kCL/VLJ884EIbAHfhMPBH6dwDMOFyL/UvI7LsRM6N9otk/WBNeuqMnq+g7ibsAG9Zqi6/RhdN7HL4ykPVJwEw66ClbiRaOZZjqkXxhWPo9aPaRfI8Sww47UoTTw/EV4dq2snWHRmrrOhPTnoskl0Od+m4D0/XhUaBjK0xvwCJ35QNrTQDzWxaujnWa3plp9H5T1op4dDOqBSq5ddfRBNzvIb6MWEB7QaWNRnyKon+NGlXXEnyC9fJjLn4TPemQPnhJ4KtABT+d7xdTcDBrh1vKX9QaWvdJ1TupOWvTSpbM8235Sti+WahEQBTKaPGwnUvd5EN75jkHpdiotfqIH8ad49kqo4/ORPkaAZlexMi2w7lfRx3K7Uovf2A/QvzfoDTvmAUfEH8/AM/S73sNMR4D87zN5Hsomd8j6RcJKMotSax7wYvyF2Q5Zr0Fv0XIDz79ZR37QXSygxw8Z2+sOgnCwvjYKcyAcCGEfcwouR9mZpZ+hK94hOi3mP7NRWvQiAEY6LYBpVCUILtRHLKpycBcS3M816rCzmQdet2zZciCdUdCgHrSpxjGZF+3uhZRGAVdckMMFszkw8LHes0bIcwpqYrptc3TYpVE8434PCJ+Btp2PdmaoD4x6ebis2b9Ho+VueBA++oBD2vMgXCCkyMDvR9DHWBulN3/DnZ3YJshjEdqUQXM6D2ku8cOuKd9kA+p/XLRM9eOBNIBHqG+rzvdgHQ6lTQ0N4k7X9FO8BqP6oDX1i83TdXnEi4fIBguauIVeC/NFejb1Zb179Ag6FnaENtbqooVtJZOZ62WcJ9X3BvPt5GpXRc06zOa2hq57lhl/ojDrguMK/gdlyT9HbyI6F/4/luo+Uv8a97tBOA7a/SX0gweh3QH/f0TWlKjWEY7FnW2MceT93dN5I7D/jHjYB/uO0KbpMl6oJl6ZMxqvMLYDUPDQdu9J5jPW4eAjDgBZe3NPQ2d7z/Mfh8F5JkwBPkgbYfRzZPwvRKmDg9CkYOazvSCNozPHiDOsHnp32JhCgHaRTfQ5PtsW/fleAOnTSPBMOB5p0pnM7qVMZplvWytFZ8djQUd+VcWxrh+0F/6Ner6NPmHVDO1H4g/j2YT4i/EXAurkMUKd+0+T+ZpbT0djMnLEn6aDaV9ubVQ+MSVoGkvMKSEI6fVw95tIRPfCs1+gt4WebiU+22hCwamxzmdqg/qO51NBTdGlQRunNZPOSNuaStt0eiOfKan0Tb0AGvTjeNI0S8sR824mrxFoNHWsshvWx7ArqzyXLZtetyNwO3xf0Ghjw3HQZPpx85fJv02M0XF9TYVfDDsoqNPR8R+mcspTYYxtzcniHP7jlb2rzHwYjDSUgMGzNowFwNF8nBkMhgESrrgRBcL38azjEbb5KsAzXHF52Rf+Oe913Rl/WZiIpwaDwTCgz2o+IxDBtUEY3AOa9f24AysIgnvxG4J4RGihUKDtsKwFMRgMxvZGszZRI37Tdj0Gg8FgbAMYiyR1CxPm4kszq/gMBoPB2P5obWG7IYPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYjL9I/H8uvhAq9sAguwAAAABJRU5ErkJggg==" alt="DiagnoseThis" style="height:64px;width:auto;">
+        </div>
+        <h1>LEAD WHY: Share It. Live It. Lead Others to It.</h1>
+        <p class="sub">When you help others discover their WHY, you don't just share a tool — you change the trajectory of their life.</p>
+        <p class="micro">Invite others into clarity — and receive meaningful rewards as a thank you.</p>
+        <button class="cta-btn">Get My WHY Link</button>
+      </div>
+    </div>
+
+    <!-- 2. HOW IT WORKS -->
+    <div class="how-section">
+      <div class="content-wrap">
+        <h2>How It Works</h2>
+        <div class="steps-row">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-title">Share your link</div>
+            <div class="step-desc">Invite friends, patients, or your audience to discover their WHY.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-title">They complete their WHY</div>
+            <div class="step-desc">They experience the FREE WHY or beyond.</div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-title">You get rewarded</div>
+            <div class="step-desc">As a thank you, you unlock deeper WHY insights, tools, and perks.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. REWARD TIERS -->
+    <div class="tiers-section">
+      <div class="content-wrap">
+        <h2>Reward Tiers</h2>
+        <div class="tiers-2x2">
+          <div class="tier-card">
+            <div class="tier-header">Tier 1 — 3 Referrals</div>
+            <div class="tier-body">Unlock SEE WHY (Free)<br><br>Help 3 people find clarity — and we'll help you go deeper.</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 2 — 10 Referrals</div>
+            <div class="tier-body">Free THE WHY OR exclusive merch item OR discount on future tools</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 3 — 25+ Referrals</div>
+            <div class="tier-body">Premium merch bundle + Access to advanced content + WHY Leader badge</div>
+          </div>
+          <div class="tier-card">
+            <div class="tier-header">Tier 4 — Affiliate Level</div>
+            <div class="tier-body">Revenue share + Custom links + Dashboard tracking<br><br><button class="teal-cta">Apply for Affiliate Access</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. REFERRAL DASHBOARD -->
+    <div class="ref-dashboard">
+      <div class="content-wrap">
+        <div class="ref-card">
+          <h2>Referral Dashboard</h2>
+          <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Your Link:</div>
+          <div class="ref-link-row">
+            <input type="text" readonly value="https://diagnosethis.com/ref/YOUR-CODE">
+            <button class="cta-btn" style="padding:12px 20px;font-size:13px;">Copy Link</button>
+          </div>
+          <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Progress:</div>
+          <div class="progress-tracker">
+            <div class="prog-circle done">&#10003;</div>
+            <div class="prog-line done"></div>
+            <div class="prog-circle done">&#10003;</div>
+            <div class="prog-line"></div>
+            <div class="prog-circle pending">3</div>
+          </div>
+          <div class="prog-label">2 of 3 completed</div>
+          <div class="rewards-status">
+            <strong>Unlocked:</strong> FREE WHY<br>
+            <strong>Next:</strong> SEE WHY
+          </div>
+          <div class="activity-line">Clicks: 42 &middot; Completed WHYs: 18 &middot; Referrals Counted: 2 / 3</div>
+          <div class="hipaa-note">We only show counts — no names or personal data. HIPAA-safe.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SHARE OPTIONS -->
+    <div class="share-section">
+      <div class="content-wrap">
+        <h2>Share Options</h2>
+        <div class="share-btns">
+          <button class="share-btn coral">Copy Link</button>
+          <button class="share-btn outlined">Text Message</button>
+          <button class="share-btn outlined">Email</button>
+          <button class="share-btn outlined">Instagram Caption</button>
+          <button class="share-btn outlined">LinkedIn</button>
+        </div>
+        <div class="templates-row">
+          <div class="template-box">
+            <div class="label">Casual</div>
+            <div class="text">I tried something that helped me understand myself better — thought you might like it too.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="template-box">
+            <div class="label">Supportive</div>
+            <div class="text">If you've ever felt stuck or unclear, this helped me a lot. It's free to try.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <div class="template-box">
+            <div class="label">Practitioner</div>
+            <div class="text">I recommend this tool to help you better understand your WHY and decision patterns.</div>
+            <button class="copy-btn">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. IDENTITY SECTION -->
+    <div class="identity-section">
+      <div class="content-wrap">
+        <h2>You're Not Just Sharing a Link</h2>
+        <p>You're helping people feel seen, understood, and clear. That matters.</p>
+      </div>
+    </div>
+
+    <!-- 7. GAMIFICATION -->
+    <div class="gamification-section">
+      <div class="content-wrap">
+        <h2>Your Badges</h2>
+        <div class="badges-row">
+          <div class="badge-card">
+            <div class="badge-icon coral">3</div>
+            <div class="badge-title">WHY Starter</div>
+            <div class="badge-sub">3 referrals</div>
+          </div>
+          <div class="badge-card grey">
+            <div class="badge-icon grey">10</div>
+            <div class="badge-title">WHY Connector</div>
+            <div class="badge-sub">10 referrals</div>
+          </div>
+          <div class="badge-card grey">
+            <div class="badge-icon grey">25</div>
+            <div class="badge-title">WHY Leader</div>
+            <div class="badge-sub">25 referrals</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. COMPLIANCE -->
+    <div class="compliance-section">
+      <div class="content-wrap">
+        <div class="compliance-box">
+          <p>You'll receive credit when someone signs up and completes their WHY through your link. No fake accounts. No spam. No misleading promotion. Do not request or share personal health details when inviting others.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ======================== MOBILE VIEW ======================== -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="width:375px;">
+
+    <!-- 1. HERO -->
+    <div class="hero" style="padding:36px 20px;">
+      <div>
+        <div class="logo">
+          <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:48px;width:auto;">
+        </div>
+        <h1 style="font-size:26px;">LEAD WHY: Share It. Live It. Lead Others to It.</h1>
+        <p class="sub" style="font-size:15px;">When you help others discover their WHY, you don't just share a tool — you change the trajectory of their life.</p>
+        <p class="micro">Invite others into clarity — and receive meaningful rewards as a thank you.</p>
+        <button class="cta-btn" style="width:100%;">Get My WHY Link</button>
+      </div>
+    </div>
+
+    <!-- 2. HOW IT WORKS -->
+    <div class="how-section" style="padding:36px 20px;">
+      <h2>How It Works</h2>
+      <div class="steps-col">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Share your link</div>
+          <div class="step-desc">Invite friends, patients, or your audience to discover their WHY.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">They complete their WHY</div>
+          <div class="step-desc">They experience the FREE WHY or beyond.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">You get rewarded</div>
+          <div class="step-desc">As a thank you, you unlock deeper WHY insights, tools, and perks.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. REWARD TIERS -->
+    <div class="tiers-section" style="padding:36px 20px;">
+      <h2>Reward Tiers</h2>
+      <div class="tiers-stacked">
+        <div class="tier-card" style="width:343px;box-sizing:border-box;">
+          <div class="tier-header">Tier 1 — 3 Referrals</div>
+          <div class="tier-body">Unlock SEE WHY (Free)<br><br>Help 3 people find clarity — and we'll help you go deeper.</div>
+        </div>
+        <div class="tier-card" style="width:343px;box-sizing:border-box;">
+          <div class="tier-header">Tier 2 — 10 Referrals</div>
+          <div class="tier-body">Free THE WHY OR exclusive merch item OR discount on future tools</div>
+        </div>
+        <div class="tier-card" style="width:343px;box-sizing:border-box;">
+          <div class="tier-header">Tier 3 — 25+ Referrals</div>
+          <div class="tier-body">Premium merch bundle + Access to advanced content + WHY Leader badge</div>
+        </div>
+        <div class="tier-card" style="width:343px;box-sizing:border-box;">
+          <div class="tier-header">Tier 4 — Affiliate Level</div>
+          <div class="tier-body">Revenue share + Custom links + Dashboard tracking<br><br><button class="teal-cta">Apply for Affiliate Access</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. REFERRAL DASHBOARD -->
+    <div class="ref-dashboard" style="padding:36px 16px;">
+      <div class="ref-card" style="padding:20px;">
+        <h2 style="font-size:18px;">Referral Dashboard</h2>
+        <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Your Link:</div>
+        <div style="margin-bottom:16px;">
+          <input type="text" readonly value="https://diagnosethis.com/ref/YOUR-CODE" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:8px;box-sizing:border-box;">
+          <button class="cta-btn" style="width:100%;padding:12px;font-size:13px;">Copy Link</button>
+        </div>
+        <div style="margin-bottom:8px;font-size:14px;font-weight:600;">Progress:</div>
+        <div class="progress-tracker">
+          <div class="prog-circle done">&#10003;</div>
+          <div class="prog-line done"></div>
+          <div class="prog-circle done">&#10003;</div>
+          <div class="prog-line"></div>
+          <div class="prog-circle pending">3</div>
+        </div>
+        <div class="prog-label">2 of 3 completed</div>
+        <div class="rewards-status">
+          <strong>Unlocked:</strong> FREE WHY<br>
+          <strong>Next:</strong> SEE WHY
+        </div>
+        <div class="activity-line" style="font-size:13px;">Clicks: 42 &middot; Completed WHYs: 18 &middot; Referrals Counted: 2 / 3</div>
+        <div class="hipaa-note">We only show counts — no names or personal data. HIPAA-safe.</div>
+      </div>
+    </div>
+
+    <!-- 5. SHARE OPTIONS -->
+    <div class="share-section" style="padding:36px 16px;">
+      <h2 style="font-size:18px;">Share Options</h2>
+      <div class="share-btns" style="flex-direction:column;align-items:stretch;">
+        <button class="share-btn coral" style="width:343px;box-sizing:border-box;">Copy Link</button>
+        <button class="share-btn outlined" style="width:343px;box-sizing:border-box;">Text Message</button>
+        <button class="share-btn outlined" style="width:343px;box-sizing:border-box;">Email</button>
+        <button class="share-btn outlined" style="width:343px;box-sizing:border-box;">Instagram Caption</button>
+        <button class="share-btn outlined" style="width:343px;box-sizing:border-box;">LinkedIn</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+        <div class="template-box" style="width:343px;box-sizing:border-box;">
+          <div class="label">Casual</div>
+          <div class="text">I tried something that helped me understand myself better — thought you might like it too.</div>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <div class="template-box" style="width:343px;box-sizing:border-box;">
+          <div class="label">Supportive</div>
+          <div class="text">If you've ever felt stuck or unclear, this helped me a lot. It's free to try.</div>
+          <button class="copy-btn">Copy</button>
+        </div>
+        <div class="template-box" style="width:343px;box-sizing:border-box;">
+          <div class="label">Practitioner</div>
+          <div class="text">I recommend this tool to help you better understand your WHY and decision patterns.</div>
+          <button class="copy-btn">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. IDENTITY SECTION -->
+    <div class="identity-section" style="padding:40px 20px;">
+      <h2 style="font-size:20px;">You're Not Just Sharing a Link</h2>
+      <p style="font-size:14px;">You're helping people feel seen, understood, and clear. That matters.</p>
+    </div>
+
+    <!-- 7. GAMIFICATION -->
+    <div class="gamification-section" style="padding:36px 16px;">
+      <h2 style="font-size:18px;">Your Badges</h2>
+      <div class="badges-col">
+        <div class="badge-card" style="width:343px;box-sizing:border-box;">
+          <div class="badge-icon coral">3</div>
+          <div class="badge-title">WHY Starter</div>
+          <div class="badge-sub">3 referrals</div>
+        </div>
+        <div class="badge-card grey" style="width:343px;box-sizing:border-box;">
+          <div class="badge-icon grey">10</div>
+          <div class="badge-title">WHY Connector</div>
+          <div class="badge-sub">10 referrals</div>
+        </div>
+        <div class="badge-card grey" style="width:343px;box-sizing:border-box;">
+          <div class="badge-icon grey">25</div>
+          <div class="badge-title">WHY Leader</div>
+          <div class="badge-sub">25 referrals</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. COMPLIANCE -->
+    <div class="compliance-section" style="padding:36px 16px;">
+      <div class="compliance-box">
+        <p>You'll receive credit when someone signs up and completes their WHY through your link. No fake accounts. No spam. No misleading promotion. Do not request or share personal health details when inviting others.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><div class="bnav-verb">Ask</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Chat</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Find</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Live</div><div class="bnav-word">WHY</div></div>
+      <div class="bnav-item"><div class="bnav-verb">Shop</div><div class="bnav-word">WHY</div></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<script>
+function setView(v, btn) {
+  document.getElementById('view-desktop').style.display = 'none';
+  document.getElementById('view-tablet').style.display = 'none';
+  document.getElementById('view-mobile').style.display = 'none';
+  document.getElementById('view-' + v).style.display = 'block';
+  var btns = document.querySelectorAll('.pv-btn');
+  btns.forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

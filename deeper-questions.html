@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis — Tell Us More</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#e0e0e0;font-family:'Open Sans',sans-serif;min-height:100vh;}
+
+/* Preview Bar */
+.preview-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 0;background:#333;}
+.pv-btn{padding:8px 20px;border:none;border-radius:999px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;cursor:pointer;background:#555;color:#fff;transition:background .2s;}
+.pv-btn.active{background:#000000;color:#fff;}
+.pv-btn:hover{opacity:.85;}
+
+/* Shell */
+.shell{margin:0 auto;background:#ffffff;overflow:hidden;border-radius:0 0 12px 12px;box-shadow:0 4px 24px rgba(0,0,0,.12);}
+
+/* Bottom Nav */
+.bottom-nav{display:flex;align-items:center;justify-content:space-around;padding:14px 0 18px;background:#00A2B0;border-top:3px solid #FFB533;}
+.bnav-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;cursor:pointer;}
+.bnav-verb{font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:#ffffff;text-transform:uppercase;letter-spacing:.5px;}
+.bnav-word{font-family:'Open Sans',sans-serif;font-size:10px;font-weight:600;color:rgba(255,255,255,.8);}
+
+/* CTA Button */
+.cta-btn{display:inline-block;padding:14px 40px;background:#F15B5C;color:#ffffff;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:opacity .2s;}
+.cta-btn:hover{opacity:.9;}
+.cta-btn-black{background:#000000;}
+
+/* Footer */
+.footer-text{text-align:center;padding:14px 20px;font-size:11px;color:#888;font-family:'Open Sans',sans-serif;background:#f5f5f5;}
+
+/* Split Layout */
+.split{display:flex;min-height:calc(100vh - 52px);}
+.left-panel{background:#000000;display:flex;flex-direction:column;justify-content:center;padding:48px 40px;}
+.left-panel .logo-img{height:64px;width:auto;margin-bottom:32px;}
+.left-panel .progress{font-family:'Poppins',sans-serif;font-size:20px;font-weight:700;color:#ffffff;margin-bottom:8px;}
+.left-panel .subtitle{font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;color:#00A2B0;}
+.right-panel{background:#ffffff;display:flex;flex-direction:column;justify-content:center;padding:48px 56px;overflow-y:auto;}
+
+/* Questions */
+.question-block{margin-bottom:28px;}
+.question-label{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:#000000;margin-bottom:10px;}
+.options{display:flex;flex-wrap:wrap;gap:10px;}
+.options label{display:flex;align-items:center;gap:6px;font-family:'Open Sans',sans-serif;font-size:14px;color:#333;cursor:pointer;padding:8px 16px;border:2px solid #eee;border-radius:8px;transition:border-color .2s,background .2s;}
+.options label:hover{border-color:#00A2B0;}
+.options input[type="radio"]{accent-color:#00A2B0;width:16px;height:16px;}
+.options input[type="radio"]:checked + span{font-weight:600;}
+.options label:has(input:checked){border-color:#00A2B0;background:rgba(0,162,176,.06);}
+
+.skip-link{display:inline-block;margin-top:12px;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;color:#00A2B0;text-decoration:none;cursor:pointer;}
+.skip-link:hover{text-decoration:underline;}
+
+/* Scale options */
+.scale-options{display:flex;flex-wrap:wrap;gap:8px;}
+.scale-options label{min-width:44px;justify-content:center;padding:8px 10px;}
+</style>
+</head>
+<body>
+
+<!-- Preview Bar -->
+<div class="preview-bar">
+  <button class="pv-btn active" onclick="setView('desktop', this)">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet', this)">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile', this)">Mobile 375px</button>
+</div>
+
+<!-- ========== DESKTOP VIEW ========== -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <div class="split">
+      <div class="left-panel" style="width:40%;">
+        <img src="data:image/png;base64,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" alt="DiagnoseThis" class="logo-img">
+        <div class="progress">Step 2 of 3 — Tell us more</div>
+        <div class="subtitle">Don't google it — Ask WHY.</div>
+      </div>
+      <div class="right-panel" style="width:60%;">
+        <form>
+          <div class="question-block">
+            <div class="question-label">Q1: How long have you felt this way?</div>
+            <div class="options">
+              <label><input type="radio" name="d-q1" value="days"><span>Days</span></label>
+              <label><input type="radio" name="d-q1" value="weeks"><span>Weeks</span></label>
+              <label><input type="radio" name="d-q1" value="months"><span>Months</span></label>
+              <label><input type="radio" name="d-q1" value="years"><span>Years</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label">Q2: Does it get worse at a specific time of day?</div>
+            <div class="options">
+              <label><input type="radio" name="d-q2" value="morning"><span>Morning</span></label>
+              <label><input type="radio" name="d-q2" value="afternoon"><span>Afternoon</span></label>
+              <label><input type="radio" name="d-q2" value="evening"><span>Evening</span></label>
+              <label><input type="radio" name="d-q2" value="none"><span>No pattern</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label">Q3: Have you seen a doctor about this?</div>
+            <div class="options">
+              <label><input type="radio" name="d-q3" value="yes"><span>Yes</span></label>
+              <label><input type="radio" name="d-q3" value="no"><span>No</span></label>
+              <label><input type="radio" name="d-q3" value="unhelpful"><span>Yes but wasn't helped</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label">Q4: On a scale of 1–10, how much is this affecting your daily life?</div>
+            <div class="scale-options options">
+              <label><input type="radio" name="d-q4" value="1"><span>1</span></label>
+              <label><input type="radio" name="d-q4" value="2"><span>2</span></label>
+              <label><input type="radio" name="d-q4" value="3"><span>3</span></label>
+              <label><input type="radio" name="d-q4" value="4"><span>4</span></label>
+              <label><input type="radio" name="d-q4" value="5"><span>5</span></label>
+              <label><input type="radio" name="d-q4" value="6"><span>6</span></label>
+              <label><input type="radio" name="d-q4" value="7"><span>7</span></label>
+              <label><input type="radio" name="d-q4" value="8"><span>8</span></label>
+              <label><input type="radio" name="d-q4" value="9"><span>9</span></label>
+              <label><input type="radio" name="d-q4" value="10"><span>10</span></label>
+            </div>
+          </div>
+          <div style="margin-top:8px;">
+            <button type="button" class="cta-btn">Get My WHY &rarr;</button>
+          </div>
+          <div style="margin-top:4px;">
+            <a class="skip-link" href="#">Skip for now</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></div>
+    </div>
+    <div class="footer-text">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ========== TABLET VIEW ========== -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <div class="split">
+      <div class="left-panel" style="width:35%;padding:36px 28px;">
+        <img src="data:image/png;base64,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" alt="DiagnoseThis" class="logo-img" style="height:52px;">
+        <div class="progress" style="font-size:17px;">Step 2 of 3 — Tell us more</div>
+        <div class="subtitle" style="font-size:13px;">Don't google it — Ask WHY.</div>
+      </div>
+      <div class="right-panel" style="width:65%;padding:32px 28px;">
+        <form>
+          <div class="question-block">
+            <div class="question-label" style="font-size:14px;">Q1: How long have you felt this way?</div>
+            <div class="options">
+              <label><input type="radio" name="t-q1" value="days"><span>Days</span></label>
+              <label><input type="radio" name="t-q1" value="weeks"><span>Weeks</span></label>
+              <label><input type="radio" name="t-q1" value="months"><span>Months</span></label>
+              <label><input type="radio" name="t-q1" value="years"><span>Years</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label" style="font-size:14px;">Q2: Does it get worse at a specific time of day?</div>
+            <div class="options">
+              <label><input type="radio" name="t-q2" value="morning"><span>Morning</span></label>
+              <label><input type="radio" name="t-q2" value="afternoon"><span>Afternoon</span></label>
+              <label><input type="radio" name="t-q2" value="evening"><span>Evening</span></label>
+              <label><input type="radio" name="t-q2" value="none"><span>No pattern</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label" style="font-size:14px;">Q3: Have you seen a doctor about this?</div>
+            <div class="options">
+              <label><input type="radio" name="t-q3" value="yes"><span>Yes</span></label>
+              <label><input type="radio" name="t-q3" value="no"><span>No</span></label>
+              <label><input type="radio" name="t-q3" value="unhelpful"><span>Yes but wasn't helped</span></label>
+            </div>
+          </div>
+          <div class="question-block">
+            <div class="question-label" style="font-size:14px;">Q4: On a scale of 1–10, how much is this affecting your daily life?</div>
+            <div class="scale-options options">
+              <label><input type="radio" name="t-q4" value="1"><span>1</span></label>
+              <label><input type="radio" name="t-q4" value="2"><span>2</span></label>
+              <label><input type="radio" name="t-q4" value="3"><span>3</span></label>
+              <label><input type="radio" name="t-q4" value="4"><span>4</span></label>
+              <label><input type="radio" name="t-q4" value="5"><span>5</span></label>
+              <label><input type="radio" name="t-q4" value="6"><span>6</span></label>
+              <label><input type="radio" name="t-q4" value="7"><span>7</span></label>
+              <label><input type="radio" name="t-q4" value="8"><span>8</span></label>
+              <label><input type="radio" name="t-q4" value="9"><span>9</span></label>
+              <label><input type="radio" name="t-q4" value="10"><span>10</span></label>
+            </div>
+          </div>
+          <div style="margin-top:8px;">
+            <button type="button" class="cta-btn">Get My WHY &rarr;</button>
+          </div>
+          <div style="margin-top:4px;">
+            <a class="skip-link" href="#">Skip for now</a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></div>
+    </div>
+    <div class="footer-text">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<!-- ========== MOBILE VIEW ========== -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="width:375px;">
+    <div style="background:#000000;padding:28px 16px 20px;text-align:center;">
+      <img src="data:image/png;base64,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" alt="DiagnoseThis" style="height:48px;width:auto;">
+      <div style="margin-top:16px;">
+        <div class="progress" style="font-size:16px;color:#ffffff;font-family:'Poppins',sans-serif;font-weight:700;">Step 2 of 3 — Tell us more</div>
+        <div class="subtitle" style="font-size:13px;color:#00A2B0;font-family:'Poppins',sans-serif;font-weight:600;margin-top:4px;">Don't google it — Ask WHY.</div>
+      </div>
+    </div>
+    <!-- White Card -->
+    <div style="background:#ffffff;width:343px;margin:0 auto;border-radius:16px;padding:24px 20px;margin-top:-12px;position:relative;z-index:1;">
+      <form>
+        <div class="question-block">
+          <div class="question-label" style="font-size:14px;">Q1: How long have you felt this way?</div>
+          <div class="options" style="flex-direction:column;">
+            <label><input type="radio" name="m-q1" value="days"><span>Days</span></label>
+            <label><input type="radio" name="m-q1" value="weeks"><span>Weeks</span></label>
+            <label><input type="radio" name="m-q1" value="months"><span>Months</span></label>
+            <label><input type="radio" name="m-q1" value="years"><span>Years</span></label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-label" style="font-size:14px;">Q2: Does it get worse at a specific time of day?</div>
+          <div class="options" style="flex-direction:column;">
+            <label><input type="radio" name="m-q2" value="morning"><span>Morning</span></label>
+            <label><input type="radio" name="m-q2" value="afternoon"><span>Afternoon</span></label>
+            <label><input type="radio" name="m-q2" value="evening"><span>Evening</span></label>
+            <label><input type="radio" name="m-q2" value="none"><span>No pattern</span></label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-label" style="font-size:14px;">Q3: Have you seen a doctor about this?</div>
+          <div class="options" style="flex-direction:column;">
+            <label><input type="radio" name="m-q3" value="yes"><span>Yes</span></label>
+            <label><input type="radio" name="m-q3" value="no"><span>No</span></label>
+            <label><input type="radio" name="m-q3" value="unhelpful"><span>Yes but wasn't helped</span></label>
+          </div>
+        </div>
+        <div class="question-block">
+          <div class="question-label" style="font-size:14px;">Q4: On a scale of 1–10, how much is this affecting your daily life?</div>
+          <div class="scale-options options">
+            <label><input type="radio" name="m-q4" value="1"><span>1</span></label>
+            <label><input type="radio" name="m-q4" value="2"><span>2</span></label>
+            <label><input type="radio" name="m-q4" value="3"><span>3</span></label>
+            <label><input type="radio" name="m-q4" value="4"><span>4</span></label>
+            <label><input type="radio" name="m-q4" value="5"><span>5</span></label>
+            <label><input type="radio" name="m-q4" value="6"><span>6</span></label>
+            <label><input type="radio" name="m-q4" value="7"><span>7</span></label>
+            <label><input type="radio" name="m-q4" value="8"><span>8</span></label>
+            <label><input type="radio" name="m-q4" value="9"><span>9</span></label>
+            <label><input type="radio" name="m-q4" value="10"><span>10</span></label>
+          </div>
+        </div>
+        <div style="margin-top:8px;text-align:center;">
+          <button type="button" class="cta-btn" style="width:100%;">Get My WHY &rarr;</button>
+        </div>
+        <div style="margin-top:8px;text-align:center;">
+          <a class="skip-link" href="#">Skip for now</a>
+        </div>
+      </form>
+    </div>
+    <div style="height:16px;background:#000000;"></div>
+    <!-- Bottom Nav -->
+    <div class="bottom-nav">
+      <div class="bnav-item"><span class="bnav-verb">Ask</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Chat</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Find</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Live</span><span class="bnav-word">WHY</span></div>
+      <div class="bnav-item"><span class="bnav-verb">Shop</span><span class="bnav-word">WHY</span></div>
+    </div>
+    <div class="footer-text">&copy; 2025 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</div>
+  </div>
+</div>
+
+<script>
+function setView(v, btn) {
+  document.getElementById('view-desktop').style.display = 'none';
+  document.getElementById('view-tablet').style.display = 'none';
+  document.getElementById('view-mobile').style.display = 'none';
+  document.getElementById('view-' + v).style.display = 'block';
+  var btns = document.querySelectorAll('.pv-btn');
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
