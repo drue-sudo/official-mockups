@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiagnoseThis &mdash; Do Not Sell or Share My Personal Information</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins','Open Sans','Segoe UI',-apple-system,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+p.body{color:#333;font-size:15px;line-height:1.7;}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>PREVIEW:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;border-bottom:1px solid rgba(255,255,255,0.1);"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:64px;width:auto;filter:invert(1);"><div style="display:flex;gap:16px;align-items:center;"><a href="#" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">Home</a><a href="about.html" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">About</a><a href="contact.html" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">Contact</a></div></div>
+    <div style="background:#111;padding:48px 48px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:14px;">Legal</div>
+      <h1 style="color:#fff;font-size:34px;font-weight:900;line-height:1.2;margin-bottom:10px;">Do Not Sell or Share My Personal Information</h1>
+      <p style="color:#999;font-size:13px;">Last Updated: January 1st, 2026</p>
+    </div>
+    <div style="background:#fff;padding:40px 48px;">
+      <div style="max-width:800px;margin:0 auto;">
+        <div style="border:1px solid #eee;border-radius:10px;padding:24px;margin-bottom:32px;background:#fafafa;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F15B5C;margin-bottom:12px;">Table of Contents</div>
+          <ol style="padding-left:20px;">
+            <li style="margin-bottom:8px;"><a href="#overview" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Overview</a></li>
+            <li style="margin-bottom:8px;"><a href="#what-we-collect" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">What We Collect</a></li>
+            <li style="margin-bottom:8px;"><a href="#your-rights" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Your Rights</a></li>
+            <li style="margin-bottom:8px;"><a href="#how-to-opt-out" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">How to Opt Out</a></li>
+            <li><a href="#contact" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Contact Us</a></li>
+          </ol>
+        </div>
+        <div id="overview" style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">01</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Overview</h2>
+          <p class="body" style="margin-bottom:14px;">Core DT Solutions LLC (&ldquo;DiagnoseThis,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your right to control how your personal information is used. Under the California Consumer Privacy Act (CCPA), the California Privacy Rights Act (CPRA), and similar state laws, you have the right to direct us not to sell or share your personal information.</p>
+          <p class="body" style="margin-bottom:14px;"><strong>We do not sell your Consumer Health Data.</strong> We do not share your personal information with third parties for cross-context behavioral advertising purposes. However, we want to make sure you understand your full rights under applicable law and how you can exercise them at any time.</p>
+          <p class="body">This page describes the categories of personal information we collect, your rights under applicable law, and exactly how to submit an opt-out request.</p>
+        </div>
+        <div id="what-we-collect" style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">02</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">What We Collect</h2>
+          <p class="body" style="margin-bottom:16px;">We may collect the following categories of personal information when you use our Services:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Identifiers</strong> &mdash; Name, email address, username, account ID, and IP address</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Consumer Health Information</strong> &mdash; Symptoms, health history, questionnaire responses, and wellness tracking data you voluntarily submit</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Usage Data</strong> &mdash; Pages visited, features used, session duration, and interaction patterns within our Services</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Communications</strong> &mdash; Messages you send us through support or contact channels</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Device &amp; Technical Information</strong> &mdash; Browser type, operating system, referring URLs, and device identifiers</p></div>
+          <p class="body" style="margin-top:16px;">We use this information to provide our Services, communicate with you, and improve your experience. We do not sell or share Consumer Health Data with third parties for their marketing purposes.</p>
+        </div>
+        <div id="your-rights" style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">03</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Your Rights</h2>
+          <p class="body" style="margin-bottom:16px;">Under the CCPA/CPRA and applicable state privacy laws, you have the right to:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Know</strong> &mdash; Request disclosure of the categories and specific pieces of personal information we collect, use, disclose, or sell</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Delete</strong> &mdash; Request deletion of the personal information we have collected from you, subject to certain exceptions</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Correct</strong> &mdash; Request correction of inaccurate personal information we maintain about you</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Opt Out</strong> &mdash; Direct us not to sell or share your personal information with third parties</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Limit Use of Sensitive Information</strong> &mdash; Limit our use of sensitive personal information to only what is necessary to provide the requested service</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Non-Discrimination</strong> &mdash; We will not discriminate against you for exercising any of your privacy rights</p></div>
+          <p class="body" style="margin-top:16px;">To submit a request, email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a>. We will respond to verifiable consumer requests within 45 days. We may extend the response period by an additional 45 days with notice.</p>
+        </div>
+        <div id="how-to-opt-out" style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">04</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">How to Opt Out</h2>
+          <p class="body" style="margin-bottom:16px;">To submit an opt-out of sale or sharing of your personal information, follow these steps:</p>
+          <div style="background:#f8f8f8;border-radius:10px;padding:20px 24px;margin-bottom:20px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</div><p class="body" style="margin:0;">Email us at <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a> with the subject line <strong>&ldquo;Do Not Sell or Share My Information&rdquo;</strong></p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</div><p class="body" style="margin:0;">Include your full name and the email address associated with your DiagnoseThis account</p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</div><p class="body" style="margin:0;">We will process your request within 15 business days and confirm via email</p></div>
+          </div>
+          <p class="body" style="margin-bottom:14px;">You may also authorize an agent to submit an opt-out request on your behalf. Authorized agents must provide written permission signed by you, or a valid power of attorney. We may contact you directly to verify the agent&rsquo;s authority.</p>
+          <p class="body">Once you opt out, we will not sell or share your personal information unless you subsequently provide explicit written consent to do so. Your opt-out will not affect the quality or availability of any Services we provide to you.</p>
+        </div>
+        <div id="contact" style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">05</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Contact Us</h2>
+          <p class="body" style="margin-bottom:16px;">For questions about this page, to exercise your rights, or to submit an appeal of a prior decision, contact us at:</p>
+          <div style="background:#f8f8f8;border-left:3px solid #00A2B0;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+            <p class="body" style="margin:0 0 6px;"><strong>Email:</strong> <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a></p>
+            <p class="body" style="margin:0;"><strong>Mail:</strong> Core DT Solutions LLC, 5030 Anchor Way, Suite 13, Christiansted, VI 00820</p>
+          </div>
+          <p class="body">To appeal a privacy rights decision, email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a> with the subject line &ldquo;Privacy Rights Appeal.&rdquo; We will respond within 45 days.</p>
+        </div>
+      </div>
+    </div>
+    <div style="background:#000;padding:40px 48px;text-align:center;">
+      <p style="color:#fff;font-size:18px;font-weight:800;margin-bottom:8px;">Related Policies</p>
+      <p style="color:#999;font-size:14px;margin-bottom:20px;">Review our full Privacy Policy or Consumer Health Data Privacy Policy for more detail on your rights.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="privacy.html" style="display:inline-block;background:#F15B5C;color:#fff;font-size:15px;font-weight:800;padding:14px 28px;border-radius:8px;text-decoration:none;">Privacy Policy &rarr;</a>
+        <a href="consumer-health-privacy.html" style="display:inline-block;background:#00A2B0;color:#fff;font-size:15px;font-weight:800;padding:14px 28px;border-radius:8px;text-decoration:none;">Consumer Health Data Policy &rarr;</a>
+      </div>
+    </div>
+    <div style="background:#111;padding:48px 48px 0;"><div style="display:flex;gap:40px;">
+      <div style="flex:1;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+    </div><div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div></div>
+    <div style="background:#000;padding:12px 48px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 32px;border-bottom:1px solid rgba(255,255,255,0.1);"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:52px;width:auto;filter:invert(1);"><div style="display:flex;gap:16px;align-items:center;"><a href="#" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">Home</a><a href="about.html" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">About</a><a href="contact.html" style="color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;">Contact</a></div></div>
+    <div style="background:#111;padding:36px 32px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:14px;">Legal</div>
+      <h1 style="color:#fff;font-size:28px;font-weight:900;line-height:1.2;margin-bottom:10px;">Do Not Sell or Share My Personal Information</h1>
+      <p style="color:#999;font-size:13px;">Last Updated: January 1st, 2026</p>
+    </div>
+    <div style="background:#fff;padding:36px 32px;">
+      <div style="max-width:640px;margin:0 auto;">
+        <div style="border:1px solid #eee;border-radius:10px;padding:24px;margin-bottom:32px;background:#fafafa;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F15B5C;margin-bottom:12px;">Table of Contents</div>
+          <ol style="padding-left:20px;">
+            <li style="margin-bottom:8px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Overview</a></li>
+            <li style="margin-bottom:8px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">What We Collect</a></li>
+            <li style="margin-bottom:8px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Your Rights</a></li>
+            <li style="margin-bottom:8px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">How to Opt Out</a></li>
+            <li><a href="#" style="color:#00A2B0;text-decoration:none;font-size:14px;font-weight:600;">Contact Us</a></li>
+          </ol>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">01</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Overview</h2>
+          <p class="body" style="margin-bottom:14px;">Core DT Solutions LLC (&ldquo;DiagnoseThis,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) respects your right to control how your personal information is used. Under the California Consumer Privacy Act (CCPA), the California Privacy Rights Act (CPRA), and similar state laws, you have the right to direct us not to sell or share your personal information.</p>
+          <p class="body" style="margin-bottom:14px;"><strong>We do not sell your Consumer Health Data.</strong> We do not share your personal information with third parties for cross-context behavioral advertising purposes. However, we want to make sure you understand your full rights under applicable law and how you can exercise them at any time.</p>
+          <p class="body">This page describes the categories of personal information we collect, your rights under applicable law, and exactly how to submit an opt-out request.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">02</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">What We Collect</h2>
+          <p class="body" style="margin-bottom:16px;">We may collect the following categories of personal information when you use our Services:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Identifiers</strong> &mdash; Name, email address, username, account ID, and IP address</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Consumer Health Information</strong> &mdash; Symptoms, health history, questionnaire responses, and wellness tracking data you voluntarily submit</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Usage Data</strong> &mdash; Pages visited, features used, session duration, and interaction patterns</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Communications</strong> &mdash; Messages you send us through support or contact channels</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Device &amp; Technical Information</strong> &mdash; Browser type, operating system, referring URLs, and device identifiers</p></div>
+          <p class="body" style="margin-top:16px;">We use this information to provide our Services, communicate with you, and improve your experience. We do not sell or share Consumer Health Data with third parties for their marketing purposes.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">03</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Your Rights</h2>
+          <p class="body" style="margin-bottom:16px;">Under the CCPA/CPRA and applicable state privacy laws, you have the right to:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Know</strong> &mdash; Request disclosure of what personal information we collect, use, disclose, or sell</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Delete</strong> &mdash; Request deletion of your personal information, subject to certain exceptions</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Correct</strong> &mdash; Request correction of inaccurate personal information we maintain about you</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Opt Out</strong> &mdash; Direct us not to sell or share your personal information with third parties</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Limit Use of Sensitive Information</strong> &mdash; Limit our use to what is necessary to provide the requested service</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Non-Discrimination</strong> &mdash; We will not discriminate against you for exercising any of your rights</p></div>
+          <p class="body" style="margin-top:16px;">To submit a request, email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a>. We will respond to verifiable consumer requests within 45 days.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">04</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">How to Opt Out</h2>
+          <p class="body" style="margin-bottom:16px;">To submit an opt-out of sale or sharing of your personal information, follow these steps:</p>
+          <div style="background:#f8f8f8;border-radius:10px;padding:20px 24px;margin-bottom:20px;">
+            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</div><p class="body" style="margin:0;">Email us at <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a> with the subject line <strong>&ldquo;Do Not Sell or Share My Information&rdquo;</strong></p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</div><p class="body" style="margin:0;">Include your full name and the email address associated with your DiagnoseThis account</p></div>
+            <div style="display:flex;align-items:flex-start;gap:12px;"><div style="background:#F15B5C;color:#fff;font-size:13px;font-weight:800;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</div><p class="body" style="margin:0;">We will process your request within 15 business days and confirm via email</p></div>
+          </div>
+          <p class="body" style="margin-bottom:14px;">You may also authorize an agent to submit an opt-out request on your behalf. Authorized agents must provide written permission signed by you, or a valid power of attorney.</p>
+          <p class="body">Once you opt out, we will not sell or share your personal information unless you subsequently provide explicit written consent.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">05</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Contact Us</h2>
+          <p class="body" style="margin-bottom:16px;">For questions about this page, to exercise your rights, or to submit an appeal, contact us at:</p>
+          <div style="background:#f8f8f8;border-left:3px solid #00A2B0;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+            <p class="body" style="margin:0 0 6px;"><strong>Email:</strong> <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a></p>
+            <p class="body" style="margin:0;"><strong>Mail:</strong> Core DT Solutions LLC, 5030 Anchor Way, Suite 13, Christiansted, VI 00820</p>
+          </div>
+          <p class="body">To appeal a privacy rights decision, email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a> with the subject line &ldquo;Privacy Rights Appeal.&rdquo;</p>
+        </div>
+      </div>
+    </div>
+    <div style="background:#000;padding:32px;text-align:center;">
+      <p style="color:#fff;font-size:18px;font-weight:800;margin-bottom:8px;">Related Policies</p>
+      <p style="color:#999;font-size:14px;margin-bottom:20px;">Review our full Privacy Policy or Consumer Health Data Privacy Policy.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="privacy.html" style="display:inline-block;background:#F15B5C;color:#fff;font-size:14px;font-weight:800;padding:12px 24px;border-radius:8px;text-decoration:none;">Privacy Policy &rarr;</a>
+        <a href="consumer-health-privacy.html" style="display:inline-block;background:#00A2B0;color:#fff;font-size:14px;font-weight:800;padding:12px 24px;border-radius:8px;text-decoration:none;">Consumer Health Data Policy &rarr;</a>
+      </div>
+    </div>
+    <div style="background:#111;padding:36px 32px 0;"><div style="display:flex;gap:32px;">
+      <div style="flex:1;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+    </div><div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div></div>
+    <div style="background:#000;padding:12px 32px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.1);"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:40px;width:auto;filter:invert(1);"><div style="display:flex;gap:12px;align-items:center;"><a href="#" style="color:#ffffff;font-size:12px;font-weight:600;text-decoration:none;">Home</a><a href="contact.html" style="color:#ffffff;font-size:12px;font-weight:600;text-decoration:none;">Contact</a></div></div>
+    <div style="background:#111;padding:24px 16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:12px;">Legal</div>
+      <h1 style="color:#fff;font-size:22px;font-weight:900;line-height:1.2;margin-bottom:10px;">Do Not Sell or Share My Personal Information</h1>
+      <p style="color:#999;font-size:12px;">Last Updated: January 1st, 2026</p>
+    </div>
+    <div style="background:#fff;padding:24px 16px;">
+      <div style="max-width:375px;margin:0 auto;">
+        <div style="border:1px solid #eee;border-radius:10px;padding:16px;margin-bottom:24px;background:#fafafa;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#F15B5C;margin-bottom:10px;">Table of Contents</div>
+          <ol style="padding-left:18px;">
+            <li style="margin-bottom:6px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:13px;font-weight:600;">Overview</a></li>
+            <li style="margin-bottom:6px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:13px;font-weight:600;">What We Collect</a></li>
+            <li style="margin-bottom:6px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:13px;font-weight:600;">Your Rights</a></li>
+            <li style="margin-bottom:6px;"><a href="#" style="color:#00A2B0;text-decoration:none;font-size:13px;font-weight:600;">How to Opt Out</a></li>
+            <li><a href="#" style="color:#00A2B0;text-decoration:none;font-size:13px;font-weight:600;">Contact Us</a></li>
+          </ol>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">01</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Overview</h2>
+          <p class="body" style="margin-bottom:14px;">Core DT Solutions LLC (&ldquo;DiagnoseThis&rdquo;) respects your right to control how your personal information is used. Under the CCPA, CPRA, and similar state laws, you have the right to direct us not to sell or share your personal information.</p>
+          <p class="body"><strong>We do not sell your Consumer Health Data</strong> and do not share your personal information with third parties for advertising purposes. This page explains your rights and how to exercise them.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">02</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">What We Collect</h2>
+          <p class="body" style="margin-bottom:16px;">We may collect the following categories of personal information:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Identifiers</strong> &mdash; Name, email, username, IP address</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Consumer Health Information</strong> &mdash; Symptoms, health history, questionnaire responses</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Usage Data</strong> &mdash; Pages visited, features used, session patterns</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Communications</strong> &mdash; Messages sent through our support channels</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#F15B5C;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&bull;</span><p class="body" style="margin:0;"><strong>Device Information</strong> &mdash; Browser type, OS, referring URLs</p></div>
+          <p class="body" style="margin-top:16px;">We do not sell or share this data with third parties for marketing.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">03</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Your Rights</h2>
+          <p class="body" style="margin-bottom:16px;">Under the CCPA/CPRA and applicable state laws, you have the right to:</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Know</strong> &mdash; Request what personal information we collect, use, or share</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Delete</strong> &mdash; Request deletion of your personal information</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Correct</strong> &mdash; Request correction of inaccurate information</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Opt Out</strong> &mdash; Direct us not to sell or share your information</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Limit Use</strong> &mdash; Limit use of sensitive personal information</p></div>
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><span style="color:#00A2B0;font-size:18px;font-weight:800;flex-shrink:0;line-height:1.3;">&#10003;</span><p class="body" style="margin:0;"><strong>Right to Non-Discrimination</strong> &mdash; We will never discriminate for exercising your rights</p></div>
+          <p class="body" style="margin-top:16px;">Email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a> to submit a request. We respond within 45 days.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">04</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">How to Opt Out</h2>
+          <p class="body" style="margin-bottom:16px;">To opt out of sale or sharing of your personal information:</p>
+          <div style="background:#f8f8f8;border-radius:10px;padding:16px;margin-bottom:16px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><div style="background:#F15B5C;color:#fff;font-size:12px;font-weight:800;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">1</div><p class="body" style="margin:0;">Email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;font-weight:600;">privacy@diagnosethis.com</a> with subject <strong>&ldquo;Do Not Sell or Share My Information&rdquo;</strong></p></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;"><div style="background:#F15B5C;color:#fff;font-size:12px;font-weight:800;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">2</div><p class="body" style="margin:0;">Include your name and account email address</p></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;"><div style="background:#F15B5C;color:#fff;font-size:12px;font-weight:800;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">3</div><p class="body" style="margin:0;">We will process your request within 15 business days</p></div>
+          </div>
+          <p class="body">You may authorize an agent to submit on your behalf with written permission. Once you opt out, we will not sell or share your information unless you later provide explicit written consent.</p>
+        </div>
+        <div style="padding:32px 0;border-bottom:1px solid rgba(241,91,92,0.2);">
+          <div style="color:#F15B5C;font-size:32px;font-weight:900;margin-bottom:4px;">05</div>
+          <h2 style="color:#111;font-size:20px;font-weight:800;margin-bottom:14px;">Contact Us</h2>
+          <p class="body" style="margin-bottom:16px;">For questions or to submit a request or appeal, contact us at:</p>
+          <div style="background:#f8f8f8;border-left:3px solid #00A2B0;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:16px;">
+            <p class="body" style="margin:0 0 6px;"><strong>Email:</strong> <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a></p>
+            <p class="body" style="margin:0;"><strong>Mail:</strong> Core DT Solutions LLC, 5030 Anchor Way, Suite 13, Christiansted, VI 00820</p>
+          </div>
+          <p class="body">To appeal a decision, email <a href="mailto:privacy@diagnosethis.com" style="color:#00A2B0;text-decoration:none;">privacy@diagnosethis.com</a> with subject &ldquo;Privacy Rights Appeal.&rdquo;</p>
+        </div>
+      </div>
+    </div>
+    <div style="background:#000;padding:28px 16px;text-align:center;">
+      <p style="color:#fff;font-size:16px;font-weight:800;margin-bottom:8px;">Related Policies</p>
+      <p style="color:#999;font-size:13px;margin-bottom:16px;">Review our Privacy Policy or Consumer Health Data Policy.</p>
+      <a href="privacy.html" style="display:block;width:100%;text-align:center;background:#F15B5C;color:#fff;font-size:14px;font-weight:800;padding:13px 20px;border-radius:8px;text-decoration:none;margin-bottom:10px;">Privacy Policy &rarr;</a>
+      <a href="consumer-health-privacy.html" style="display:block;width:100%;text-align:center;background:#00A2B0;color:#fff;font-size:14px;font-weight:800;padding:13px 20px;border-radius:8px;text-decoration:none;">Consumer Health Data Policy &rarr;</a>
+    </div>
+    <div style="background:#111;padding:20px;">
+      <div style="margin-bottom:24px;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="margin-bottom:24px;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="margin-bottom:24px;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px 20px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
