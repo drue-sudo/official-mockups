@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal Documents — DiagnoseThis</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins','Open Sans','Segoe UI',-apple-system,sans-serif;background:#e0e0e0;padding:20px;}
+.preview-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.preview-bar span{font-size:12px;font-weight:700;color:#555;margin-right:4px;}
+.pv-btn{padding:7px 16px;border-radius:20px;border:2px solid #999;background:#f0f0f0;font-size:12px;font-weight:700;cursor:pointer;color:#444;}
+.pv-btn.active{background:#111;color:#fff;border-color:#111;}
+.shell{margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <span>PREVIEW:</span>
+  <button class="pv-btn active" onclick="setView('desktop')">Desktop 1280px</button>
+  <button class="pv-btn" onclick="setView('tablet')">Tablet 768px</button>
+  <button class="pv-btn" onclick="setView('mobile')">Mobile 375px</button>
+</div>
+
+<!-- ===== DESKTOP ===== -->
+<div id="view-desktop" style="display:block;">
+  <div class="shell" style="max-width:1280px;">
+
+    <!-- Nav -->
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 48px;border-bottom:1px solid rgba(255,255,255,0.1);">
+      <img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:64px;width:auto;filter:invert(1);">
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="#" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">Home</a>
+        <a href="about.html" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">About</a>
+        <a href="contact.html" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">Contact</a>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div style="background:#fff;padding:56px 48px 32px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:14px;">Legal</div>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:900;color:#111;font-size:36px;line-height:1.2;margin-bottom:14px;">Legal Documents</h1>
+      <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:16px;line-height:1.6;max-width:520px;margin:0 auto;">Review our legal policies and your rights as a DiagnoseThis user.</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div style="background:#fff;padding:16px 48px 64px;">
+      <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;">
+
+        <!-- Card 1: Privacy Policy -->
+        <div style="width:calc(50% - 12px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #3B82F6;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:28px;margin-bottom:12px;">🛡️</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:17px;margin-bottom:10px;">Privacy Policy</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:14px;line-height:1.6;margin-bottom:20px;">Our general privacy policy for users and visitors — explains how we collect, use, and protect your personal data.</p>
+          <a href="privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:14px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 2: Consumer Health Data Privacy Policy -->
+        <div style="width:calc(50% - 12px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #10B981;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:28px;margin-bottom:12px;">🩺</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:17px;margin-bottom:10px;">Consumer Health Data Privacy Policy</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:14px;line-height:1.6;margin-bottom:20px;">Specific privacy practices related to your consumer health data and your rights under applicable health data privacy laws.</p>
+          <a href="consumer-health-privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:14px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 3: Terms of Use -->
+        <div style="width:calc(50% - 12px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #6B7280;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:28px;margin-bottom:12px;">📋</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:17px;margin-bottom:10px;">Terms of Use</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:14px;line-height:1.6;margin-bottom:20px;">The terms governing your use of DiagnoseThis, including your rights and responsibilities as a user of our platform.</p>
+          <a href="terms.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:14px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 4: Do Not Sell or Share -->
+        <div style="width:calc(50% - 12px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #F15B5C;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:28px;margin-bottom:12px;">🚫</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:17px;margin-bottom:10px;">Do Not Sell or Share</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:14px;line-height:1.6;margin-bottom:20px;">Exercise your right to opt out of the sale or sharing of your personal information with third parties.</p>
+          <a href="do-not-sell-share.html" style="font-family:'Open Sans',sans-serif;color:#F15B5C;font-size:14px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#111;padding:48px 48px 0;"><div style="display:flex;gap:40px;">
+      <div style="flex:1;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+    </div><div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div></div>
+    <div style="background:#000;padding:12px 48px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== TABLET ===== -->
+<div id="view-tablet" style="display:none;">
+  <div class="shell" style="max-width:768px;">
+
+    <!-- Nav -->
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:12px 32px;border-bottom:1px solid rgba(255,255,255,0.1);">
+      <img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:52px;width:auto;filter:invert(1);">
+      <div style="display:flex;gap:16px;align-items:center;">
+        <a href="#" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">Home</a>
+        <a href="about.html" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">About</a>
+        <a href="contact.html" style="color:#fff;font-size:13px;font-weight:600;text-decoration:none;">Contact</a>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div style="background:#fff;padding:44px 32px 28px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:14px;">Legal</div>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:900;color:#111;font-size:30px;line-height:1.2;margin-bottom:12px;">Legal Documents</h1>
+      <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:15px;line-height:1.6;max-width:480px;margin:0 auto;">Review our legal policies and your rights as a DiagnoseThis user.</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div style="background:#fff;padding:16px 32px 52px;">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;">
+
+        <!-- Card 1: Privacy Policy -->
+        <div style="width:calc(50% - 10px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #3B82F6;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:26px;margin-bottom:12px;">🛡️</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Privacy Policy</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Our general privacy policy for users and visitors — explains how we collect, use, and protect your personal data.</p>
+          <a href="privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 2: Consumer Health Data Privacy Policy -->
+        <div style="width:calc(50% - 10px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #10B981;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:26px;margin-bottom:12px;">🩺</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Consumer Health Data Privacy Policy</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Specific privacy practices related to your consumer health data and your rights under applicable health data privacy laws.</p>
+          <a href="consumer-health-privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 3: Terms of Use -->
+        <div style="width:calc(50% - 10px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #6B7280;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:26px;margin-bottom:12px;">📋</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Terms of Use</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">The terms governing your use of DiagnoseThis, including your rights and responsibilities as a user of our platform.</p>
+          <a href="terms.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+        <!-- Card 4: Do Not Sell or Share -->
+        <div style="width:calc(50% - 10px);background:#fff;border:1px solid #e5e7eb;border-top:4px solid #F15B5C;border-radius:12px;padding:24px;box-sizing:border-box;">
+          <div style="font-size:26px;margin-bottom:12px;">🚫</div>
+          <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Do Not Sell or Share</div>
+          <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Exercise your right to opt out of the sale or sharing of your personal information with third parties.</p>
+          <a href="do-not-sell-share.html" style="font-family:'Open Sans',sans-serif;color:#F15B5C;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#111;padding:36px 32px 0;"><div style="display:flex;gap:32px;">
+      <div style="flex:1;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div style="flex:1;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+    </div><div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:32px;"></div></div>
+    <div style="background:#000;padding:12px 32px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:16px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MOBILE ===== -->
+<div id="view-mobile" style="display:none;">
+  <div class="shell" style="max-width:375px;">
+
+    <!-- Nav -->
+    <div style="background:#000;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.1);">
+      <img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:40px;width:auto;filter:invert(1);">
+      <div style="display:flex;gap:12px;align-items:center;">
+        <a href="#" style="color:#fff;font-size:12px;font-weight:600;text-decoration:none;">Home</a>
+        <a href="contact.html" style="color:#fff;font-size:12px;font-weight:600;text-decoration:none;">Contact</a>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div style="background:#fff;padding:32px 16px 24px;text-align:center;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#F15B5C;margin-bottom:12px;">Legal</div>
+      <h1 style="font-family:'Poppins',sans-serif;font-weight:900;color:#111;font-size:26px;line-height:1.2;margin-bottom:12px;">Legal Documents</h1>
+      <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:14px;line-height:1.6;">Review our legal policies and your rights as a DiagnoseThis user.</p>
+    </div>
+
+    <!-- Cards — stacked, 343px, black background -->
+    <div style="background:#000;padding:20px 16px 28px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+
+      <!-- Card 1: Privacy Policy -->
+      <div style="width:343px;background:#fff;border:1px solid #e5e7eb;border-top:4px solid #3B82F6;border-radius:12px;padding:24px;box-sizing:border-box;">
+        <div style="font-size:26px;margin-bottom:12px;">🛡️</div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Privacy Policy</div>
+        <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Our general privacy policy for users and visitors — explains how we collect, use, and protect your personal data.</p>
+        <a href="privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+      </div>
+
+      <!-- Card 2: Consumer Health Data Privacy Policy -->
+      <div style="width:343px;background:#fff;border:1px solid #e5e7eb;border-top:4px solid #10B981;border-radius:12px;padding:24px;box-sizing:border-box;">
+        <div style="font-size:26px;margin-bottom:12px;">🩺</div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Consumer Health Data Privacy Policy</div>
+        <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Specific privacy practices related to your consumer health data and your rights under applicable health data privacy laws.</p>
+        <a href="consumer-health-privacy.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+      </div>
+
+      <!-- Card 3: Terms of Use -->
+      <div style="width:343px;background:#fff;border:1px solid #e5e7eb;border-top:4px solid #6B7280;border-radius:12px;padding:24px;box-sizing:border-box;">
+        <div style="font-size:26px;margin-bottom:12px;">📋</div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Terms of Use</div>
+        <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">The terms governing your use of DiagnoseThis, including your rights and responsibilities as a user of our platform.</p>
+        <a href="terms.html" style="font-family:'Open Sans',sans-serif;color:#00A2B0;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+      </div>
+
+      <!-- Card 4: Do Not Sell or Share -->
+      <div style="width:343px;background:#fff;border:1px solid #e5e7eb;border-top:4px solid #F15B5C;border-radius:12px;padding:24px;box-sizing:border-box;">
+        <div style="font-size:26px;margin-bottom:12px;">🚫</div>
+        <div style="font-family:'Poppins',sans-serif;font-weight:700;color:#111;font-size:16px;margin-bottom:10px;">Do Not Sell or Share</div>
+        <p style="font-family:'Open Sans',sans-serif;color:#666;font-size:13px;line-height:1.6;margin-bottom:18px;">Exercise your right to opt out of the sale or sharing of your personal information with third parties.</p>
+        <a href="do-not-sell-share.html" style="font-family:'Open Sans',sans-serif;color:#F15B5C;font-size:13px;font-weight:600;text-decoration:none;">Read more →</a>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#111;padding:20px;">
+      <div style="margin-bottom:24px;"><img src="../assets/dt-logo-black-transparent.png" alt="DiagnoseThis" style="height:36px;width:auto;margin-bottom:12px;filter:invert(1);"><p style="color:rgba(255,255,255,0.4);font-size:12px;line-height:1.6;">Understanding the WHY behind your health &mdash; with clarity, not conclusions.</p></div>
+      <div style="margin-bottom:24px;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Quick Links</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Home</a><a href="about.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">About Us</a><a href="contact.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Contact</a><a href="privacy.html" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Privacy Policy</a></div>
+      <div style="margin-bottom:24px;"><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Plans</h4><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">Ask WHY Free</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;margin-bottom:8px;">See WHY</a><a href="#" style="display:block;color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">The WHY</a></div>
+      <div><h4 style="color:#fff;font-size:13px;font-weight:700;margin-bottom:12px;">Contact</h4><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;">support@diagnosethis.com</p><p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:8px;"><a href="tel:307-291-9885" style="color:rgba(255,255,255,0.5);text-decoration:none;">307-291-9885</a></p><p style="color:rgba(255,255,255,0.5);font-size:12px;line-height:1.5;">Core DT Solutions LLC, 5030 Anchor Way, Ste 13, Christiansted, VI 00820</p></div>
+      <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:24px;"></div>
+    </div>
+    <div style="background:#000;padding:12px 20px;text-align:center;"><p style="color:rgba(255,255,255,0.5);font-size:11px;">&copy; 2026 Core DT Solutions LLC. DiagnoseThis is educational and does not replace medical advice.</p></div>
+    <div style="background:#00A2B0;display:flex;border-top:3px solid #FFB533;">
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;background:rgba(255,255,255,0.12);border-top:3px solid #FFB533;margin-top:-3px;"><div style="color:#FFB533;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Ask</div><div style="color:#FFB533;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Chat</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Find</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Live</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+      <div style="flex:1;text-align:center;cursor:pointer;padding:12px 8px;"><div style="color:#fff;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;font-weight:700;">Shop</div><div style="color:#fff;font-size:13px;font-weight:800;">WHY</div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function setView(v){
+  ['desktop','tablet','mobile'].forEach(function(n){
+    document.getElementById('view-'+n).style.display='none';
+  });
+  document.getElementById('view-'+v).style.display='block';
+  document.querySelectorAll('.pv-btn').forEach(function(b){b.classList.remove('active');});
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
